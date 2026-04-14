@@ -1,0 +1,1511 @@
+[
+  {
+    "id": "tom_001",
+    "type": "theory_of_mind",
+    "subtype": "false_belief",
+    "scenario_text": "Sally puts her marble in a basket and leaves the room. Anne moves the marble to a box while Sally is away. Sally comes back into the room.",
+    "question": "Where will Sally look for her marble?",
+    "correct_answer": "basket",
+    "keywords": [
+      "basket"
+    ],
+    "reasoning_type": "first_order_false_belief",
+    "difficulty": "basic",
+    "inspired_by": "Sally-Anne task / Clever Hans",
+    "evaluation_criteria": "Model must attribute a belief to Sally that differs from reality. Correct = basket. Failure mode: model answers 'the box' (conflating Sally's knowledge with current reality).",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Max puts his toy car under the pillow and goes to school. His mom moves it to the drawer while cleaning. Max comes home.",
+          "question": "Where will Max look for his toy car?",
+          "answer": "ANSWER: pillow"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Max puts his toy car under the pillow and goes to school. His mom moves it to the drawer while cleaning. Max comes home.",
+          "question": "Where will Max look for his toy car?",
+          "answer": "Under the pillow \u2014 that is where Max last placed it, and he does not know his mom moved it.\nANSWER: pillow"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_002",
+    "type": "theory_of_mind",
+    "subtype": "false_belief",
+    "scenario_text": "John knows that Mary hid cookies in the jar. While Mary is away, John moves them to the drawer but tells no one. Mary comes back.",
+    "question": "Where does John think Mary will look for the cookies?",
+    "correct_answer": "jar",
+    "keywords": [
+      "jar"
+    ],
+    "reasoning_type": "second_order_false_belief",
+    "difficulty": "advanced",
+    "inspired_by": "Perner & Wimmer second-order ToM / Theory of Minds paper",
+    "evaluation_criteria": "Model must represent John's beliefs about Mary's beliefs (two levels of mental state attribution). Correct = jar. Failure mode: model answers 'the drawer' (conflating John's knowledge with his prediction of Mary's belief).",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Ana knows Ben stored his keys in the bowl. While Ben is out, Ana moves them to the shelf. Ben returns.",
+          "question": "Where does Ana think Ben will look for his keys?",
+          "answer": "ANSWER: bowl"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Ana knows Ben stored his keys in the bowl. While Ben is out, Ana moves them to the shelf. Ben returns.",
+          "question": "Where does Ana think Ben will look for his keys?",
+          "answer": "Ana thinks Ben will look in the bowl, because Ben does not know Ana moved them \u2014 he still believes they are where he left them.\nANSWER: bowl"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_003",
+    "type": "theory_of_mind",
+    "subtype": "false_belief",
+    "scenario_text": "A child is shown a candy box. When opened, it contains pencils instead. The box is closed again. A new friend enters the room who has not seen inside the box.",
+    "question": "What will the new friend think is inside the box?",
+    "correct_answer": "candy",
+    "keywords": [
+      "candy",
+      "sweets",
+      "chocolate"
+    ],
+    "reasoning_type": "unexpected_contents_false_belief",
+    "difficulty": "basic",
+    "inspired_by": "Smarties task / Clever Hans",
+    "evaluation_criteria": "Model must recognize that the newcomer's belief is based on appearance, not revealed content. Correct = candy. Failure mode: model answers 'pencils'.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A tin is labeled 'tea bags' but secretly holds buttons. A visitor who has never opened it arrives.",
+          "question": "What will the visitor think is inside the tin?",
+          "answer": "ANSWER: tea bags"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A tin is labeled 'tea bags' but secretly holds buttons. A visitor who has never opened it arrives.",
+          "question": "What will the visitor think is inside the tin?",
+          "answer": "The visitor will think there are tea bags inside, because the label says so and they have not seen the actual contents.\nANSWER: tea bags"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_004",
+    "type": "theory_of_mind",
+    "subtype": "false_belief",
+    "scenario_text": "Emma tells James a secret in a library, believing they are alone. Unknown to Emma, her colleague Nina is sitting hidden behind a bookshelf and hears everything.",
+    "question": "Does Emma believe Nina knows her secret?",
+    "correct_answer": "no",
+    "keywords": [
+      "no",
+      "does not",
+      "unaware",
+      "doesn't know"
+    ],
+    "reasoning_type": "first_order_false_belief_asymmetric_information",
+    "difficulty": "intermediate",
+    "inspired_by": "Clever Hans false belief framework",
+    "evaluation_criteria": "Model must reason from Emma's perspective about others' knowledge. Correct = No, Emma believes Nina does not know. Failure mode: model confuses ground truth (Nina heard) with Emma's belief.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Carlos whispers a plan to Dana thinking no one else can hear. Unknown to Carlos, their coworker Priya is working silently in the next cubicle with the divider open.",
+          "question": "Does Carlos think Priya heard his plan?",
+          "answer": "ANSWER: no"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Carlos whispers a plan to Dana thinking no one else can hear. Unknown to Carlos, their coworker Priya is working silently in the next cubicle with the divider open.",
+          "question": "Does Carlos think Priya heard his plan?",
+          "answer": "No. Carlos believes he and Dana are alone, so he does not think Priya heard anything.\nANSWER: no"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_005",
+    "type": "theory_of_mind",
+    "subtype": "false_belief",
+    "scenario_text": "A jar is labeled 'coffee' but actually contains sugar. Alex pours from it thinking it is coffee. Alex's friend Sam watches but says nothing.",
+    "question": "What does Alex believe they are putting in their cup?",
+    "correct_answer": "coffee",
+    "keywords": [
+      "coffee"
+    ],
+    "reasoning_type": "first_order_false_belief_mislabeled_object",
+    "difficulty": "basic",
+    "inspired_by": "Appearance-reality distinction / Clever Hans",
+    "evaluation_criteria": "Model must take Alex's perspective given the mislabeled container. Correct = coffee. Failure mode: model answers 'sugar' by relying on ground truth.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A bottle is marked 'water' but holds lemon juice. Maya drinks from it thinking it is water.",
+          "question": "What does Maya believe she is drinking?",
+          "answer": "ANSWER: water"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A bottle is marked 'water' but holds lemon juice. Maya drinks from it thinking it is water.",
+          "question": "What does Maya believe she is drinking?",
+          "answer": "Maya believes she is drinking water, because the bottle is labeled water and she has no reason to think otherwise.\nANSWER: water"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_006",
+    "type": "theory_of_mind",
+    "subtype": "false_belief",
+    "scenario_text": "Lena texts her partner: 'I got the promotion!' but accidentally sends it to her colleague Dan instead. Her partner never receives the message. Lena does not yet realize her mistake. Later that day, she sees Dan in the hallway and he gives her a knowing smile.",
+    "question": "What does Lena most likely think when she sees Dan's smile?",
+    "correct_answer": "Lena does not know Dan received her message \u2014 she still believes only her partner knows about the promotion, so Dan's smile seems puzzling or coincidental to her.",
+    "keywords": [
+      "puzzling",
+      "confused",
+      "coincidental",
+      "doesn't know Dan",
+      "unaware Dan"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_note": "Keywords must match only in the ANSWER: line. Avoid flagging 'partner' or 'promotion' which appear in the vignette itself. Distractor term: 'Dan received' should NOT count as correct \u2014 model must express Lena's ignorance, not the factual reality.",
+    "reasoning_type": "first_order_false_belief_communication_error",
+    "difficulty": "intermediate",
+    "inspired_by": "Clever Hans / naturalistic false belief",
+    "evaluation_criteria": "Model must represent Lena's belief state at the moment of seeing Dan \u2014 before she realizes the error. Failure mode: model has Lena immediately infer the misdirected text, skipping over her false belief.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Omar emails a surprise party plan to what he thinks is his friend's alternate address, but it actually goes to his friend's main inbox. Omar hasn't realized the error yet.",
+          "question": "Does Omar think his friend knows about the surprise party?",
+          "answer": "ANSWER: no"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Omar emails a surprise party plan to what he thinks is his friend's alternate address, but it actually goes to his friend's main inbox. Omar hasn't realized the error yet.",
+          "question": "Does Omar think his friend knows about the surprise party?",
+          "answer": "Omar believes the email went to an alternate address he does not associate with his friend. He has not yet discovered the mistake, so from his perspective his friend has no knowledge of the party.\nANSWER: no"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tom_007",
+    "type": "theory_of_mind",
+    "subtype": "goal_inference",
+    "scenario_text": "An infant repeatedly reaches toward a toy on the left side of a box. A researcher places a barrier blocking the left side. The toy is now accessible from the right side instead.",
+    "question": "Which side will the infant most likely reach toward?",
+    "correct_answer": "right",
+    "keywords": [
+      "right",
+      "other side",
+      "accessible"
+    ],
+    "reasoning_type": "goal_inference_constrained_reaching",
+    "difficulty": "intermediate",
+    "inspired_by": "Baby Intuitions Benchmark (BIB) \u2014 Reaching goals",
+    "evaluation_criteria": "Model must infer the infant's goal (the toy) and recognize that the infant will adapt its action to achieve the goal given the new constraint. Failure mode: model answers 'left' by repeating prior behavior.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A toddler always pushes open a red door to enter the playroom. Today the red door is locked. A blue door on the other side also leads to the playroom.",
+          "question": "What will the toddler most likely do?",
+          "answer": "ANSWER: use the blue door"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A toddler always pushes open a red door to enter the playroom. Today the red door is locked. A blue door on the other side also leads to the playroom.",
+          "question": "What will the toddler most likely do?",
+          "answer": "The toddler will try the blue door \u2014 the goal is entering the playroom, and the toddler will find a new path when the usual one is blocked.\nANSWER: use the blue door"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_008",
+    "type": "theory_of_mind",
+    "subtype": "goal_inference",
+    "scenario_text": "A ball is rolling toward a hole in the ground. Agent A rushes over and places a block to stop the ball from falling in. Agent B rushes over and kicks the block away so the ball falls into the hole.",
+    "question": "Which agent is trying to help the ball reach safety, and which is hindering it?",
+    "correct_answer": "Agent A is the helper (preventing the ball from falling); Agent B is the hinderer (causing it to fall).",
+    "keywords": [
+      "A",
+      "helper",
+      "B",
+      "hinderer"
+    ],
+    "reasoning_type": "helper_hinderer_distinction",
+    "difficulty": "intermediate",
+    "inspired_by": "Baby Intuitions Benchmark (BIB) \u2014 Social evaluation",
+    "evaluation_criteria": "Model must correctly assign helper/hinderer roles by inferring goal-directed vs. goal-obstructing actions. Failure modes: role reversal, or failing to distinguish intent from outcome.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A kitten is trying to climb onto a couch. Person X picks up the kitten and places it on the couch. Person Y pushes the kitten down each time it tries to climb.",
+          "question": "Who is helping the kitten and who is hindering it?",
+          "answer": "ANSWER: Person X helps; Person Y hinders"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A kitten is trying to climb onto a couch. Person X picks up the kitten and places it on the couch. Person Y pushes the kitten down each time it tries to climb.",
+          "question": "Who is helping the kitten and who is hindering it?",
+          "answer": "Person X is helping the kitten achieve its goal. Person Y is hindering it.\nANSWER: Person X helps; Person Y hinders"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_009",
+    "type": "theory_of_mind",
+    "subtype": "goal_inference",
+    "scenario_text": "Two paths lead from a start point to a food reward. Path A is a straight line. Path B takes a long detour around several obstacles. An agent consistently chooses Path A.",
+    "question": "What does the agent's choice of path reveal about their reasoning?",
+    "correct_answer": "The agent is reasoning efficiently \u2014 they select the least costly path to achieve their goal, consistent with the principle that rational agents minimize effort when pursuing an objective.",
+    "keywords": [
+      "efficient",
+      "shortest",
+      "least",
+      "rational",
+      "goal",
+      "effort"
+    ],
+    "reasoning_type": "efficiency_based_goal_inference",
+    "difficulty": "intermediate",
+    "inspired_by": "BIB efficiency principle / Inferential Social Learning",
+    "evaluation_criteria": "Model must invoke the efficiency principle \u2014 rational agents choose the least costly action to achieve a goal. Failure mode: model says the agent 'prefers' Path A without connecting it to goal-rationality.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A robot can turn on a light using a single button press or by a convoluted 10-step sequence. It always uses the button press.",
+          "question": "What does this reveal about the robot's behavior?",
+          "answer": "ANSWER: the robot acts efficiently to achieve its goal"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A robot can turn on a light using a single button press or by a convoluted 10-step sequence. It always uses the button press.",
+          "question": "What does this reveal about the robot's behavior?",
+          "answer": "The robot acts efficiently \u2014 it selects the simplest action to achieve its goal, consistent with rational, goal-directed behavior.\nANSWER: the robot acts efficiently to achieve its goal"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_010",
+    "type": "theory_of_mind",
+    "subtype": "goal_inference",
+    "scenario_text": "An adult demonstrates turning on a lamp by pressing the top of it with her forehead instead of using her hands. Her hands are visibly full, holding a large stack of books. A child watches the demonstration carefully and later wants to turn on the lamp when their hands are free.",
+    "question": "Should the child use their forehead or their hands to turn on the lamp, and why?",
+    "correct_answer": "The child should use their hands. The adult used her forehead only because her hands were occupied \u2014 this was a situational constraint, not the intended method. Rational imitation means copying the goal, not the arbitrary means forced by a constraint.",
+    "keywords": [
+      "hands",
+      "constraint",
+      "rational",
+      "occupied",
+      "because"
+    ],
+    "reasoning_type": "rational_imitation_constraint_inference",
+    "difficulty": "advanced",
+    "inspired_by": "Gergely et al. rational imitation / BIB",
+    "evaluation_criteria": "Model must distinguish between means that are rationally chosen vs. means forced by a situational constraint. Answering 'hands' is necessary but not sufficient \u2014 the reasoning must reference the constraint. Failure mode: model says 'forehead' by copying the surface action, or says 'hands' without explaining why.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A chef stirs soup with a spoon held in her mouth because both hands are in oven mitts. A student watches and wants to stir the soup later when their hands are free.",
+          "question": "How should the student stir the soup?",
+          "answer": "ANSWER: with their hands"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A chef stirs soup with a spoon held in her mouth because both hands are in oven mitts. A student watches and wants to stir the soup later when their hands are free.",
+          "question": "How should the student stir the soup?",
+          "answer": "The student should stir with their hands \u2014 the chef used her mouth only because her hands were unavailable due to the oven mitts. The unusual method was forced by a constraint, not preferred.\nANSWER: with their hands"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_011",
+    "type": "theory_of_mind",
+    "subtype": "goal_inference",
+    "scenario_text": "An agent picks up a hammer and repeatedly taps a nail, stopping just before it is fully driven into the wood. The agent sets the hammer down and walks away without finishing.",
+    "question": "What can an observer most reasonably infer about the agent's incomplete action?",
+    "correct_answer": "The observer should infer that the agent intended to drive the nail fully into the wood but was interrupted, ran out of time, or was otherwise prevented from completing the action \u2014 the partial behavior implies an unfinished goal.",
+    "keywords": [
+      "intended",
+      "incomplete",
+      "interrupted",
+      "unfinished",
+      "goal",
+      "fully"
+    ],
+    "reasoning_type": "incomplete_action_goal_inference",
+    "difficulty": "advanced",
+    "inspired_by": "BIB incomplete actions / Inferential Social Learning",
+    "evaluation_criteria": "Model must infer a completed goal state from an interrupted sequence. Failure mode: model takes the partial action at face value without inferring the implied complete goal.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A person begins writing 'Happy Birth' on a card, then sets the pen down and leaves the room.",
+          "question": "What was the person most likely trying to write?",
+          "answer": "ANSWER: Happy Birthday"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A person begins writing 'Happy Birth' on a card, then sets the pen down and leaves the room.",
+          "question": "What was the person most likely trying to write?",
+          "answer": "The person was most likely writing 'Happy Birthday' \u2014 the partial text implies a standard greeting that was cut off before completion.\nANSWER: Happy Birthday"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_012",
+    "type": "theory_of_mind",
+    "subtype": "multi_agent",
+    "scenario_text": "Two teammates, Raj and Soo, must coordinate to open a safe. Raj knows the left dial combination; Soo knows the right dial combination. They are in separate rooms and cannot speak \u2014 they can only pass written notes through a slot. The safe only opens if both dials are set simultaneously.",
+    "question": "What coordination strategy should Raj and Soo use?",
+    "correct_answer": "They should exchange their respective combinations via notes, then agree on a specific time to set the dials simultaneously \u2014 e.g., by including a countdown or synchronized time reference in a second note.",
+    "keywords": [
+      "exchange",
+      "simultaneously",
+      "time",
+      "agree",
+      "coordinate",
+      "countdown"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "A correct answer must address BOTH: (1) information sharing \u2014 each agent communicates their combination to the other, AND (2) timing coordination \u2014 a mechanism to set both dials at the same moment. Award full credit for any valid strategy that achieves both. Partial credit if only one is addressed. Zero credit if neither is addressed or if the answer proposes direct speech (violating the constraint).",
+    "reasoning_type": "coordination_under_asymmetric_information",
+    "difficulty": "advanced",
+    "inspired_by": "Theory of Minds / Generative Agents",
+    "evaluation_criteria": "Model must recognize both the information asymmetry and the simultaneous-action constraint, then propose a two-step solution (share information + coordinate timing). Failure mode: model proposes only sharing combinations without addressing the timing problem.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Two hikers on opposite sides of a canyon need to cross a bridge at exactly the same moment to counterbalance its weight. They can signal with mirrors.",
+          "question": "How should they coordinate?",
+          "answer": "ANSWER: establish a shared countdown via mirror signals, then step onto the bridge together on the final signal"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Two hikers on opposite sides of a canyon need to cross a bridge at exactly the same moment to counterbalance its weight. They can signal with mirrors.",
+          "question": "How should they coordinate?",
+          "answer": "Both hikers need to act simultaneously, but they cannot speak. Mirrors allow visual signals. One hiker should initiate a countdown sequence (e.g., three flashes = ready), the other mirrors back to confirm, and both step on at the agreed final signal.\nANSWER: establish a shared countdown via mirror signals, then step onto the bridge together on the final signal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tom_013",
+    "type": "theory_of_mind",
+    "subtype": "multi_agent",
+    "scenario_text": "In a card game, Player A has always played their strongest card first in every previous round. Player B has noticed this pattern. In the current round, Player A wants to win and is aware that Player B has been closely watching their strategy.",
+    "question": "What card strategy should Player A adopt this round, and why?",
+    "correct_answer": "Player A should deviate from their established pattern \u2014 e.g., open with a weak card \u2014 to exploit Player B's expectation. Since Player A knows Player B is modeling their behavior, predictability is now a liability and strategic deception is rational.",
+    "keywords": [
+      "deviate",
+      "pattern",
+      "weak",
+      "exploit",
+      "expectation",
+      "deceive",
+      "break"
+    ],
+    "reasoning_type": "strategic_deception_second_order_belief",
+    "difficulty": "advanced",
+    "inspired_by": "Theory of Minds / game-theoretic ToM",
+    "evaluation_criteria": "Model must reason at second order: A's belief about B's belief about A's strategy. Failure mode: model suggests playing the strongest card (ignoring B's updated expectations), or describes the situation without recommending a strategy.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A soccer player always shoots right when taking penalties. The goalkeeper has studied recordings and expects another right shot. The player knows the goalkeeper has been watching film.",
+          "question": "What should the player do?",
+          "answer": "ANSWER: shoot left"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A soccer player always shoots right when taking penalties. The goalkeeper has studied recordings and expects another right shot. The player knows the goalkeeper has been watching film.",
+          "question": "What should the player do?",
+          "answer": "The player should shoot left \u2014 the goalkeeper expects right based on past behavior, and the player knows this. Exploiting that expectation requires deliberately breaking the pattern.\nANSWER: shoot left"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "tom_014",
+    "type": "theory_of_mind",
+    "subtype": "multi_agent",
+    "scenario_text": "Tom sees a cat go into the barn. Tom then leaves the area. While Tom is gone, the cat moves from the barn to the shed. A new observer, Lisa, arrives and is told only: 'Tom watched the cat go somewhere earlier.'",
+    "question": "Where does Lisa think Tom believes the cat is?",
+    "correct_answer": "Lisa thinks Tom believes the cat is in the barn \u2014 because that is the last location Tom witnessed, and Lisa knows Tom left before the cat moved.",
+    "keywords": [
+      "barn"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_note": "CRITICAL: Score ONLY the ANSWER: line. The reasoning chain will almost certainly mention both 'barn' and 'shed' (correctly explaining the nested belief structure). Matching 'barn' anywhere in the full response is not sufficient \u2014 a model that says 'the cat is in the shed, but Tom thinks barn' is correct; a model whose ANSWER: line says 'shed' is wrong. Do not use full-response keyword matching for this item.",
+    "reasoning_type": "third_order_belief_attribution",
+    "difficulty": "advanced",
+    "inspired_by": "Theory of Minds / nested belief tracking",
+    "evaluation_criteria": "Three-level nesting: (1) cat is in the shed [reality], (2) Tom believes cat is in the barn [Tom's false belief], (3) Lisa's belief about Tom's belief = barn. Failure mode: any conflation across these levels.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Wei saw his friend put a letter in the top drawer, then left. Later, the friend moved the letter to a box. A third person, Jules, is told only that 'Wei saw where the letter was put.'",
+          "question": "Where does Jules think Wei believes the letter is?",
+          "answer": "ANSWER: top drawer"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Wei saw his friend put a letter in the top drawer, then left. Later, the friend moved the letter to a box. A third person, Jules, is told only that 'Wei saw where the letter was put.'",
+          "question": "Where does Jules think Wei believes the letter is?",
+          "answer": "The letter is now in the box [reality]. But Wei only saw it go into the top drawer and was gone before it moved, so Wei believes it is in the top drawer [Wei's false belief]. Jules knows only what Wei witnessed \u2014 so Jules thinks Wei believes the letter is in the top drawer.\nANSWER: top drawer"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tom_015",
+    "type": "theory_of_mind",
+    "subtype": "multi_agent",
+    "scenario_text": "Two agents must jointly solve a puzzle. Agent A knows the solution requires a red key. Agent B has the red key but does not know it is needed \u2014 they believe they are only there to carry supplies. Agent A cannot directly instruct Agent B.",
+    "question": "What should Agent A do to get Agent B to produce the red key?",
+    "correct_answer": "Agent A should indirectly signal the relevance of the red key \u2014 for example, by visibly examining the keyhole, pointing toward the locked element, or otherwise making it salient \u2014 so that Agent B can infer the key is needed and volunteer it.",
+    "keywords": [
+      "indirect",
+      "signal",
+      "salient",
+      "infer",
+      "hint",
+      "draw attention",
+      "lock",
+      "point"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "A correct answer must: (1) NOT propose direct instruction (violates the constraint), (2) describe a strategy that makes the red key or the locked element salient to Agent B, (3) rely on B inferring the need rather than being told. Accept any indirect mechanism: pointing at the lock, demonstrating the key slot, drawing B's attention to the locked box, etc. Reject answers that have Agent A tell Agent B the key is needed.",
+    "reasoning_type": "collaborative_tom_belief_gap_bridging",
+    "difficulty": "advanced",
+    "inspired_by": "Generative Agents / Building Machines That Learn and Think With People",
+    "evaluation_criteria": "Model must (1) identify the belief gap, (2) recognize the communication constraint, (3) propose an indirect strategy enabling B to update beliefs. Failure mode: model proposes direct instruction, or assumes B will figure it out unprompted.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A museum guide knows the secret passage opens with a specific coin. A visitor has that coin as a souvenir but doesn't know it is a key. The guide cannot simply say 'use your coin' as it would ruin the experience.",
+          "question": "How can the guide get the visitor to try the coin without telling them directly?",
+          "answer": "ANSWER: draw the visitor's attention to the coin-shaped slot on the door and hint that a special coin is said to open it"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A museum guide knows the secret passage opens with a specific coin. A visitor has that coin as a souvenir but doesn't know it is a key. The guide cannot simply say 'use your coin' as it would ruin the experience.",
+          "question": "How can the guide get the visitor to try the coin without telling them directly?",
+          "answer": "The guide cannot tell the visitor directly. The visitor has the coin but doesn't know it's relevant. The guide should bridge this belief gap indirectly \u2014 by pointing out the coin-shaped slot and suggesting that 'legend has it a special coin opens this door,' letting the visitor make the connection themselves.\nANSWER: draw the visitor's attention to the coin-shaped slot and hint that a special coin is said to open it"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_001",
+    "type": "pragmatics",
+    "subtype": "indirect_speech_act",
+    "scenario_text": "Alex asks: 'Can you pass the salt?' There is salt right in front of Jordan on the table.",
+    "question": "What should Jordan do?",
+    "correct_answer": "pass the salt",
+    "keywords": [
+      "pass",
+      "salt",
+      "hand"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "indirect_speech_act_ability_as_request",
+    "difficulty": "basic",
+    "inspired_by": "Gricean maxims / RSA framework",
+    "evaluation_criteria": "Model must recognise that 'Can you X?' is a conventional indirect request, not a literal question about Jordan's ability. Correct = pass the salt. Failure mode: model answers 'yes' (literal ability reading).",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "During a meeting, Sam says to the person nearest the door: 'Could you close the door?' The door is open.",
+          "question": "What should the person near the door do?",
+          "answer": "ANSWER: close the door"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "During a meeting, Sam says to the person nearest the door: 'Could you close the door?' The door is open.",
+          "question": "What should the person near the door do?",
+          "answer": "'Could you close the door?' is a conventional indirect request, not a question about physical ability. The cooperative response is to close the door.\nANSWER: close the door"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_002",
+    "type": "pragmatics",
+    "subtype": "indirect_speech_act",
+    "scenario_text": "A dinner guest says to the host: 'It's a little cold in here.' The thermostat is on the wall nearby.",
+    "question": "What does the guest most likely want the host to do?",
+    "correct_answer": "adjust the environment to make it warmer \u2014 e.g. turn up the heat / close the window",
+    "keywords": [
+      "heat",
+      "thermostat",
+      "warmer",
+      "temperature",
+      "turn up",
+      "window",
+      "close",
+      "shut",
+      "closing",
+      "shutting"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "indirect_speech_act_environmental_complaint_as_request",
+    "difficulty": "basic",
+    "inspired_by": "Gricean maxims \u2014 Manner / RSA",
+    "evaluation_criteria": "Model must infer that the complaint is an implicit request for action, not merely a statement of fact. Correct = any action that addresses the cold: adjusting the thermostat, closing a window, etc. Failure mode: model says the guest is just sharing information with no implied request.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A passenger in a car says: 'This music is really loud.' The driver has their hand on the volume knob.",
+          "question": "What does the passenger most likely want?",
+          "answer": "ANSWER: turn the music down"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A passenger in a car says: 'This music is really loud.' The driver has their hand on the volume knob.",
+          "question": "What does the passenger most likely want?",
+          "answer": "The comment about volume is not purely informational \u2014 said to someone who can act on it, it functions as an implicit request to lower the volume.\nANSWER: turn the music down"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_003",
+    "type": "pragmatics",
+    "subtype": "indirect_speech_act",
+    "scenario_text": "A manager emails their team: 'It would be great if the report could be ready by Friday.' Today is Wednesday.",
+    "question": "What does the manager actually mean?",
+    "correct_answer": "the report should be ready by Friday \u2014 this is a directive, not merely an expression of preference",
+    "keywords": [
+      "deadline",
+      "due",
+      "must",
+      "should",
+      "by Friday",
+      "directive",
+      "required",
+      "expected"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "indirect_speech_act_softened_directive",
+    "difficulty": "intermediate",
+    "inspired_by": "Gricean maxims \u2014 politeness and indirect directives / RSA",
+    "evaluation_criteria": "Model must recognise that polite hedging ('it would be great if') does not reduce the illocutionary force of a workplace directive. Correct = treat as deadline. Failure mode: model takes the hedge literally and says the manager is just expressing a wish.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A professor writes on the syllabus: 'Students are encouraged to attend all lectures.' Attendance affects participation grades.",
+          "question": "What does this most likely mean for students?",
+          "answer": "ANSWER: attendance is effectively required / expected"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A professor writes on the syllabus: 'Students are encouraged to attend all lectures.' Attendance affects participation grades.",
+          "question": "What does this most likely mean for students?",
+          "answer": "'Encouraged' softens the directive but does not eliminate it \u2014 especially given the grade consequence. In context this means attendance is effectively expected.\nANSWER: attendance is effectively required / expected"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_004",
+    "type": "pragmatics",
+    "subtype": "indirect_speech_act",
+    "scenario_text": "At a library, a librarian looks at a patron talking loudly on their phone and says: 'We do have a quiet policy here.'",
+    "question": "What is the librarian communicating to the patron?",
+    "correct_answer": "the patron should stop talking loudly / take the call outside",
+    "keywords": [
+      "quiet",
+      "stop",
+      "phone",
+      "outside",
+      "lower",
+      "silence"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "indirect_speech_act_policy_as_directive",
+    "difficulty": "basic",
+    "inspired_by": "RSA / Gricean Relevance maxim",
+    "evaluation_criteria": "Model must infer that stating the policy to someone violating it is a face-saving indirect request to stop. Failure mode: model treats the utterance as purely informational.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A cinema employee approaches someone eating crunchy snacks and says: 'Outside food isn't really allowed in the theatre.'",
+          "question": "What is the employee communicating?",
+          "answer": "ANSWER: the person should stop eating the outside food / put it away"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A cinema employee approaches someone eating crunchy snacks and says: 'Outside food isn't really allowed in the theatre.'",
+          "question": "What is the employee communicating?",
+          "answer": "Stating the rule to the person currently breaking it is a face-saving way of requesting they stop. The communicative intent is to get the person to put the food away.\nANSWER: the person should stop eating the outside food / put it away"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_005",
+    "type": "pragmatics",
+    "subtype": "indirect_speech_act",
+    "scenario_text": "Two colleagues are leaving work together. One says: 'I heard the new Thai place around the corner is really good.' They have not yet decided where to eat dinner.",
+    "question": "What is the speaker most likely suggesting?",
+    "correct_answer": "they want to go to the Thai restaurant for dinner",
+    "keywords": [
+      "Thai",
+      "restaurant",
+      "go",
+      "suggest",
+      "eat",
+      "dinner"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "indirect_speech_act_suggestion_via_assertion",
+    "difficulty": "intermediate",
+    "inspired_by": "RSA / Gricean Quantity and Relevance",
+    "evaluation_criteria": "Model must infer that sharing restaurant information in this context functions as an indirect suggestion to go there. Failure mode: model treats the utterance as pure information-sharing with no implied preference.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Two friends are deciding what film to watch. One says: 'I haven't seen that new sci-fi film everyone's been talking about.'",
+          "question": "What is the speaker most likely suggesting?",
+          "answer": "ANSWER: they want to watch the sci-fi film"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Two friends are deciding what film to watch. One says: 'I haven't seen that new sci-fi film everyone's been talking about.'",
+          "question": "What is the speaker most likely suggesting?",
+          "answer": "Mentioning an unseen film while actively choosing what to watch implies the speaker wants to watch it. The utterance functions as an indirect suggestion.\nANSWER: they want to watch the sci-fi film"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_006",
+    "type": "pragmatics",
+    "subtype": "scalar_implicature",
+    "scenario_text": "A student asks their tutor: 'Did everyone pass the exam?' The tutor replies: 'Some of the students passed.'",
+    "question": "What does the tutor's reply implicate about whether all students passed?",
+    "correct_answer": "not all students passed",
+    "keywords": [
+      "not all",
+      "some did not",
+      "failed",
+      "not everyone"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "scalar_implicature_some_not_all",
+    "difficulty": "basic",
+    "inspired_by": "RSA scalar implicature / Gricean Quantity",
+    "evaluation_criteria": "Model must derive the standard scalar implicature: 'some' implicates 'not all' when 'all' would have been more informative and the speaker chose not to say it. Failure mode: model says the reply is compatible with all passing.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Someone asks: 'Did you finish all the tasks?' The reply is: 'I finished some of them.'",
+          "question": "What does the reply implicate about whether all tasks were finished?",
+          "answer": "ANSWER: not all tasks were finished"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Someone asks: 'Did you finish all the tasks?' The reply is: 'I finished some of them.'",
+          "question": "What does the reply implicate about whether all tasks were finished?",
+          "answer": "If all tasks were finished, saying 'all' would be more informative. Choosing 'some' implicates that not all were completed.\nANSWER: not all tasks were finished"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_007",
+    "type": "pragmatics",
+    "subtype": "scalar_implicature",
+    "scenario_text": "A reviewer writes about a restaurant: 'The food was edible.'",
+    "question": "What does the reviewer most likely implicate about the quality of the food?",
+    "correct_answer": "the food was not good / merely acceptable at best",
+    "keywords": [
+      "not good",
+      "mediocre",
+      "poor",
+      "merely",
+      "just edible",
+      "acceptable",
+      "underwhelming",
+      "bad"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "scalar_implicature_weak_positive_as_negative",
+    "difficulty": "intermediate",
+    "inspired_by": "Gricean Quantity \u2014 choosing a weaker term implicates the stronger does not apply",
+    "evaluation_criteria": "Model must recognise that 'edible' sits low on the food-quality scale; choosing it over 'good', 'great', or 'delicious' implicates those stronger terms do not apply. Failure mode: model treats 'edible' as a neutral or positive description.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Asked about a colleague's presentation, someone says: 'It was coherent.'",
+          "question": "What does the speaker implicate about the quality of the presentation?",
+          "answer": "ANSWER: the presentation was not impressive / merely adequate"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Asked about a colleague's presentation, someone says: 'It was coherent.'",
+          "question": "What does the speaker implicate about the quality of the presentation?",
+          "answer": "'Coherent' is a weak positive on the presentation-quality scale. If it were genuinely good, stronger terms like 'excellent' or 'impressive' would have been used. Choosing 'coherent' implicates the higher terms do not apply.\nANSWER: the presentation was not impressive / merely adequate"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_008",
+    "type": "pragmatics",
+    "subtype": "scalar_implicature",
+    "scenario_text": "A job candidate asks the interviewer: 'Do you think I have a chance at the position?' The interviewer replies: 'We're considering several strong candidates.'",
+    "question": "What does the interviewer's reply implicate about the candidate's prospects?",
+    "correct_answer": "the candidate's chances are uncertain or unlikely \u2014 the interviewer is hedging rather than encouraging",
+    "keywords": [
+      "uncertain",
+      "unlikely",
+      "not promising",
+      "hedging",
+      "not confident",
+      "doubtful",
+      "avoid"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "scalar_implicature_evasion_as_negative_signal",
+    "difficulty": "intermediate",
+    "inspired_by": "RSA / Gricean Relevance \u2014 non-answers implicate avoidance",
+    "evaluation_criteria": "Model must infer that failing to directly affirm the candidate's prospects, while technically informative, implicates the interviewer is avoiding a direct positive answer. Failure mode: model treats the reply as neutral or uninformative.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Someone asks their doctor: 'Am I going to be okay?' The doctor replies: 'Modern medicine has come a long way.'",
+          "question": "What does the doctor's reply implicate?",
+          "answer": "ANSWER: the doctor is avoiding a direct reassurance \u2014 the prognosis may not be positive"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Someone asks their doctor: 'Am I going to be okay?' The doctor replies: 'Modern medicine has come a long way.'",
+          "question": "What does the doctor's reply implicate?",
+          "answer": "A direct 'yes' would be the most informative and reassuring response. Deflecting to a general statement about medicine implicates the doctor cannot or will not give that reassurance \u2014 signalling uncertainty or a negative prognosis.\nANSWER: the doctor is avoiding a direct reassurance \u2014 the prognosis may not be positive"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_009",
+    "type": "pragmatics",
+    "subtype": "scalar_implicature",
+    "scenario_text": "A wine expert tastes a glass and says: 'It's technically correct.'",
+    "question": "What does the expert implicate about the wine?",
+    "correct_answer": "the wine is competent but not impressive / lacks distinction",
+    "keywords": [
+      "not impressive",
+      "average",
+      "lacks",
+      "nothing special",
+      "competent but",
+      "mediocre",
+      "underwhelming"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "scalar_implicature_domain_specific_weak_praise",
+    "difficulty": "advanced",
+    "inspired_by": "RSA domain-specific scales / Gricean Quantity",
+    "evaluation_criteria": "Model must apply the scalar implicature within a domain-specific quality scale (wine evaluation), where 'technically correct' is a known weak descriptor. Requires understanding that experts use precise vocabulary where choosing a weaker term carries stronger negative implicature than in everyday speech. Failure mode: model treats 'technically correct' as a positive assessment.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A music critic writes: 'The performance was technically proficient.'",
+          "question": "What does the critic implicate about the performance?",
+          "answer": "ANSWER: the performance lacked artistry or emotional depth despite being technically accurate"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A music critic writes: 'The performance was technically proficient.'",
+          "question": "What does the critic implicate about the performance?",
+          "answer": "In music criticism, 'technically proficient' sits low on the evaluative scale. Critics have richer terms available (moving, inspired, masterful). Choosing a purely technical descriptor implicates the higher terms do not apply \u2014 the performance was correct but not artistically compelling.\nANSWER: the performance lacked artistry or emotional depth despite being technically accurate"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_010",
+    "type": "pragmatics",
+    "subtype": "scalar_implicature",
+    "scenario_text": "Person A is selling their old car and tells the buyer: 'The engine runs.' Person B, who knows about cars, hears this description.",
+    "question": "What should Person B infer about the condition of the car?",
+    "correct_answer": "the car likely has significant other problems \u2014 a seller would use stronger praise if the car were in good condition",
+    "keywords": [
+      "problems",
+      "issues",
+      "not good condition",
+      "only runs",
+      "minimal",
+      "concerns",
+      "suspicious",
+      "poor"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "scalar_implicature_seller_understatement_as_warning",
+    "difficulty": "advanced",
+    "inspired_by": "RSA / Gricean Quantity \u2014 minimal description in a context where more would be expected",
+    "evaluation_criteria": "Model must reason from the seller's choice of a minimal positive ('runs') in a context where buyers expect fuller endorsements. A knowledgeable buyer should infer that stronger positives were withheld because they do not apply. Failure mode: model takes 'the engine runs' at face value as adequate assurance.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A landlord advertising an apartment writes only: 'The building has heating.'",
+          "question": "What should a prospective tenant infer?",
+          "answer": "ANSWER: the apartment likely has other significant drawbacks the landlord is not mentioning"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A landlord advertising an apartment writes only: 'The building has heating.'",
+          "question": "What should a prospective tenant infer?",
+          "answer": "Landlords advertising desirable apartments use strong positive language. Mentioning only a basic feature like heating implicates that stronger descriptors (spacious, bright, quiet) do not apply \u2014 suggesting notable drawbacks exist.\nANSWER: the apartment likely has other significant drawbacks the landlord is not mentioning"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_011",
+    "type": "pragmatics",
+    "subtype": "reference_resolution",
+    "scenario_text": "Maria and Tom both know that their friend Lisa recently got a new job. Tom says to Maria: 'She must be so excited.'",
+    "question": "Who does 'she' refer to?",
+    "correct_answer": "Lisa",
+    "keywords": [
+      "Lisa"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "reference_resolution_common_ground",
+    "difficulty": "basic",
+    "inspired_by": "RSA common ground / Pragmatics in Language Grounding",
+    "evaluation_criteria": "Model must use shared common ground (both interlocutors know about Lisa's job) to resolve the pronoun. Failure mode: model says the referent is ambiguous or answers 'Maria'.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Two coworkers both know their manager just returned from a long vacation. One says: 'She looks so relaxed.'",
+          "question": "Who does 'she' refer to?",
+          "answer": "ANSWER: the manager"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Two coworkers both know their manager just returned from a long vacation. One says: 'She looks so relaxed.'",
+          "question": "Who does 'she' refer to?",
+          "answer": "Both speakers share the knowledge that the manager just returned. In this common ground, 'she' most naturally refers to the most salient mutually known person \u2014 the manager.\nANSWER: the manager"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_012",
+    "type": "pragmatics",
+    "subtype": "reference_resolution",
+    "scenario_text": "A customer walks into a hardware store and asks the assistant: 'Do you have the kind that doesn't strip?'",
+    "question": "What is the customer most likely asking about?",
+    "correct_answer": "screws / screwdrivers / bolts \u2014 a fastener that is resistant to stripping",
+    "keywords": [
+      "screw",
+      "fastener",
+      "bolt",
+      "strip",
+      "hardware"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "reference_resolution_domain_context",
+    "difficulty": "intermediate",
+    "inspired_by": "RSA / HandMeThat reference resolution in context",
+    "evaluation_criteria": "Model must use the domain context (hardware store) to resolve the underspecified reference 'the kind'. Failure mode: model says the question is too vague to answer, or picks an implausible referent.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A customer at a bakery asks: 'Do you have the one without nuts?'",
+          "question": "What is the customer most likely asking about?",
+          "answer": "ANSWER: a pastry or baked item that does not contain nuts"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A customer at a bakery asks: 'Do you have the one without nuts?'",
+          "question": "What is the customer most likely asking about?",
+          "answer": "The bakery context makes the referent a food item. 'The one without nuts' resolves to a common bakery product the customer wants in a nut-free version \u2014 most likely a pastry or cake.\nANSWER: a pastry or baked item that does not contain nuts"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_013",
+    "type": "pragmatics",
+    "subtype": "reference_resolution",
+    "scenario_text": "Two friends, Priya and Dan, have been arguing about which streaming service has better original content. Later that day, Priya texts Dan: 'Just saw they renewed it for another season.' Dan immediately knows what she means.",
+    "question": "What does Dan know that allows him to understand Priya's message?",
+    "correct_answer": "Dan knows the shared context of their earlier conversation about streaming services \u2014 'it' refers to a specific show they were discussing, and 'they' refers to the streaming service in question",
+    "keywords": [
+      "shared context",
+      "earlier conversation",
+      "common ground",
+      "show",
+      "streaming",
+      "discussed"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award credit if the answer correctly identifies that Dan resolves the underspecified reference ('it', 'they') by drawing on the shared conversational context from earlier in the day. Must mention: (1) the prior conversation as the source of common ground, and (2) that this allows Dan to identify the referents without further clarification. Reject answers that just say 'they talked earlier' without connecting it to reference resolution.",
+    "reasoning_type": "reference_resolution_prior_discourse_common_ground",
+    "difficulty": "intermediate",
+    "inspired_by": "RSA common ground / Pragmatics in Language Grounding",
+    "evaluation_criteria": "Model must explain that successful reference resolution depends on shared conversational history. Failure mode: model says Dan guessed, or treats the message as unambiguous without explaining why.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Two colleagues spent the morning discussing a difficult client. That afternoon one texts the other: 'Just heard they finally signed.' The colleague immediately understands.",
+          "question": "What allows the colleague to understand the message?",
+          "answer": "ANSWER: the shared context of their morning conversation \u2014 'they' refers to the difficult client, resolved via common ground"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Two colleagues spent the morning discussing a difficult client. That afternoon one texts the other: 'Just heard they finally signed.' The colleague immediately understands.",
+          "question": "What allows the colleague to understand the message?",
+          "answer": "The pronoun 'they' is underspecified on its own, but both speakers share the common ground of their earlier discussion. That prior discourse establishes the referent \u2014 the difficult client \u2014 allowing the message to be understood without clarification.\nANSWER: the shared context of their morning conversation \u2014 'they' refers to the difficult client, resolved via common ground"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_014",
+    "type": "pragmatics",
+    "subtype": "reference_resolution",
+    "scenario_text": "At a dinner party, a guest says to the host: 'The pasta was amazing' \u2014 but there were three pasta dishes served. The host immediately knows which one the guest means.",
+    "question": "What linguistic and contextual mechanism allows the host to identify which pasta dish the guest means?",
+    "correct_answer": "the host uses the definite article 'the' as a uniqueness signal combined with contextual salience \u2014 most likely the most memorable or the last pasta served \u2014 to resolve the reference",
+    "keywords": [
+      "definite",
+      "salience",
+      "unique",
+      "context",
+      "most memorable",
+      "last",
+      "standout"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award credit if the answer identifies: (1) the definite article 'the' signals the speaker assumes the referent is identifiable, AND (2) the host uses contextual salience (e.g., most distinctive dish, recency, or shared attention during the meal) to resolve which one. Reject answers that only mention 'context' vaguely without the uniqueness/definiteness mechanism.",
+    "reasoning_type": "reference_resolution_definiteness_and_salience",
+    "difficulty": "advanced",
+    "inspired_by": "RSA definiteness / Pragmatics in Language Grounding \u2014 HandMeThat",
+    "evaluation_criteria": "Model must explain both the definiteness signal and the contextual salience resolution mechanism. Failure mode: model just says 'the host knew from context' without explaining the linguistic mechanism.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "In a room with three windows, someone says: 'Can you open the window?' and points to one side of the room. Their companion knows exactly which window they mean.",
+          "question": "What allows the companion to identify the correct window?",
+          "answer": "ANSWER: the definite article 'the' signals a uniquely identifiable referent, and the gesture provides the contextual salience needed to resolve which window is meant"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "In a room with three windows, someone says: 'Can you open the window?' and points to one side of the room. Their companion knows exactly which window they mean.",
+          "question": "What allows the companion to identify the correct window?",
+          "answer": "'The window' uses the definite article, which signals the speaker believes the referent is uniquely identifiable. The pointing gesture provides the contextual salience that picks out one specific window from the set of three.\nANSWER: the definite article signals a uniquely identifiable referent; the gesture provides contextual salience to resolve which window"
+        }
+      ]
+    }
+  },
+  {
+    "id": "prag_015",
+    "type": "pragmatics",
+    "subtype": "reference_resolution",
+    "scenario_text": "A professor says to a student after reviewing their draft: 'I've seen stronger arguments.' The student knows the professor has read thousands of papers and is an expert in the field.",
+    "question": "What should the student infer about the quality of their argument, and why does the professor's expertise matter for this interpretation?",
+    "correct_answer": "the student should infer their argument is weak; the professor's expertise raises the comparison class \u2014 'stronger arguments' from someone who has read thousands of papers implies the current argument falls well below an expert standard",
+    "keywords": [
+      "weak",
+      "poor",
+      "below standard",
+      "comparison",
+      "expertise",
+      "raises the bar",
+      "expert standard",
+      "strong arguments seen"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award full credit if the answer: (1) correctly infers the argument is weak/needs improvement AND (2) explains that the professor's expertise elevates the comparison class, making 'stronger' a more damning implicature than if said by a novice. Partial credit if only (1) is present. Reject answers that treat this as a neutral observation or ignore the expertise dimension.",
+    "reasoning_type": "scalar_implicature_expertise_modulated_comparison_class",
+    "difficulty": "advanced",
+    "inspired_by": "RSA comparison classes / Gricean Quantity with context-dependent scales",
+    "evaluation_criteria": "Model must reason that scalar implicatures are modulated by the speaker's epistemic position \u2014 an expert's 'stronger' carries more weight than a novice's. Failure mode: model only identifies the weak implicature without explaining why the professor's expertise matters.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A Michelin-starred chef tastes a dish made by a culinary student and says: 'I've had more balanced flavours.' The student knows the chef has tasted food from hundreds of world-class restaurants.",
+          "question": "What should the student infer about their dish, and why does the chef's experience matter?",
+          "answer": "ANSWER: the dish needs significant improvement; the chef's vast experience raises the comparison class, making 'more balanced flavours' a strong signal that the dish falls well below professional standards"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A Michelin-starred chef tastes a dish made by a culinary student and says: 'I've had more balanced flavours.' The student knows the chef has tasted food from hundreds of world-class restaurants.",
+          "question": "What should the student infer about their dish, and why does the chef's experience matter?",
+          "answer": "The implicature from 'I've had more balanced flavours' is that this dish is less balanced than what the chef normally encounters. Because the chef's comparison class consists of world-class cuisine, the implicature is far more negative than the same words from a novice \u2014 the dish is not just below average, it falls well below a professional standard.\nANSWER: the dish needs significant improvement; the chef's experience raises the comparison class, making this a strong negative signal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_001",
+    "type": "chain_of_thought",
+    "subtype": "pragmatic_inference",
+    "scenario_text": "John told Mary he would meet her at the coffee shop at 3pm. Mary arrives at 3pm but John is not there. John texts: 'I'm running a bit late.'",
+    "question": "What does Mary most likely infer about when John will arrive?",
+    "correct_answer": "soon / shortly after 3pm",
+    "keywords": [
+      "soon",
+      "shortly",
+      "few minutes",
+      "minutes",
+      "late"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "pragmatic_inference_temporal_implicature",
+    "difficulty": "basic",
+    "inspired_by": "Gricean Quantity \u2014 'a bit late' implicates a small delay",
+    "evaluation_criteria": "Model must derive the temporal implicature from 'a bit late': the hedge 'a bit' bounds the delay to a short interval. Failure mode: model says John could arrive at any time, or treats the message as uninformative.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Sam texts: 'Just leaving now, won't be long.' They were due 10 minutes ago.",
+          "question": "What should the recipient infer about when Sam will arrive?",
+          "answer": "ANSWER: soon / within a few minutes"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Sam texts: 'Just leaving now, won't be long.' They were due 10 minutes ago.",
+          "question": "What should the recipient infer about when Sam will arrive?",
+          "answer": "'Won't be long' is a Gricean hedge bounding the delay to a short interval. Combined with 'just leaving', the recipient can infer Sam will arrive soon \u2014 within a few minutes, not hours.\nANSWER: soon / within a few minutes"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_002",
+    "type": "chain_of_thought",
+    "subtype": "false_belief_pragmatic_inference",
+    "scenario_text": "Claire tells her flatmate David that she ate the last of the leftover pizza. Later, Claire's friend Ben visits and asks David: 'Is there any pizza left?' David knows there is none, but also knows Ben and Claire had an argument last week about Claire always eating shared food.",
+    "question": "What should David consider before responding to Ben's question, and what is the most cooperative response?",
+    "correct_answer": "David should consider that a direct 'Claire ate it' may reopen conflict between Ben and Claire. The most cooperative response is to simply say there is no pizza left, without volunteering who ate it.",
+    "keywords": [
+      "no pizza",
+      "none left",
+      "without mentioning",
+      "not volunteer",
+      "simply say",
+      "just say"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award credit if the answer: (1) identifies the social tension as a relevant consideration, AND (2) recommends David answer the factual question (no pizza) without volunteering the potentially inflammatory detail of who ate it. Reject if the model says David should tell Ben it was Claire, or ignores the social context entirely.",
+    "reasoning_type": "cot_social_relevance_filtering",
+    "difficulty": "intermediate",
+    "inspired_by": "Gricean Manner + Relevance \u2014 cooperative responses filter socially harmful information",
+    "evaluation_criteria": "Model must reason across two steps: (1) what information is literally relevant to Ben's question, (2) what additional information is socially harmful to volunteer. CoT should help models make step 2 explicit. Failure mode: model either gives a purely literal answer (naming Claire) or refuses to answer at all.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A colleague asks if the meeting notes were sent out. You know they were not, and that your manager forgot \u2014 but your manager is sensitive about being criticised. What is the most cooperative response?",
+          "question": "What should you say?",
+          "answer": "ANSWER: say the notes have not been sent yet, without volunteering that the manager forgot"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A colleague asks if the meeting notes were sent out. You know they were not, and that your manager forgot \u2014 but your manager is sensitive about being criticised. What is the most cooperative response?",
+          "question": "What should you say?",
+          "answer": "The colleague needs to know the notes are not out \u2014 that is the relevant fact. Volunteering that the manager forgot is technically true but socially harmful and not necessary to answer the question. The cooperative response answers the question without the inflammatory detail.\nANSWER: say the notes have not been sent yet, without volunteering that the manager forgot"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_003",
+    "type": "chain_of_thought",
+    "subtype": "mental_state_causal_chain",
+    "scenario_text": "At a party, Zoe notices that her friend Marcus has gone quiet and is standing alone by the wall. Earlier, she saw Marcus's ex-partner arrive with a new date. Marcus does not know that Zoe saw this.",
+    "question": "What is the most likely explanation for Marcus's behaviour, and what does Zoe know that Marcus does not know she knows?",
+    "correct_answer": "Marcus is likely upset or uncomfortable because his ex arrived with a new date. Zoe knows the likely cause of Marcus's mood, but Marcus does not know Zoe witnessed this \u2014 creating an asymmetry where Zoe has insight into Marcus's mental state that he is unaware she possesses.",
+    "keywords": [
+      "ex",
+      "upset",
+      "uncomfortable",
+      "doesn't know Zoe saw",
+      "asymmetry",
+      "cause",
+      "mood"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award full credit if answer: (1) correctly identifies the ex-partner's arrival as the cause, AND (2) identifies the epistemic asymmetry \u2014 Zoe knows the cause but Marcus doesn't know she knows. Partial credit for (1) alone. Reject if the model misses the asymmetry entirely.",
+    "reasoning_type": "cot_mental_state_causal_chain_with_epistemic_asymmetry",
+    "difficulty": "intermediate",
+    "inspired_by": "Theory of Minds \u2014 causal mental state reasoning / Inferential Social Learning",
+    "evaluation_criteria": "Requires two reasoning steps: (1) infer Marcus's mental state from observable behaviour + context, (2) track the epistemic asymmetry about who knows what. CoT should help models make both steps explicit rather than jumping to a surface answer.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "At work, Anna notices her colleague Ben seems distracted and keeps checking his phone. Earlier, Anna overheard Ben's wife call to say their child was sick at school. Ben does not know Anna heard the call.",
+          "question": "What is the likely cause of Ben's behaviour, and what does Anna know that Ben doesn't know she knows?",
+          "answer": "ANSWER: Ben is distracted because of his sick child; Anna knows the cause but Ben doesn't know she overheard \u2014 creating an epistemic asymmetry"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "At work, Anna notices her colleague Ben seems distracted and keeps checking his phone. Earlier, Anna overheard Ben's wife call to say their child was sick at school. Ben does not know Anna heard the call.",
+          "question": "What is the likely cause of Ben's behaviour, and what does Anna know that Ben doesn't know she knows?",
+          "answer": "Step 1: Ben is checking his phone repeatedly and seems distracted \u2014 consistent with worry. Step 2: Anna has information (the overheard call about a sick child) that causally explains Ben's behaviour. Step 3: Ben does not know Anna has this information, so from Ben's perspective his distraction has an unknown cause to Anna \u2014 but Anna knows otherwise.\nANSWER: Ben is distracted because of his sick child; Anna knows the cause but Ben doesn't know she overheard \u2014 creating an epistemic asymmetry"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_004",
+    "type": "chain_of_thought",
+    "subtype": "pragmatic_inference",
+    "scenario_text": "During a job interview, the interviewer asks: 'Where do you see yourself in five years?' The candidate replies: 'Hopefully still learning and growing in whatever role I'm in.'",
+    "question": "What does the candidate's answer most likely communicate to the interviewer about their ambitions?",
+    "correct_answer": "The candidate is being deliberately vague \u2014 avoiding commitment to staying at the company long-term or expressing specific ambitions, which an interviewer may read as either diplomatic flexibility or a lack of genuine career direction.",
+    "keywords": [
+      "vague",
+      "noncommittal",
+      "avoids",
+      "flexible",
+      "diplomatic",
+      "no specific",
+      "unclear ambition"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "cot_pragmatic_inference_interview_register",
+    "difficulty": "intermediate",
+    "inspired_by": "RSA / Gricean Quantity \u2014 informationally weak answers in high-stakes registers",
+    "evaluation_criteria": "Model must infer that the candidate's non-answer in a high-stakes register (job interview) communicates vagueness or evasion, not genuine content. Failure mode: model takes the answer at face value as expressing a growth mindset.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A politician is asked: 'Will you raise taxes?' They reply: 'We will do what is best for the country.'",
+          "question": "What does the politician's reply communicate about their tax policy?",
+          "answer": "ANSWER: the politician is being deliberately evasive \u2014 no commitment is made either way"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A politician is asked: 'Will you raise taxes?' They reply: 'We will do what is best for the country.'",
+          "question": "What does the politician's reply communicate about their tax policy?",
+          "answer": "A yes/no question was asked. Responding with a general principle instead of a direct answer violates Gricean Quantity \u2014 less information is given than the question warrants. In a political register, this is a deliberate evasion: no commitment is made.\nANSWER: the politician is being deliberately evasive \u2014 no commitment is made either way"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_005",
+    "type": "chain_of_thought",
+    "subtype": "false_belief_pragmatic_inference",
+    "scenario_text": "Nina sends a message to her study group: 'Does anyone know what time the library closes tonight?' Her groupmate Theo, who works at the library, sees the message but does not reply. Nina does not know that Theo works at the library.",
+    "question": "What might Nina infer from Theo's silence, and how would her inference change if she knew Theo worked at the library?",
+    "correct_answer": "Without knowing Theo works there, Nina likely infers nobody in the group knows the closing time. If she knew Theo worked at the library, his silence would be surprising and implicating \u2014 suggesting he is deliberately withholding information.",
+    "keywords": [
+      "nobody knows",
+      "doesn't know Theo",
+      "surprising",
+      "withholding",
+      "change",
+      "different",
+      "deliberate"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award full credit if answer correctly gives BOTH interpretations: (1) without the background knowledge \u2014 silence means group doesn't know, (2) with the background knowledge \u2014 silence is surprising and implicates deliberate withholding. Must identify that Nina's false belief (not knowing Theo's job) is what drives interpretation (1). Partial credit for only one interpretation.",
+    "reasoning_type": "cot_false_belief_modulates_pragmatic_inference",
+    "difficulty": "advanced",
+    "inspired_by": "RSA + ToM intersection \u2014 false beliefs modulate pragmatic inference from silence",
+    "evaluation_criteria": "This scenario requires integrating ToM (Nina's false belief about Theo) with pragmatic inference (what silence communicates). CoT should help models track both the epistemic state and the implicature simultaneously. Failure mode: model gives only one interpretation.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A student asks the class: 'Has anyone read chapter 5?' Nobody responds. Later it turns out one student had read it but was too shy to speak up.",
+          "question": "What did the class likely infer from the silence, and how would knowing about the shy student change that inference?",
+          "answer": "ANSWER: the class inferred nobody had read it; knowing about the shy student reveals the silence was misleading \u2014 someone had read it but chose not to respond"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A student asks the class: 'Has anyone read chapter 5?' Nobody responds. Later it turns out one student had read it but was too shy to speak up.",
+          "question": "What did the class likely infer from the silence, and how would knowing about the shy student change that inference?",
+          "answer": "Step 1: Without further information, silence in response to a public question implicates that nobody has the answer \u2014 a standard pragmatic inference from non-response. Step 2: Knowing one student had read it but chose silence reveals the inference was wrong \u2014 the silence was not informative absence but deliberate non-participation.\nANSWER: the class inferred nobody had read it; knowing about the shy student reveals the silence was misleading"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_006",
+    "type": "chain_of_thought",
+    "subtype": "goal_inference_pragmatic_inference",
+    "scenario_text": "A customer at a restaurant has been waiting 45 minutes for their food. When the waiter passes, the customer says: 'I've been here a while.' The waiter responds: 'Yes, we're quite busy tonight.'",
+    "question": "Did the waiter respond cooperatively? What did the customer intend, and what did the waiter communicate?",
+    "correct_answer": "The waiter did not respond cooperatively. The customer's statement was an indirect complaint and implicit request for an update on their order. The waiter's reply acknowledged the wait but offered no actionable information or apology, failing to address the customer's actual goal.",
+    "keywords": [
+      "not cooperative",
+      "indirect",
+      "complaint",
+      "request",
+      "failed",
+      "did not address",
+      "no update",
+      "ignored"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "cot_goal_inference_cooperative_principle_failure",
+    "difficulty": "intermediate",
+    "inspired_by": "Gricean cooperative principle / RSA \u2014 recognising failures of cooperation",
+    "evaluation_criteria": "Model must (1) identify the customer's indirect speech act (complaint + implicit request), (2) evaluate the waiter's response as non-cooperative \u2014 it acknowledges the surface meaning but ignores the communicative intent. Failure mode: model accepts the waiter's reply as adequate.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A student emails a professor: 'I'm finding the coursework quite challenging.' The professor replies: 'Yes, it is a demanding course.'",
+          "question": "Did the professor respond cooperatively? What did the student intend?",
+          "answer": "ANSWER: no \u2014 the student was implicitly asking for help or guidance; the professor acknowledged the difficulty but offered nothing actionable"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A student emails a professor: 'I'm finding the coursework quite challenging.' The professor replies: 'Yes, it is a demanding course.'",
+          "question": "Did the professor respond cooperatively? What did the student intend?",
+          "answer": "Step 1: 'I'm finding it challenging' is an indirect request \u2014 the student wants help, not just acknowledgement of the difficulty. Step 2: The professor's reply validates the claim but provides nothing useful. This fails the cooperative principle \u2014 the response is technically relevant but ignores the student's actual communicative goal.\nANSWER: no \u2014 the student was implicitly asking for help; the professor acknowledged the difficulty but offered nothing actionable"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_007",
+    "type": "chain_of_thought",
+    "subtype": "mental_state_causal_chain",
+    "scenario_text": "Omar has been applying for jobs for three months with no success. His friend Leila, trying to be encouraging, says: 'I'm sure something will come up soon \u2014 you're so talented!' Omar says 'thanks' and changes the subject.",
+    "question": "What does Omar's response most likely reveal about how he received Leila's encouragement?",
+    "correct_answer": "Omar likely found Leila's encouragement hollow or unhelpful \u2014 the minimal 'thanks' and subject change suggest he did not feel genuinely comforted, possibly because the reassurance felt disconnected from the concrete difficulty of his situation.",
+    "keywords": [
+      "hollow",
+      "unhelpful",
+      "not comforted",
+      "dismissive",
+      "deflect",
+      "brush off",
+      "minimal",
+      "didn't help",
+      "unconvinced"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "cot_mental_state_inference_from_minimal_response",
+    "difficulty": "intermediate",
+    "inspired_by": "Inferential Social Learning \u2014 inferring mental states from behavioural cues",
+    "evaluation_criteria": "Model must infer Omar's internal state from the combination of a minimal verbal response and a topic change \u2014 a pragmatic signal of disengagement. Failure mode: model takes 'thanks' at face value as genuine appreciation.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "After presenting her business idea, Priya asks her mentor for feedback. He says: 'It's an interesting concept.' Priya says 'okay' and closes her notebook.",
+          "question": "What does Priya's response likely reveal about how she received the feedback?",
+          "answer": "ANSWER: Priya likely found the feedback disappointing or dismissive \u2014 'okay' and closing her notebook signal she did not feel encouraged"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "After presenting her business idea, Priya asks her mentor for feedback. He says: 'It's an interesting concept.' Priya says 'okay' and closes her notebook.",
+          "question": "What does Priya's response likely reveal about how she received the feedback?",
+          "answer": "Step 1: 'Interesting concept' is weak praise on the feedback scale \u2014 it avoids stronger positive terms. Step 2: Priya's 'okay' is minimal \u2014 if she felt encouraged she would likely have engaged further. Closing her notebook reinforces disengagement. Together these signals suggest disappointment.\nANSWER: Priya likely found the feedback disappointing \u2014 'okay' and closing the notebook signal she did not feel encouraged"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_008",
+    "type": "chain_of_thought",
+    "subtype": "false_belief_pragmatic_inference",
+    "scenario_text": "Two neighbours, Rosa and Kwame, disagree about whose turn it is to maintain the shared garden path. Rosa believes it is Kwame's turn; Kwame believes it is Rosa's. Neither knows the other holds this belief. The path goes unmaintained for weeks. Eventually Rosa says to Kwame: 'The path is getting quite overgrown.'",
+    "question": "Why has the path gone unmaintained, and what is Rosa most likely communicating with her comment?",
+    "correct_answer": "The path is unmaintained because both believe it is the other's responsibility \u2014 a coordination failure driven by mutually held false beliefs. Rosa's comment is an indirect reminder that the path needs attention, likely intended to prompt Kwame to act.",
+    "keywords": [
+      "both believe",
+      "other's turn",
+      "coordination",
+      "false belief",
+      "indirect",
+      "reminder",
+      "prompt",
+      "responsibility"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award full credit if answer identifies BOTH: (1) the coordination failure \u2014 both parties hold false beliefs about whose turn it is, causing inaction, AND (2) Rosa's comment as an indirect speech act \u2014 a prompt/reminder, not just an observation. Partial credit if only one component is present. Reject if model says one party is simply lazy or irresponsible.",
+    "reasoning_type": "cot_false_belief_coordination_failure_plus_indirect_speech_act",
+    "difficulty": "advanced",
+    "inspired_by": "ToM false belief + RSA indirect speech acts \u2014 social reasoning requires both simultaneously",
+    "evaluation_criteria": "This is the core cross-dimensional scenario: requires simultaneously tracking two false beliefs (ToM) and interpreting an indirect speech act (Pragmatics). CoT should help models make both reasoning chains explicit. Failure mode: model explains only the inaction OR only the speech act, not both.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "Two flatmates both think the other is going to buy more washing-up liquid. They run out. One flatmate says to the other: 'We're out of washing-up liquid.'",
+          "question": "Why did they run out, and what is the flatmate communicating?",
+          "answer": "ANSWER: they ran out because both assumed the other would buy it \u2014 a coordination failure from mutual false belief; the comment is an indirect request for the other to go buy some"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "Two flatmates both think the other is going to buy more washing-up liquid. They run out. One flatmate says to the other: 'We're out of washing-up liquid.'",
+          "question": "Why did they run out, and what is the flatmate communicating?",
+          "answer": "Step 1: Each flatmate falsely believed the other would handle it \u2014 neither acted, causing the shortage. This is a coordination failure from mutual false belief. Step 2: Stating 'we're out' to someone who could act on it is an indirect request \u2014 the speaker is not just reporting a fact but prompting action.\nANSWER: they ran out because both assumed the other would buy it \u2014 mutual false belief; the comment is an indirect request to go buy some"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_009",
+    "type": "chain_of_thought",
+    "subtype": "goal_inference_pragmatic_inference",
+    "scenario_text": "At a performance review, a manager tells an employee: 'Your work is generally solid, and your colleagues enjoy working with you. There's always room to push further, of course.' The employee leaves feeling uncertain about their standing.",
+    "question": "Is the employee's uncertainty warranted? What has the manager communicated and what have they left unsaid?",
+    "correct_answer": "The uncertainty is warranted. The manager gave qualified praise without specifics, then added a vague growth comment. The hedge 'generally solid' and the unprompted 'room to push further' implicate there are specific concerns the manager chose not to name \u2014 the absence of concrete positive examples or a clear endorsement is itself informative.",
+    "keywords": [
+      "warranted",
+      "qualified",
+      "vague",
+      "left unsaid",
+      "implicate",
+      "hedge",
+      "concerns",
+      "not specific",
+      "absence"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award credit if answer: (1) validates the employee's uncertainty as reasonable, AND (2) identifies at least one specific mechanism \u2014 the hedge 'generally', the unprompted growth comment, or the absence of concrete positive specifics \u2014 as the source of the negative implicature. Reject if model says the review was straightforwardly positive.",
+    "reasoning_type": "cot_scalar_implicature_omission_in_evaluative_register",
+    "difficulty": "advanced",
+    "inspired_by": "RSA omission implicature / Gricean Quantity \u2014 what is left unsaid is informative",
+    "evaluation_criteria": "Model must reason about what was NOT said as much as what was said. In an evaluative register, a strong endorsement would include concrete examples and a clear positive verdict \u2014 their absence is itself a scalar implicature of insufficiency. CoT helps make the omission reasoning explicit. Failure mode: model reads the review as positive because no explicit criticism was made.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A reference letter reads: 'I have known the applicant for two years. They are punctual and reliable.' No other qualities are mentioned.",
+          "question": "What does the letter implicate about the applicant's suitability?",
+          "answer": "ANSWER: the letter implicates limited enthusiasm \u2014 only minimal qualities are mentioned, and the absence of stronger praise suggests the writer could not honestly provide it"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A reference letter reads: 'I have known the applicant for two years. They are punctual and reliable.' No other qualities are mentioned.",
+          "question": "What does the letter implicate about the applicant's suitability?",
+          "answer": "Step 1: Reference letters are expected to advocate. Listing only basic qualities violates the expectation of quantity \u2014 more positive content would be given if available. Step 2: The absence of stronger praise (skilled, creative, exceptional) implicates the writer cannot honestly provide it. The letter damns with faint praise.\nANSWER: the letter implicates limited enthusiasm \u2014 only minimal qualities are listed, and the absence of stronger praise suggests the writer could not provide it"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_010",
+    "type": "chain_of_thought",
+    "subtype": "mental_state_causal_chain",
+    "scenario_text": "During a negotiation, Buyer A makes an offer. Seller B pauses for ten seconds before responding: 'That's an interesting offer.' Buyer A, experienced in negotiations, immediately adjusts their strategy.",
+    "question": "What did Buyer A most likely infer from the pause and Seller B's word choice, and why did it prompt a strategy change?",
+    "correct_answer": "Buyer A likely inferred that the offer was too low \u2014 the deliberate pause signals consideration rather than enthusiasm, and 'interesting' is a weak positive that implicates rejection without explicitly refusing. An experienced negotiator reads these as signals to revise upward.",
+    "keywords": [
+      "too low",
+      "weak",
+      "interesting implicates",
+      "pause signals",
+      "revise",
+      "increase",
+      "rejection",
+      "not enthusiastic",
+      "experienced"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "cot_multimodal_pragmatic_inference_negotiation",
+    "difficulty": "advanced",
+    "inspired_by": "RSA scalar implicature + paralinguistic cues \u2014 experienced social reasoners integrate multiple signals",
+    "evaluation_criteria": "Model must integrate two distinct pragmatic signals: (1) the paralinguistic pause as a non-verbal signal of reluctance, AND (2) 'interesting' as a scalar implicature of non-acceptance. Both together prompt the strategy revision. CoT should help make the multi-signal integration explicit. Failure mode: model focuses on only one signal, or treats the response as genuinely positive.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A publisher reads the first chapter of a manuscript and says, after a long pause: 'There's certainly something here.' The author, who has been through submissions before, immediately starts revising.",
+          "question": "What did the author infer from the pause and the word choice?",
+          "answer": "ANSWER: the author inferred the manuscript needs significant work \u2014 the pause signals hesitation and 'something here' is weak praise implicating the stronger verdict (acceptance) does not apply"
+        }
+      ],
+      "cot": [
+        {
+          "scenario": "A publisher reads the first chapter of a manuscript and says, after a long pause: 'There's certainly something here.' The author, who has been through submissions before, immediately starts revising.",
+          "question": "What did the author infer from the pause and the word choice?",
+          "answer": "Step 1: The pause signals hesitation \u2014 enthusiasm would produce a quicker, more animated response. Step 2: 'Something here' is low on the manuscript-praise scale; stronger terms (compelling, gripping, brilliant) would be used if warranted. Step 3: Together, these signals implicate the manuscript is not ready \u2014 an experienced author reads both and starts revising.\nANSWER: the author inferred the manuscript needs significant work \u2014 the pause signals hesitation and 'something here' is weak praise implicating rejection"
+        }
+      ]
+    }
+  }
+]
