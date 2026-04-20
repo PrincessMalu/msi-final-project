@@ -11,8 +11,8 @@ Add to your .env file:
 
 This pipeline:
 1. Loads scenarios from a JSON file
-2. Queries LLMs via Tinker's OpenAI-compatible API (standard + CoT prompting conditions)
-3. Injects per-scenario few-shot examples (standard vs CoT variants) into prompts
+2. Queries LLMs via Tinker's OpenAI-compatible API using a standard prompting condition
+3. Injects per-scenario few-shot examples into prompts
 4. Scores responses via keyword matching (answer tag only) or LLM grader for open-ended items
 5. Flags ambiguous responses for manual review
 6. Records scenario subtype and difficulty for binned analysis
@@ -22,6 +22,7 @@ import json
 import os
 import time
 import csv
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -43,36 +44,38 @@ TINKER_BASE_URL = "https://tinker.thinkingmachines.dev/services/tinker-prod/oai/
 # Qwen3-32B is used to grade open-ended scenarios (scoring_method: "llm_grader").
 # It is excluded from MODELS / ALL_MODELS so it never appears in experimental results.
 GRADER_MODEL = "Qwen/Qwen3-32B"
-GRADER_MODEL_ID = GRADER_MODEL  # alias used in make_grader_client()
 
 # ── POC: single model for midway report ───────────────────────────────────────
 # Only querying one model for now as a proof of concept.
 # To run the full benchmark, set MODELS = ALL_MODELS below.
 
-MODELS = [
-    {"id": "Qwen/Qwen3-8B", "label": "Qwen3-8B", "scale": "8B", "arch": "Dense", "regime": "Hybrid"},
-]
+
 
 # ALL_MODELS — swap in for full data collection during Weeks 3-4
-# ALL_MODELS = [
-#     # Instruction-tuned (fast inference, no chain-of-thought)
-#     {"id": "Qwen/Qwen3-4B-Instruct-2507",       "label": "Qwen3-4B-Instruct",      "scale": "4B",   "arch": "Dense", "regime": "Instruction"},
-#     {"id": "Qwen/Qwen3-30B-A3B-Instruct-2507",  "label": "Qwen3-30B-Instruct",     "scale": "30B",  "arch": "MoE",   "regime": "Instruction"},
-#     {"id": "Qwen/Qwen3-235B-A22B-Instruct-2507","label": "Qwen3-235B-Instruct",    "scale": "235B", "arch": "MoE",   "regime": "Instruction"},
-#     {"id": "meta-llama/Llama-3.1-8B-Instruct",  "label": "Llama-3.1-8B-Instruct",  "scale": "8B",   "arch": "Dense", "regime": "Instruction"},
-#     {"id": "meta-llama/Llama-3.3-70B-Instruct", "label": "Llama-3.3-70B-Instruct", "scale": "70B",  "arch": "Dense", "regime": "Instruction"},
-#     # Hybrid (thinking + non-thinking modes)
-#     {"id": "Qwen/Qwen3-8B",                     "label": "Qwen3-8B",               "scale": "8B",   "arch": "Dense", "regime": "Hybrid"},
-#     # Qwen3-32B is reserved as the LLM grader — excluded from experimental models.
-    # {"id": "Qwen/Qwen3-32B",                    "label": "Qwen3-32B",              "scale": "32B",  "arch": "Dense", "regime": "Hybrid"},
-#     {"id": "Qwen/Qwen3-30B-A3B",                "label": "Qwen3-30B-A3B",          "scale": "30B",  "arch": "MoE",   "regime": "Hybrid"},
-#     {"id": "deepseek-ai/DeepSeek-V3.1",         "label": "DeepSeek-V3.1",          "scale": "671B", "arch": "MoE",   "regime": "Hybrid"},
-#     # Reasoning-specialized (always uses chain-of-thought internally)
-#     {"id": "openai/gpt-oss-20b",                "label": "GPT-OSS-20B",            "scale": "20B",  "arch": "MoE",   "regime": "Reasoning"},
-#     {"id": "openai/gpt-oss-120b",               "label": "GPT-OSS-120B",           "scale": "120B", "arch": "MoE",   "regime": "Reasoning"},
-#     {"id": "moonshotai/Kimi-K2-Thinking",       "label": "Kimi-K2-Thinking",       "scale": "671B", "arch": "MoE",   "regime": "Reasoning"},
-#     # Base (no instruction tuning — for research comparison)
-#     {"id": "Qwen/Qwen3-8B-Base",                "label": "Qwen3-8B-Base",          "scale": "8B",   "arch": "Dense", "regime": "Base"},
+ALL_MODELS = [
+    # Instruction-tuned (fast inference, no chain-of-thought)
+    {"id": "Qwen/Qwen3-4B-Instruct-2507",       "label": "Qwen3-4B-Instruct",      "scale": "4B",   "arch": "Dense", "regime": "Instruction", "max_tokens": 512},
+    {"id": "Qwen/Qwen3-30B-A3B-Instruct-2507",  "label": "Qwen3-30B-Instruct",     "scale": "30B",  "arch": "MoE",   "regime": "Instruction"},
+    {"id": "Qwen/Qwen3-235B-A22B-Instruct-2507","label": "Qwen3-235B-Instruct",    "scale": "235B", "arch": "MoE",   "regime": "Instruction"},
+    {"id": "meta-llama/Llama-3.1-8B-Instruct",  "label": "Llama-3.1-8B-Instruct",  "scale": "8B",   "arch": "Dense", "regime": "Instruction"},
+    {"id": "meta-llama/Llama-3.3-70B-Instruct", "label": "Llama-3.3-70B-Instruct", "scale": "70B",  "arch": "Dense", "regime": "Instruction"},
+    # Hybrid (thinking + non-thinking modes)
+    {"id": "Qwen/Qwen3-8B",                     "label": "Qwen3-8B",               "scale": "8B",   "arch": "Dense", "regime": "Hybrid", "max_tokens": 1024},
+    # Qwen3-32B is reserved as the LLM grader — excluded from experimental models.
+    {"id": "Qwen/Qwen3-30B-A3B",                "label": "Qwen3-30B-A3B",          "scale": "30B",  "arch": "MoE",   "regime": "Hybrid"},
+    {"id": "deepseek-ai/DeepSeek-V3.1",         "label": "DeepSeek-V3.1",          "scale": "671B", "arch": "MoE",   "regime": "Hybrid"},
+    # Reasoning-specialized (always uses chain-of-thought internally)
+    {"id": "openai/gpt-oss-20b",                "label": "GPT-OSS-20B",            "scale": "20B",  "arch": "MoE",   "regime": "Reasoning"},
+    {"id": "openai/gpt-oss-120b",               "label": "GPT-OSS-120B",           "scale": "120B", "arch": "MoE",   "regime": "Reasoning"},
+    {"id": "moonshotai/Kimi-K2-Thinking",       "label": "Kimi-K2-Thinking",       "scale": "671B", "arch": "MoE",   "regime": "Reasoning", "max_tokens": 1024},
+    # Base (no instruction tuning — for research comparison)
+    {"id": "Qwen/Qwen3-8B-Base",                "label": "Qwen3-8B-Base",          "scale": "8B",   "arch": "Dense", "regime": "Base"},
+]
+
+MODELS = ALL_MODELS
+# [
+#     {"id": "Qwen/Qwen3-8B", "label": "Qwen3-8B", "scale": "8B", "arch": "Dense", "regime": "Hybrid", "max_tokens": 1500},
+#     {"id": "Qwen/Qwen3-4B-Instruct-2507", "label": "Qwen3-4B-Instruct", "scale": "4B", "arch": "Dense", "regime": "Instruction", "max_tokens": 512}
 # ]
 
 # Output directory
@@ -86,14 +89,6 @@ STANDARD_SYSTEM_PROMPT = """You are being tested on social reasoning tasks.
 Read the scenario carefully and answer the question.
 Give a clear, concise answer. End your response with your final answer on a new line
 in the format: ANSWER: <your answer>"""
-
-COT_SYSTEM_PROMPT = """You are being tested on social reasoning tasks.
-Read the scenario carefully. Before answering, reason step-by-step about:
-1. What each person knows or believes
-2. What information is available or hidden
-3. What the most reasonable conclusion is
-
-Then provide your final answer on a new line in the format: ANSWER: <your answer>"""
 
 
 def _format_few_shot_examples(examples: list[dict]) -> str:
@@ -109,28 +104,26 @@ def _format_few_shot_examples(examples: list[dict]) -> str:
     return "\n\n---\n\n".join(blocks) + "\n\n---\n\n"
 
 
-def build_prompt(scenario: dict, use_cot: bool = False) -> tuple[str, str]:
+def build_prompt(scenario: dict) -> tuple[str, str]:
     """
     Returns (system_prompt, user_prompt) for a scenario.
 
-    Few-shot examples are drawn from scenario['few_shot_examples'], which is a dict
-    with 'standard' and 'cot' keys (list of example dicts each). The correct variant
-    is selected based on use_cot:
-      - standard: examples contain only the bare ANSWER: line (no reasoning chain)
-      - cot:      examples contain full step-by-step reasoning + ANSWER: line
-
+    Few-shot examples are drawn from scenario['few_shot_examples'].
+    If that field is a dict, the 'standard' variant is used.
     If few_shot_examples is absent or empty the prompt is returned without examples.
     """
-    system = COT_SYSTEM_PROMPT if use_cot else STANDARD_SYSTEM_PROMPT
+    system = STANDARD_SYSTEM_PROMPT
 
-    # Build few-shot block from the correct variant
     few_shot_block = ""
     fse = scenario.get("few_shot_examples")
     if isinstance(fse, dict):
-        variant_key = "cot" if use_cot else "standard"
-        examples = fse.get(variant_key, [])
-        if examples:
-            few_shot_block = _format_few_shot_examples(examples)
+        examples = fse.get("standard", [])
+    elif isinstance(fse, list):
+        examples = fse
+    else:
+        examples = []
+    if examples:
+        few_shot_block = _format_few_shot_examples(examples)
 
     user = f"{few_shot_block}{scenario['scenario_text']}\n\nQuestion: {scenario['question']}"
     return system, user
@@ -140,11 +133,6 @@ def build_prompt(scenario: dict, use_cot: bool = False) -> tuple[str, str]:
 
 def make_client() -> OpenAI:
     """Create an OpenAI client pointed at the Tinker inference endpoint."""
-    return OpenAI(base_url=TINKER_BASE_URL, api_key=TINKER_API_KEY)
-
-
-def make_grader_client() -> OpenAI:
-    """Return a Tinker client for the Qwen3-32B grader."""
     return OpenAI(base_url=TINKER_BASE_URL, api_key=TINKER_API_KEY)
 
 
@@ -213,11 +201,12 @@ def keyword_score(extracted_answer: str | None, correct_answer: str,
     if answer_lower == correct_lower:
         return {"correct": True, "method": "exact_match", "needs_review": False}
 
-    # Keyword match
+    # Accept any configured keyword as a valid alternate surface form.
+    # The scenario JSON uses `keywords` as the allowlist of acceptable matches,
+    # not just tokens that must also appear inside `correct_answer`.
     for kw in keywords:
         if kw.lower() in answer_lower:
-            is_correct = kw.lower() in correct_lower
-            return {"correct": is_correct, "method": "keyword_match", "needs_review": False}
+            return {"correct": True, "method": "keyword_match", "needs_review": False}
 
     # Ambiguous — flag for manual review
     return {"correct": None, "method": "ambiguous", "needs_review": True}
@@ -231,12 +220,14 @@ def llm_grade(response_text: str | None, extracted_answer: str | None,
     to construct the grading prompt.
 
     Returns dict with 'correct' (bool|None), 'method' (str), 'needs_review' (bool),
-    and 'grader_reasoning' (str).
+    'grader_verdict' (str|None), 'grader_explanation' (str|None), and
+    'grader_reasoning' (str).
     """
     if not response_text or not extracted_answer:
         return {
             "correct": None, "method": "llm_grader_no_answer",
-            "needs_review": True, "grader_reasoning": None,
+            "needs_review": True, "grader_verdict": None,
+            "grader_explanation": None, "grader_reasoning": None,
         }
 
     rubric    = scenario.get("grading_rubric", "Award credit if the answer is logically sound and addresses the scenario correctly.")
@@ -244,77 +235,67 @@ def llm_grade(response_text: str | None, extracted_answer: str | None,
 
 Scenario: {scenario['scenario_text']}
 Question: {scenario['question']}
-Correct answer (reference): {scenario['correct_answer']}
+Reference answer: {scenario['correct_answer']}
 Grading rubric: {rubric}
 
-Model's extracted answer (after ANSWER: tag):
+Model's extracted answer:
 {extracted_answer}
 
-Based on the rubric, is this answer correct? Reply with exactly one of:
-GRADE: correct
-GRADE: incorrect
-GRADE: partial
+Based only on the extracted answer and the grading rubric, evaluate whether the answer is correct.
 
-Then on a new line, give a one-sentence explanation.
+Reply using exactly this format:
+VERDICT: correct|incorrect|partial
+EXPLANATION: <one sentence>
+
+Rules:
+- Use only one verdict: correct, incorrect, or partial.
+- Do not add any other lines.
+- Do not restate the scenario.
+- Mark partial only if the answer is substantially on the right track but incomplete.
 """
     try:
-        grader_client = make_grader_client()
-        resp = grader_client.chat.completions.create(
+        resp = make_client().chat.completions.create(
             model=GRADER_MODEL,
             messages=[{"role": "user", "content": grader_prompt}],
             temperature=0.0,
-            max_tokens=128,
+            max_tokens=2048,
         )
         grader_text = resp.choices[0].message.content.strip()
-        grade_line  = next((l for l in grader_text.splitlines()
-                            if l.strip().upper().startswith("GRADE:")), None)
-        if grade_line:
-            grade = grade_line.split(":", 1)[1].strip().lower()
-            correct = True if grade == "correct" else (None if grade == "partial" else False)
-            needs_review = grade == "partial"
+        verdict_line = next((l for l in grader_text.splitlines()
+                             if l.strip().upper().startswith("VERDICT:")), None)
+        explanation_line = next((l for l in grader_text.splitlines()
+                                 if l.strip().upper().startswith("EXPLANATION:")), None)
+        if verdict_line:
+            verdict = verdict_line.split(":", 1)[1].strip().lower()
+            correct = True if verdict == "correct" else (None if verdict == "partial" else False)
+            needs_review = verdict == "partial"
         else:
+            verdict = None
             correct, needs_review = None, True
+
+        explanation = explanation_line.split(":", 1)[1].strip() if explanation_line else None
 
         return {
             "correct":          correct,
             "method":           "llm_grader",
             "needs_review":     needs_review,
+            "grader_verdict":   verdict,
+            "grader_explanation": explanation,
             "grader_reasoning": grader_text,
         }
     except Exception as e:
         return {
             "correct": None, "method": "llm_grader_error",
-            "needs_review": True, "grader_reasoning": str(e),
+            "needs_review": True, "grader_verdict": None,
+            "grader_explanation": None, "grader_reasoning": str(e),
         }
-
-
-def score_cot(response_text: str | None) -> dict:
-    """
-    Placeholder for CoT quality scoring on 4 dimensions (0-2 each, total 0-8).
-    All CoT responses are flagged for manual scoring during Week 5.
-
-    Dimensions:
-      - mental_state_reasoning:    Does the model attribute beliefs/knowledge correctly?
-      - alternative_consideration: Does it consider alternative interpretations?
-      - step_by_step_structure:    Is reasoning sequential and organized?
-      - logical_coherence:         Is the chain of reasoning internally consistent?
-    """
-    return {
-        "mental_state_reasoning":    None,
-        "alternative_consideration": None,
-        "step_by_step_structure":    None,
-        "logical_coherence":         None,
-        "total_cot_score":           None,
-        "needs_cot_review":          response_text is not None,
-    }
-
 
 # ── Main pipeline ──────────────────────────────────────────────────────────────
 
-def run_pipeline(scenarios_path: str = "scenarios.json"):
+def run_pipeline(scenarios_path: str = "scenarios.json", run_name: str = "benchmark"):
     """
     Main data collection pipeline.
-    Loads scenarios, queries all models (standard + CoT), stores results.
+    Loads scenarios, queries all models with standard prompting, stores results.
     """
     with open(scenarios_path) as f:
         scenarios = json.load(f)
@@ -323,7 +304,8 @@ def run_pipeline(scenarios_path: str = "scenarios.json"):
     client = make_client()
     results = []
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    total_queries = len(scenarios) * len(MODELS) * 2  # standard + CoT
+    safe_run_name = re.sub(r"[^A-Za-z0-9._-]+", "_", run_name).strip("._-") or "benchmark"
+    total_queries = len(scenarios) * len(MODELS)
     completed = 0
 
     for scenario in scenarios:
@@ -337,83 +319,82 @@ def run_pipeline(scenarios_path: str = "scenarios.json"):
 
         for model in MODELS:
             model_id = model["id"]
+            condition = "standard"
+            system_prompt, user_prompt = build_prompt(scenario)
 
-            for use_cot in [False, True]:
-                condition = "cot" if use_cot else "standard"
-                system_prompt, user_prompt = build_prompt(scenario, use_cot=use_cot)
+            print(f"  [{completed+1}/{total_queries}] {model['label']} | {scenario_id} | {condition}")
 
-                print(f"  [{completed+1}/{total_queries}] {model['label']} | {scenario_id} | {condition}")
+            response = query_model(
+                client,
+                model_id,
+                system_prompt,
+                user_prompt,
+                max_tokens=model.get("max_tokens", 512),
+            )
+            response_text    = response["text"]
+            extracted_answer = extract_answer(response_text)
 
-                # CoT responses need more space for pragmatic/social reasoning chains
-                tokens = 1024 if use_cot else 512
-                response = query_model(client, model_id, system_prompt, user_prompt,
-                                       max_tokens=tokens)
-                response_text    = response["text"]
-                extracted_answer = extract_answer(response_text)
+            # ── Scoring: route by scoring_method ──────────────────────────
+            if scoring_method == "llm_grader":
+                scoring = llm_grade(response_text, extracted_answer, scenario)
+            else:
+                scoring = keyword_score(extracted_answer, correct_answer, keywords)
 
-                # ── Scoring: route by scoring_method ──────────────────────────
-                if scoring_method == "llm_grader":
-                    scoring = llm_grade(response_text, extracted_answer, scenario)
-                else:
-                    scoring = keyword_score(extracted_answer, correct_answer, keywords)
-
-                cot_scoring = score_cot(response_text) if use_cot else {}
-
-                result = {
-                    # Identifiers
-                    "scenario_id":      scenario_id,
-                    "scenario_type":    scenario_type,
-                    "scenario_subtype": scenario_subtype,
-                    "difficulty":       difficulty,
-                    "model_id":         model_id,
-                    "model_label":      model["label"],
-                    "model_scale":      model["scale"],
-                    "model_arch":       model["arch"],
-                    "model_regime":     model["regime"],
-                    "condition":        condition,
-                    # Prompts & response
-                    "system_prompt":    system_prompt,
-                    "user_prompt":      user_prompt,
-                    "response_text":    response_text,
-                    "api_error":        response["error"],
-                    "tokens_used":      response["tokens_used"],
-                    # Scoring
-                    "correct_answer":   correct_answer,
-                    "extracted_answer": extracted_answer,
+            result = {
+                # Identifiers
+                "scenario_id":      scenario_id,
+                "scenario_type":    scenario_type,
+                "scenario_subtype": scenario_subtype,
+                "difficulty":       difficulty,
+                "model_id":         model_id,
+                "model_label":      model["label"],
+                "model_scale":      model["scale"],
+                "model_arch":       model["arch"],
+                "model_regime":     model["regime"],
+                "condition":        condition,
+                # Prompts & response
+                "system_prompt":    system_prompt,
+                "user_prompt":      user_prompt,
+                "response_text":    response_text,
+                "api_error":        response["error"],
+                "tokens_used":      response["tokens_used"],
+                # Scoring
+                "correct_answer":   correct_answer,
+                "extracted_answer": extracted_answer,
                     "is_correct":       scoring["correct"],
                     "score_method":     scoring["method"],
                     "needs_review":     scoring["needs_review"],
+                    "grader_verdict":   scoring.get("grader_verdict"),
+                    "grader_explanation": scoring.get("grader_explanation"),
                     "grader_reasoning": scoring.get("grader_reasoning"),  # None for keyword items
-                    # CoT scoring (filled in during manual review, Week 5)
-                    **cot_scoring,
                     # Metadata
                     "timestamp": datetime.now().isoformat(),
-                }
-                results.append(result)
-                completed += 1
-                time.sleep(0.5)  # gentle rate limiting
+            }
+            results.append(result)
+            completed += 1
+            time.sleep(0.5)  # gentle rate limiting
 
         # Save incrementally after each scenario (safe against crashes)
-        _save_results(results, timestamp)
+        _save_results(results, safe_run_name, timestamp)
 
     print(f"\n Pipeline complete. {completed} queries run.")
-    print(f"📁 Results saved to {OUTPUT_DIR}/results_{timestamp}.json and .csv")
+    print(f"📁 Results saved to {OUTPUT_DIR}/results_{safe_run_name}_{timestamp}.json and .csv")
     _print_summary(results)
     return results
 
 
 # ── Storage helpers ────────────────────────────────────────────────────────────
 
-def _save_results(results: list[dict], timestamp: str):
+def _save_results(results: list[dict], run_name: str, timestamp: str):
     """Save results as both JSON and CSV."""
-    json_path = OUTPUT_DIR / f"results_{timestamp}.json"
-    csv_path  = OUTPUT_DIR / f"results_{timestamp}.csv"
+    json_path = OUTPUT_DIR / f"results_{run_name}_{timestamp}.json"
+    csv_path  = OUTPUT_DIR / f"results_{run_name}_{timestamp}.csv"
 
     with open(json_path, "w") as f:
         json.dump(results, f, indent=2)
 
     if results:
-        # Collect all keys across all rows (standard rows lack CoT fields)
+        # Collect all keys across all rows
         all_keys = list(dict.fromkeys(k for r in results for k in r.keys()))
         with open(csv_path, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=all_keys, extrasaction="ignore")
@@ -485,7 +466,7 @@ def export_for_manual_review(results_path: str):
     with open(results_path) as f:
         results = json.load(f)
 
-    flagged     = [r for r in results if r.get("needs_review") or r.get("needs_cot_review")]
+    flagged     = [r for r in results if r.get("needs_review")]
     review_path = results_path.replace(".json", "_manual_review.csv")
 
     if flagged:
@@ -493,9 +474,7 @@ def export_for_manual_review(results_path: str):
                 "model_label", "condition",
                 "user_prompt", "response_text", "extracted_answer",
                 "correct_answer", "score_method", "grader_reasoning",
-                "needs_review", "needs_cot_review",
-                "mental_state_reasoning", "alternative_consideration",
-                "step_by_step_structure", "logical_coherence", "total_cot_score"]
+                "needs_review"]
         with open(review_path, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
             writer.writeheader()
@@ -554,7 +533,7 @@ EXAMPLE_SCENARIOS = [
 
 def create_example_scenarios_file():
     """Write example scenario file to disk for testing the pipeline."""
-    with open("scenarios.json", "w") as f:
+    with open("example_scenarios.json", "w") as f:
         json.dump(EXAMPLE_SCENARIOS, f, indent=2)
     print("Example scenarios.json created. Replace with your full 40 scenarios.")
 
@@ -571,6 +550,8 @@ if __name__ == "__main__":
                         help="Create an example scenarios.json file")
     parser.add_argument("--export-review", type=str, default=None,
                         help="Path to results JSON to export flagged items for manual review")
+    parser.add_argument("--run-name", type=str, default="benchmark",
+                        help="Label to include in output filenames, e.g. full_benchmark_v1")
     args = parser.parse_args()
 
     if args.create_example:
@@ -578,4 +559,4 @@ if __name__ == "__main__":
     elif args.export_review:
         export_for_manual_review(args.export_review)
     else:
-        run_pipeline(scenarios_path=args.scenarios)
+        run_pipeline(scenarios_path=args.scenarios, run_name=args.run_name)

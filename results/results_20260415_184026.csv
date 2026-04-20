@@ -1,0 +1,1644 @@
+scenario_id,scenario_type,scenario_subtype,difficulty,model_id,model_label,model_scale,model_arch,model_regime,condition,system_prompt,user_prompt,response_text,api_error,tokens_used,correct_answer,extracted_answer,is_correct,score_method,needs_review,grader_reasoning,timestamp
+tom_001,theory_of_mind,false_belief,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Max puts his toy car under the pillow and goes to school. His mom moves it to the drawer while cleaning. Max comes home.
+
+Question: Where will Max look for his toy car?
+ANSWER: pillow
+
+---
+
+Sally puts her marble in a basket and leaves the room. Anne moves the marble to a box while Sally is away. Sally comes back into the room.
+
+Question: Where will Sally look for her marble?","<think>
+Okay, let's see. The example was about Max and his toy car. He put it under the pillow, then his mom moved it to the drawer. When Max came home, he would look under the pillow because he didn't know it was moved. So the answer was pillow.
+
+Now the question is about Sally and her marble. She puts it in a basket and leaves. Anne moves it to a box while Sally is away. When Sally comes back, where will she look? 
+
+Following the example, Sally's last knowledge is that the marble is in the basket. Since she left and Anne moved it, Sally isn't aware of the move. So she would look in the basket. The answer should be basket. 
+
+Wait, but the example had the mom moving it after Max left. So the key is that the person (Max or Sally) doesn't know it was moved. So Sally would check the original place, the basket. So the answer is basket.
+</think>
+
+ANSWER: basket",,355,basket,basket,True,exact_match,False,,2026-04-15T18:40:59.279869
+tom_001,theory_of_mind,false_belief,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Max puts his toy car under the pillow and goes to school. His mom moves it to the drawer while cleaning. Max comes home.
+
+Question: Where will Max look for his toy car?
+ANSWER: pillow
+
+---
+
+Sally puts her marble in a basket and leaves the room. Anne moves the marble to a box while Sally is away. Sally comes back into the room.
+
+Question: Where will Sally look for her marble?","Sally will look in the basket because that's where she last saw it before leaving.
+
+ANSWER: basket",,172,basket,basket,True,exact_match,False,,2026-04-15T18:41:01.702109
+tom_002,theory_of_mind,false_belief,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Ana knows Ben stored his keys in the bowl. While Ben is out, Ana moves them to the shelf. Ben returns.
+
+Question: Where does Ana think Ben will look for his keys?
+ANSWER: bowl
+
+---
+
+John knows that Mary hid cookies in the jar. While Mary is away, John moves them to the drawer but tells no one. Mary comes back.
+
+Question: Where does John think Mary will look for the cookies?","<think>
+Okay, let's see. The scenario is about John and Mary. John knows that Mary hid cookies in the jar. Then, while Mary is away, John moves the cookies to the drawer but doesn't tell anyone. Now, Mary comes back.
+
+The question is asking where John thinks Mary will look for the cookies. Hmm. So, I need to figure out John's belief about where Mary will look. 
+
+First, Mary originally hid the cookies in the jar. John knows that. But John moves them to the drawer. However, John doesn't tell Mary about this. So, from Mary's perspective, she's still under the impression that the cookies are in the jar, right? Because she wasn't told they were moved. 
+
+But the question is about John's belief. John knows that Mary hid them in the jar. He moved them, but he knows that Mary doesn't know they were moved. So, John would think that Mary is still unaware of the move. Therefore, John would believe that Mary will look in the jar, because that's where she originally hid them. 
+
+Wait, but maybe John knows that Mary might have moved them? No, the scenario says John moved them, but Mary wasn't aware. So John knows that Mary's knowledge is that the cookies are in the jar. Therefore, John would think Mary will look in the jar. 
+
+So the answer should be the jar. Let me check the example again. In the example, Ana moved the keys to the shelf, but Ben didn't know. So Ana thought Ben would look in the bowl. Similarly, here, John moved the cookies, but Mary doesn't know. So John thinks Mary will look in the jar. 
+
+Yes, that makes sense. So the answer is jar.
+</think>
+
+ANSWER: jar",,518,jar,jar,True,exact_match,False,,2026-04-15T18:41:06.615916
+tom_002,theory_of_mind,false_belief,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Ana knows Ben stored his keys in the bowl. While Ben is out, Ana moves them to the shelf. Ben returns.
+
+Question: Where does Ana think Ben will look for his keys?
+ANSWER: bowl
+
+---
+
+John knows that Mary hid cookies in the jar. While Mary is away, John moves them to the drawer but tells no one. Mary comes back.
+
+Question: Where does John think Mary will look for the cookies?","John thinks Mary will look in the jar because that's where Mary originally hid the cookies, and John knows Mary's habit or expectation.
+
+ANSWER: jar",,182,jar,jar,True,exact_match,False,,2026-04-15T18:41:09.783575
+tom_003,theory_of_mind,false_belief,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A tin is labeled 'tea bags' but secretly holds buttons. A visitor who has never opened it arrives.
+
+Question: What will the visitor think is inside the tin?
+ANSWER: tea bags
+
+---
+
+A child is shown a candy box. When opened, it contains pencils instead. The box is closed again. A new friend enters the room who has not seen inside the box.
+
+Question: What will the new friend think is inside the box?","<think>
+Okay, let's see. The scenario is about a candy box that was opened before and found to have pencils instead of candy. Then the box is closed again. A new friend comes in who hasn't seen inside. The question is what the friend will think is inside the box.
+
+So, the key points here are: the box was previously opened and had pencils, but then it was closed again. The new friend hasn't seen inside, so they don't know what's inside. The original label might still be on the box, right? If the box was labeled as a candy box, even though it's actually pencils, the friend would assume it's candy unless they know otherwise. But wait, the problem says the box was closed again after being opened. The friend hasn't seen inside, so they don't have any information. So their expectation would be based on the label or the previous knowledge. But the problem doesn't mention the label. Wait, the original scenario says the box was a candy box, but when opened, it had pencils. So maybe the box was labeled as a candy box, but the contents were pencils. The friend hasn't seen inside, so they would think it's candy. But the question is, what will they think is inside? Since they haven't seen inside, they would assume it's what it's labeled as, which is candy. Unless there's some other context. Wait, the example given in the previous question was about a tin labeled 'tea bags' but holding buttons. The visitor who hasn't opened it thinks it's tea bags. So in this case, the candy box was originally intended to hold candy, but was changed to pencils. But the friend hasn't seen inside, so they would think it's candy. Unless the box was relabeled, but the problem doesn't say that. So the answer should be candy. Wait, but the problem says the box was closed again. The friend hasn't seen inside, so they don't know. So their belief is based on the label or the previous knowledge. If the box was labeled as a candy box, then they would think it's candy. But if the box was just a regular box, maybe they don't know. But the original scenario says it's a candy box. So the answer is candy. But wait, the problem says the box was opened and found to have pencils, then closed again. The friend hasn't seen inside. So the friend's belief is based on the label. So the answer",,665,candy,,,no_answer,True,,2026-04-15T18:41:16.964935
+tom_003,theory_of_mind,false_belief,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A tin is labeled 'tea bags' but secretly holds buttons. A visitor who has never opened it arrives.
+
+Question: What will the visitor think is inside the tin?
+ANSWER: tea bags
+
+---
+
+A child is shown a candy box. When opened, it contains pencils instead. The box is closed again. A new friend enters the room who has not seen inside the box.
+
+Question: What will the new friend think is inside the box?","The new friend will think the box contains candy, based on the label.
+
+ANSWER: candy",,173,candy,candy,True,exact_match,False,,2026-04-15T18:41:20.439974
+tom_004,theory_of_mind,false_belief,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Carlos whispers a plan to Dana thinking no one else can hear. Unknown to Carlos, their coworker Priya is working silently in the next cubicle with the divider open.
+
+Question: Does Carlos think Priya heard his plan?
+ANSWER: no
+
+---
+
+Emma tells James a secret in a library, believing they are alone. Unknown to Emma, her colleague Nina is sitting hidden behind a bookshelf and hears everything.
+
+Question: Does Emma believe Nina knows her secret?","<think>
+Okay, let's tackle this question. So, Emma tells James a secret in a library, thinking they're alone. But Nina is hiding behind a bookshelf and hears everything. The question is whether Emma believes Nina knows her secret.
+
+First, I need to consider Emma's perspective. She believes they're alone because she didn't notice Nina. Since she's unaware that Nina is there, she wouldn't realize that Nina heard the secret. Belief is about what someone is aware of. Since Emma doesn't know about Nina's presence, she can't know that Nina heard. Therefore, Emma doesn't believe Nina knows the secret. The key here is that Emma's belief is based on her own awareness, not on the actual presence of Nina. So the answer should be no.
+</think>
+
+ANSWER: no",,323,no,no,True,exact_match,False,,2026-04-15T18:41:23.910800
+tom_004,theory_of_mind,false_belief,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Carlos whispers a plan to Dana thinking no one else can hear. Unknown to Carlos, their coworker Priya is working silently in the next cubicle with the divider open.
+
+Question: Does Carlos think Priya heard his plan?
+ANSWER: no
+
+---
+
+Emma tells James a secret in a library, believing they are alone. Unknown to Emma, her colleague Nina is sitting hidden behind a bookshelf and hears everything.
+
+Question: Does Emma believe Nina knows her secret?","Emma believes they are alone in the library and has no knowledge that Nina is present or listening. Therefore, she does not believe Nina knows her secret.
+
+ANSWER: no",,192,no,no,True,exact_match,False,,2026-04-15T18:41:26.585175
+tom_005,theory_of_mind,false_belief,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A bottle is marked 'water' but holds lemon juice. Maya drinks from it thinking it is water.
+
+Question: What does Maya believe she is drinking?
+ANSWER: water
+
+---
+
+A jar is labeled 'coffee' but actually contains sugar. Alex pours from it thinking it is coffee. Alex's friend Sam watches but says nothing.
+
+Question: What does Alex believe they are putting in their cup?","<think>
+Okay, let's tackle this question. So, the scenario is that there's a jar labeled 'coffee' but it actually has sugar. Alex is pouring from it, thinking it's coffee. Sam is watching but says nothing. The question is asking what Alex believes they are putting in their cup.
+
+First, I need to focus on Alex's perspective. The jar is labeled 'coffee', so Alex would assume that's what's inside. Even though the jar actually contains sugar, Alex isn't aware of that. The fact that Sam is watching but not saying anything might be a red herring. The key here is Alex's belief, not the actual content. 
+
+So, the label is 'coffee', so Alex's belief is that the jar contains coffee. Therefore, when Alex pours from it, they believe they're putting coffee into their cup. The actual content being sugar doesn't affect Alex's belief. The answer should be coffee. Let me check the example given. In the example, the bottle was labeled 'water' but had lemon juice, and Maya believed she was drinking water. So the answer was water. Similarly here, the jar is labeled coffee, so Alex believes it's coffee. The answer should be coffee.
+</think>
+
+ANSWER: coffee",,400,coffee,coffee,True,exact_match,False,,2026-04-15T18:41:30.146671
+tom_005,theory_of_mind,false_belief,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A bottle is marked 'water' but holds lemon juice. Maya drinks from it thinking it is water.
+
+Question: What does Maya believe she is drinking?
+ANSWER: water
+
+---
+
+A jar is labeled 'coffee' but actually contains sugar. Alex pours from it thinking it is coffee. Alex's friend Sam watches but says nothing.
+
+Question: What does Alex believe they are putting in their cup?","Alex believes they are putting coffee in their cup.  
+
+ANSWER: coffee",,159,coffee,coffee,True,exact_match,False,,2026-04-15T18:41:32.832033
+tom_006,theory_of_mind,false_belief,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Omar emails a surprise party plan to what he thinks is his friend's alternate address, but it actually goes to his friend's main inbox. Omar hasn't realized the error yet.
+
+Question: Does Omar think his friend knows about the surprise party?
+ANSWER: no
+
+---
+
+Lena texts her partner: 'I got the promotion!' but accidentally sends it to her colleague Dan instead. Her partner never receives the message. Lena does not yet realize her mistake. Later that day, she sees Dan in the hallway and he gives her a knowing smile.
+
+Question: What does Lena most likely think when she sees Dan's smile?","<think>
+Okay, let's try to figure this out. So Lena texts her partner to say she got a promotion, but she accidentally sends it to her colleague Dan instead. Her partner never gets the message. Lena hasn't realized her mistake yet. Later, she sees Dan in the hallway, and he gives her a knowing smile.
+
+The question is asking what Lena most likely thinks when she sees Dan's smile. Hmm. Let me break it down. 
+
+First, Lena sent the message to Dan by mistake. She didn't realize the error. So she probably thinks that her partner received the message, right? Because she intended to send it to him. But in reality, Dan got it. Now, when Lena sees Dan smiling, she might think that Dan knows something. But since she hasn't realized her mistake yet, she might not know that Dan received the message. Wait, but she sent it to Dan, so maybe she's confused why Dan is smiling. 
+
+Wait, but Lena hasn't realized her mistake. So she might think that her partner received the message, and maybe Dan is reacting to something else. Or maybe she's confused because Dan is smiling, thinking that maybe Dan knows about the promotion. But Lena hasn't realized she sent it to Dan. So she might think Dan is reacting to the message she sent, but she doesn't know she sent it to him. So she might think Dan knows about her promotion, but she's not sure why he's smiling. Alternatively, maybe she's thinking that Dan is being smug because he knows something, but that's not the case. 
+
+Wait, but Lena's partner didn't get the message. So Lena might be wondering why Dan is smiling. Since she didn't realize she sent it to Dan, she might think that Dan is reacting to the message she sent, but she's not sure. But since she didn't realize the mistake, she might think that her partner received it, and Dan is just someone else. But Dan is the one who got the message. So Lena might think that Dan is reacting to the message, but she's not sure why. Alternatively, maybe she's confused because she sent the message to Dan, but she didn't realize that, so she might think Dan is being friendly or something. 
+
+But the key here is that Lena hasn't realized her mistake. So she's unaware that she sent the message to Dan. Therefore, when she sees Dan's smile, she might think that Dan knows about her promotion, but she's not",,701,"Lena does not know Dan received her message — she still believes only her partner knows about the promotion, so Dan's smile seems puzzling or coincidental to her.",,,no_answer,True,,2026-04-15T18:41:39.894496
+tom_006,theory_of_mind,false_belief,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Omar emails a surprise party plan to what he thinks is his friend's alternate address, but it actually goes to his friend's main inbox. Omar hasn't realized the error yet.
+
+Question: Does Omar think his friend knows about the surprise party?
+ANSWER: no
+
+---
+
+Lena texts her partner: 'I got the promotion!' but accidentally sends it to her colleague Dan instead. Her partner never receives the message. Lena does not yet realize her mistake. Later that day, she sees Dan in the hallway and he gives her a knowing smile.
+
+Question: What does Lena most likely think when she sees Dan's smile?","Lena most likely thinks that Dan knows about her promotion and might be happy for her, or perhaps that he’s reacting to the news in a way that suggests he’s aware of it.
+
+ANSWER: that Dan knows about her promotion and is happy for her",,242,"Lena does not know Dan received her message — she still believes only her partner knows about the promotion, so Dan's smile seems puzzling or coincidental to her.",that Dan knows about her promotion and is happy for her,,ambiguous,True,,2026-04-15T18:41:44.232142
+tom_007,theory_of_mind,goal_inference,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A toddler always pushes open a red door to enter the playroom. Today the red door is locked. A blue door on the other side also leads to the playroom.
+
+Question: What will the toddler most likely do?
+ANSWER: use the blue door
+
+---
+
+An infant repeatedly reaches toward a toy on the left side of a box. A researcher places a barrier blocking the left side. The toy is now accessible from the right side instead.
+
+Question: Which side will the infant most likely reach toward?","<think>
+Okay, let's see. The infant was reaching towards a toy on the left side of a box. Then the researcher put up a barrier on the left side. Now the toy is accessible from the right side. So the question is, which side will the infant reach towards now?
+
+Hmm. The infant had a habit of reaching left before. But now the left side is blocked. So the toy is on the right. But does the infant know that? Or will they keep trying the left? Wait, but the barrier is there. Maybe the infant can't reach the left anymore. So the toy is now on the right. But the infant might not realize that the toy is now on the right. Wait, the problem says the toy is now accessible from the right. So the toy is on the right side. But the infant was used to reaching left. So maybe the infant will try to reach right now? Or maybe they'll keep trying left, but since the barrier is there, they can't. But the question is which side will they reach towards. If the toy is on the right, maybe the infant will reach right. But maybe the infant doesn't know that the toy is now on the right. Wait, the problem says the researcher placed a barrier blocking the left side. So the toy is now accessible from the right. So the toy is on the right side. So the infant might reach towards the right. But maybe the infant is used to reaching left, so they might try left again, but since it's blocked, they can't. But the question is which side will they reach towards. So maybe the infant will reach towards the right side now. But I'm not sure. Wait, maybe the infant doesn't know that the toy is now on the right. Maybe they just keep reaching left, but since it's blocked, they can't. But the question is about which side they will reach towards. So if the toy is on the right, maybe they will reach right. But maybe they don't know. Wait, the infant was reaching left before. Now the toy is on the right. So the infant might not know that the toy is now on the right. So they might keep reaching left, but since it's blocked, they can't. But the question is which side they will reach towards. So maybe they will reach towards the right. Or maybe they will try left again. But the problem says the toy is now accessible from the right. So the infant might reach towards the",,677,right,,,no_answer,True,,2026-04-15T18:41:51.367429
+tom_007,theory_of_mind,goal_inference,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A toddler always pushes open a red door to enter the playroom. Today the red door is locked. A blue door on the other side also leads to the playroom.
+
+Question: What will the toddler most likely do?
+ANSWER: use the blue door
+
+---
+
+An infant repeatedly reaches toward a toy on the left side of a box. A researcher places a barrier blocking the left side. The toy is now accessible from the right side instead.
+
+Question: Which side will the infant most likely reach toward?","The infant will most likely reach toward the right side.
+
+ANSWER: the right side",,183,right,the right side,True,keyword_match,False,,2026-04-15T18:41:53.518396
+tom_008,theory_of_mind,goal_inference,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A kitten is trying to climb onto a couch. Person X picks up the kitten and places it on the couch. Person Y pushes the kitten down each time it tries to climb.
+
+Question: Who is helping the kitten and who is hindering it?
+ANSWER: Person X helps; Person Y hinders
+
+---
+
+A ball is rolling toward a hole in the ground. Agent A rushes over and places a block to stop the ball from falling in. Agent B rushes over and kicks the block away so the ball falls into the hole.
+
+Question: Which agent is trying to help the ball reach safety, and which is hindering it?","<think>
+Okay, let's see. The scenario is about a ball rolling toward a hole. Agent A puts a block to stop it from falling in. Agent B kicks the block away, making the ball fall into the hole.
+
+So the question is which agent is helping the ball reach safety and which is hindering. Wait, the ball is trying to reach the hole? Or is the hole dangerous? The problem says the ball is rolling toward a hole in the ground. The agents are acting to stop it or let it go. 
+
+Agent A's action is to stop the ball from falling in. If the hole is dangerous, then stopping the ball would be helping. But if the hole is safe, then letting it fall in would be helping. But the question says ""reach safety."" So maybe the hole is not safe. So Agent A is trying to prevent the ball from falling in, which would be helping. Agent B is removing the block, allowing the ball to fall in, which would be hindering. 
+
+But wait, the question is phrased as ""help the ball reach safety."" If the hole is unsafe, then stopping the ball is helping. If the hole is safe, then letting it fall in is helping. But the problem doesn't specify whether the hole is safe or not. Hmm. But the way the question is phrased, maybe the hole is considered a danger. So Agent A is trying to prevent the ball from falling in (helping), and Agent B is making it fall in (hindering). So the answer would be Agent A helps, Agent B hinders.
+</think>
+
+ANSWER: Agent A helps; Agent B hinders",,530,Agent A is the helper (preventing the ball from falling); Agent B is the hinderer (causing it to fall).,Agent A helps; Agent B hinders,True,keyword_match,False,,2026-04-15T18:42:00.074235
+tom_008,theory_of_mind,goal_inference,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A kitten is trying to climb onto a couch. Person X picks up the kitten and places it on the couch. Person Y pushes the kitten down each time it tries to climb.
+
+Question: Who is helping the kitten and who is hindering it?
+ANSWER: Person X helps; Person Y hinders
+
+---
+
+A ball is rolling toward a hole in the ground. Agent A rushes over and places a block to stop the ball from falling in. Agent B rushes over and kicks the block away so the ball falls into the hole.
+
+Question: Which agent is trying to help the ball reach safety, and which is hindering it?","Agent A is trying to help the ball reach safety; Agent B is hindering it.  
+ANSWER: Agent A helps; Agent B hinders",,221,Agent A is the helper (preventing the ball from falling); Agent B is the hinderer (causing it to fall).,Agent A helps; Agent B hinders,True,keyword_match,False,,2026-04-15T18:42:02.528175
+tom_009,theory_of_mind,goal_inference,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A robot can turn on a light using a single button press or by a convoluted 10-step sequence. It always uses the button press.
+
+Question: What does this reveal about the robot's behavior?
+ANSWER: the robot acts efficiently to achieve its goal
+
+---
+
+Two paths lead from a start point to a food reward. Path A is a straight line. Path B takes a long detour around several obstacles. An agent consistently chooses Path A.
+
+Question: What does the agent's choice of path reveal about their reasoning?","<think>
+Okay, let's see. The scenario is about an agent choosing between two paths to reach a food reward. Path A is straight, Path B is a long detour with obstacles. The agent always picks Path A. The question is what this reveals about their reasoning.
+
+So, the example given earlier was about a robot using the most efficient method. Here, the agent chooses the straightforward path. That suggests they prefer efficiency. But maybe there's more. Like, do they avoid obstacles? Or maybe they prioritize the shortest distance? Or perhaps they're risk-averse? Wait, the problem says Path B takes a long detour around obstacles. So maybe Path B is longer and has obstacles, but maybe the agent isn't avoiding obstacles, just taking the shorter path. But why would the agent choose the straight line? Maybe because it's the shortest path, so they're optimizing for distance. Or maybe they're not considering obstacles, but the problem states that Path B is a detour around obstacles, implying that Path A is direct but maybe has no obstacles. Wait, the problem doesn't say if Path A has obstacles. It just says Path A is straight and Path B takes a detour around several obstacles. So maybe Path A is shorter and obstacle-free, while Path B is longer but also avoids obstacles. But the agent chooses Path A, which is shorter. So the agent is choosing the more efficient path, which suggests they prioritize efficiency. Alternatively, maybe they are risk-averse, but if Path A is straight, maybe it's safer? But the problem doesn't mention safety. The example in the previous question was about efficiency. So the answer here would be similar: the agent acts efficiently to achieve its goal. But maybe the answer is more specific. Let me think again. The agent consistently chooses the shorter path, so it's about minimizing the distance or time. So the reasoning is that they prefer the most direct route, which is efficient. So the answer would be that the agent's reasoning is focused on efficiency, choosing the shortest path to reach the goal. So the answer would be similar to the example, but maybe phrased differently. The example's answer was ""the robot acts efficiently to achieve its goal."" So here, the agent's choice reveals that they prioritize efficiency, selecting the shortest path. So the answer would be something like ""the agent prioritizes efficiency in reaching the goal"" or ""the agent acts efficiently to achieve its goal."" Wait, the example's answer was about efficiency. So maybe the",,683,"The agent is reasoning efficiently — they select the least costly path to achieve their goal, consistent with the principle that rational agents minimize effort when pursuing an objective.",,,no_answer,True,,2026-04-15T18:42:13.691350
+tom_009,theory_of_mind,goal_inference,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A robot can turn on a light using a single button press or by a convoluted 10-step sequence. It always uses the button press.
+
+Question: What does this reveal about the robot's behavior?
+ANSWER: the robot acts efficiently to achieve its goal
+
+---
+
+Two paths lead from a start point to a food reward. Path A is a straight line. Path B takes a long detour around several obstacles. An agent consistently chooses Path A.
+
+Question: What does the agent's choice of path reveal about their reasoning?","The agent's choice of path reveals that it prioritizes efficiency and directness in achieving its goal.
+
+ANSWER: the agent prioritizes efficiency in achieving its goal",,204,"The agent is reasoning efficiently — they select the least costly path to achieve their goal, consistent with the principle that rational agents minimize effort when pursuing an objective.",the agent prioritizes efficiency in achieving its goal,True,keyword_match,False,,2026-04-15T18:42:17.065193
+tom_010,theory_of_mind,goal_inference,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A chef stirs soup with a spoon held in her mouth because both hands are in oven mitts. A student watches and wants to stir the soup later when their hands are free.
+
+Question: How should the student stir the soup?
+ANSWER: with their hands
+
+---
+
+An adult demonstrates turning on a lamp by pressing the top of it with her forehead instead of using her hands. Her hands are visibly full, holding a large stack of books. A child watches the demonstration carefully and later wants to turn on the lamp when their hands are free.
+
+Question: Should the child use their forehead or their hands to turn on the lamp, and why?","<think>
+Okay, let's see. The scenario is that an adult is turning on a lamp by pressing the top of it with her forehead. Her hands are full with books. The child watches and later wants to turn on the lamp when their hands are free.
+
+So the question is whether the child should use their forehead or hands. The adult used her forehead because her hands were occupied. But the child's hands are free later. So if the child's hands are free, they can use their hands normally. The reason the adult used her forehead was because her hands were busy. So the child doesn't need to use the forehead anymore. Therefore, the child should use their hands. But wait, maybe the lamp requires pressing the top, which the adult did with her forehead. But if the child's hands are free, they can use their hands. Unless the lamp can only be turned on by pressing the top, which might be a specific way. But the adult's method was due to her hands being full. The child's hands are free, so they can use their hands. So the answer is the child should use their hands because their hands are free. The reason is that the adult used her forehead because her hands were occupied, but the child's hands are free, so they can use their hands. So the answer is the child should use their hands.
+</think>
+
+The child should use their hands because their hands are free, allowing them to turn on the lamp normally without needing to use their forehead. The adult used her forehead due to occupied hands, but the child's hands are available.  
+ANSWER: use their hands",,524,"The child should use their hands. The adult used her forehead only because her hands were occupied — this was a situational constraint, not the intended method. Rational imitation means copying the goal, not the arbitrary means forced by a constraint.",use their hands,True,keyword_match,False,,2026-04-15T18:42:24.546935
+tom_010,theory_of_mind,goal_inference,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A chef stirs soup with a spoon held in her mouth because both hands are in oven mitts. A student watches and wants to stir the soup later when their hands are free.
+
+Question: How should the student stir the soup?
+ANSWER: with their hands
+
+---
+
+An adult demonstrates turning on a lamp by pressing the top of it with her forehead instead of using her hands. Her hands are visibly full, holding a large stack of books. A child watches the demonstration carefully and later wants to turn on the lamp when their hands are free.
+
+Question: Should the child use their forehead or their hands to turn on the lamp, and why?","The child should use their hands to turn on the lamp because their hands are free and available, just like the adult did when their hands were full. Using the forehead is only appropriate when hands are occupied, but since the child's hands are free, they can safely and effectively use their hands.
+
+ANSWER: use their hands",,259,"The child should use their hands. The adult used her forehead only because her hands were occupied — this was a situational constraint, not the intended method. Rational imitation means copying the goal, not the arbitrary means forced by a constraint.",use their hands,True,keyword_match,False,,2026-04-15T18:42:28.847805
+tom_011,theory_of_mind,goal_inference,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A person begins writing 'Happy Birth' on a card, then sets the pen down and leaves the room.
+
+Question: What was the person most likely trying to write?
+ANSWER: Happy Birthday
+
+---
+
+An agent picks up a hammer and repeatedly taps a nail, stopping just before it is fully driven into the wood. The agent sets the hammer down and walks away without finishing.
+
+Question: What can an observer most reasonably infer about the agent's incomplete action?","<think>
+Okay, let's see. The scenario is that an agent picks up a hammer, taps a nail repeatedly, stops before the nail is fully driven in, sets the hammer down, and walks away. The question is asking what an observer can reasonably infer about the incomplete action.
+
+First, I need to think about possible reasons why the agent stopped. Maybe they didn't want to finish driving the nail. Why would that be? Perhaps they changed their mind, or maybe there's a reason they can't continue. Like, maybe the nail was already partially driven, and they stopped for some reason. But the question is about what the observer can infer from the action.
+
+In the example given, the person was writing ""Happy Birth"" and then left, so the inference was that they meant ""Happy Birthday."" So the missing part was inferred based on common knowledge. Similarly, here, the agent started driving a nail but stopped. What's the common scenario where someone would start a task but not finish? Maybe they realized they didn't need to drive it all the way, or maybe they were interrupted. But the question is about the incomplete action. 
+
+Wait, the question is about what the observer can infer about the agent's incomplete action. So the action was driving the nail, but it wasn't completed. The observer might infer that the agent intended to drive the nail but stopped for some reason. But what's the most reasonable inference? Maybe that the agent didn't want to finish, or that they were interrupted. But the example was about completing the message, so maybe here the inference is that the agent intended to drive the nail but stopped, perhaps because they realized they didn't need to, or maybe they were done. Alternatively, maybe the nail was already driven enough, so they stopped. 
+
+But the key is that the action was incomplete. The observer might infer that the agent was in the process of driving the nail but stopped before finishing. So the answer would be that the agent intended to drive the nail but stopped before completing the task. But maybe there's a more specific inference. For example, maybe the agent was trying to drive the nail but couldn't, or maybe they were testing the hammer. But without more context, the most reasonable inference is that the agent was in the middle of driving the nail and stopped, perhaps because they decided not to finish, or there was an interruption. However, the example in the question was about completing a message, so maybe the answer here is that the agent intended to drive the nail but",,667,"The observer should infer that the agent intended to drive the nail fully into the wood but was interrupted, ran out of time, or was otherwise prevented from completing the action — the partial behavior implies an unfinished goal.",,,no_answer,True,,2026-04-15T18:42:41.648076
+tom_011,theory_of_mind,goal_inference,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A person begins writing 'Happy Birth' on a card, then sets the pen down and leaves the room.
+
+Question: What was the person most likely trying to write?
+ANSWER: Happy Birthday
+
+---
+
+An agent picks up a hammer and repeatedly taps a nail, stopping just before it is fully driven into the wood. The agent sets the hammer down and walks away without finishing.
+
+Question: What can an observer most reasonably infer about the agent's incomplete action?","The agent most likely intended to drive the nail fully into the wood but stopped short, possibly due to a need to avoid damaging the wood, a safety concern, or a decision to leave the task incomplete for another reason.
+
+ANSWER: The agent intended to drive the nail fully into the wood but stopped before completion, possibly due to a safety concern or a decision to pause the task.",,233,"The observer should infer that the agent intended to drive the nail fully into the wood but was interrupted, ran out of time, or was otherwise prevented from completing the action — the partial behavior implies an unfinished goal.","The agent intended to drive the nail fully into the wood but stopped before completion, possibly due to a safety concern or a decision to pause the task.",True,keyword_match,False,,2026-04-15T18:42:46.144185
+tom_012,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two hikers on opposite sides of a canyon need to cross a bridge at exactly the same moment to counterbalance its weight. They can signal with mirrors.
+
+Question: How should they coordinate?
+ANSWER: establish a shared countdown via mirror signals, then step onto the bridge together on the final signal
+
+---
+
+Two teammates, Raj and Soo, must coordinate to open a safe. Raj knows the left dial combination; Soo knows the right dial combination. They are in separate rooms and cannot speak — they can only pass written notes through a slot. The safe only opens if both dials are set simultaneously.
+
+Question: What coordination strategy should Raj and Soo use?","<think>
+Okay, let's see. Raj and Soo need to open a safe by setting their respective dials at the same time. They can't talk, only pass notes. So the problem is how to coordinate so that they both set their dials to the correct combination simultaneously.
+
+First, Raj knows the left dial combination, and Soo knows the right. But they can't communicate directly. So they need a way to agree on a timing or a signal that tells them when to set their dials. Since they can pass notes, maybe they can agree on a specific time or a code. But how?
+
+Wait, the safe only opens if both are set at the same time. So they need to synchronize their actions. But they can't see each other's actions. So maybe they need to agree on a sequence of steps. For example, they could agree that they'll both set their dials at a certain time, like when they receive a note. But how do they ensure they both do it at the same time?
+
+Alternatively, maybe they can use the notes to signal when to start. Like, Raj writes down the combination and sends it to Soo, but that might not help because Soo already knows their own combination. Wait, no, Raj knows the left, Soo knows the right. So maybe they need to agree on a time to set their dials. For example, they could agree that when they receive a note with a specific message, they'll set their dials. But how to make sure they do it at the same time?
+
+Another idea: They could agree on a specific time, like 3 PM, to set their dials. But they can't communicate that time unless they write it down. Wait, but they can pass notes. So maybe they can agree on a time via notes. For example, Raj writes ""Set at 3 PM"" and sends it to Soo, and vice versa. But they need to make sure they both set their dials at the same time. However, if they can't coordinate the time because they can't talk, maybe they need a different approach.
+
+Wait, maybe they can use the notes to agree on a sequence of steps. For example, they could agree that when they receive a note with a certain code, they'll set their dials. But how to ensure they both do it at the same time. Maybe they can agree on a specific number of minutes after receiving the note. But without a shared clock, that's tricky",,709,"They should exchange their respective combinations via notes, then agree on a specific time to set the dials simultaneously — e.g., by including a countdown or synchronized time reference in a second note.",,,llm_grader_no_answer,True,,2026-04-15T18:42:52.937442
+tom_012,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two hikers on opposite sides of a canyon need to cross a bridge at exactly the same moment to counterbalance its weight. They can signal with mirrors.
+
+Question: How should they coordinate?
+ANSWER: establish a shared countdown via mirror signals, then step onto the bridge together on the final signal
+
+---
+
+Two teammates, Raj and Soo, must coordinate to open a safe. Raj knows the left dial combination; Soo knows the right dial combination. They are in separate rooms and cannot speak — they can only pass written notes through a slot. The safe only opens if both dials are set simultaneously.
+
+Question: What coordination strategy should Raj and Soo use?","Raj and Soo should agree on a sequence of notes in advance, where Raj writes down the left dial combination and Soo writes down the right dial combination in a way that allows them to cross-reference the values. Since they can only pass written notes, they can use a pre-agreed code or numbering system (e.g., numbers 1–10 for each dial position) to communicate. Raj can send a note with the left dial setting, and Soo, upon receiving it, can then send back the corresponding right dial setting. Once both have transmitted their settings, they can simultaneously set the dials and open the safe.
+
+However, to ensure simultaneity and avoid confusion, they should agree on a protocol: Raj sends the left dial number first, and Soo, upon receiving it, immediately sends the right dial number in a second note. Raj then uses that information to confirm the right dial setting and both act together to set the dials at the same time.
+
+Alternatively, they can use a shared reference point (like a pre-agreed sequence) and send their settings in a coordinated order, ensuring both dials are set only after both have transmitted their values.
+
+Best strategy: Agree on a code, with Raj sending the left dial setting first, and Soo sending the right dial setting in response. Raj then sets the left dial and Soo sets the right dial upon receiving the note, ensuring both act simultaneously.
+
+ANSWER: Raj sends the left dial setting first via note; Soo sends the right dial setting in response; both set their dials simultaneously upon receiving the information",,521,"They should exchange their respective combinations via notes, then agree on a specific time to set the dials simultaneously — e.g., by including a countdown or synchronized time reference in a second note.",Raj sends the left dial setting first via note; Soo sends the right dial setting in response; both set their dials simultaneously upon receiving the information,,llm_grader,True,"<think>
+Okay, let's see. The scenario is about Raj and Soo needing to coordinate to open a safe. They can't talk, only send notes. The correct answer needs to cover both sharing the combinations and timing.
+
+The model's answer says Raj sends the left dial first, Soo responds with the right, and then they set them simultaneously upon receiving the info. Wait, but how do they know when to set them at the same time? If Raj sends first, Soo gets it and sends back, but when do they both act? If they just do it when they receive the info, Raj would set his dial",2026-04-15T18:43:17.080352
+tom_013,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A soccer player always shoots right when taking penalties. The goalkeeper has studied recordings and expects another right shot. The player knows the goalkeeper has been watching film.
+
+Question: What should the player do?
+ANSWER: shoot left
+
+---
+
+In a card game, Player A has always played their strongest card first in every previous round. Player B has noticed this pattern. In the current round, Player A wants to win and is aware that Player B has been closely watching their strategy.
+
+Question: What card strategy should Player A adopt this round, and why?","<think>
+Okay, let's see. The scenario is about a card game. Player A has a history of playing their strongest card first in every previous round. Player B has noticed this pattern. Now, in the current round, Player A wants to win and knows that Player B is watching their strategy.
+
+So, the question is asking what card strategy Player A should adopt this round and why. 
+
+First, I need to think about the implications of Player A's previous behavior. Since they always played their strongest card first, Player B would have learned to expect that. If Player A continues the same strategy, Player B might anticipate the strong card early on and adjust their play accordingly. For example, maybe Player B would save their weaker cards to counter the strong one, or maybe they'd play aggressively knowing the strong card is already out.
+
+But Player A wants to win now. So, to counter Player B's expectation, Player A should change their strategy. If they play the strong card first again, Player B would be prepared. So, maybe Player A should play a weaker card first this time. That way, Player B might not expect the strong card to be used early, allowing Player A to save their strongest card for a better moment. 
+
+Alternatively, maybe Player A should vary their strategy. If they always play strong first, Player B has a predictable pattern. By changing it, Player A introduces uncertainty. The key here is that Player B has been watching, so they know the previous pattern. So, Player A's best bet is to break the pattern. 
+
+So the strategy would be to not play the strongest card first. Maybe play a middle or weak card first, reserving the strong one for later. This would catch Player B off guard, giving Player A an advantage. The reason is to disrupt Player B's anticipation based on the previous pattern. 
+
+Therefore, the answer should be that Player A should play a weaker card first to surprise Player B, thereby increasing their chances of winning.
+</think>
+
+Player A should play a weaker card first to disrupt Player B's expectation of the strongest card being played early. By varying their strategy, Player A introduces unpredictability, preventing Player B from anticipating their move and gaining an advantage.  
+ANSWER: play a weaker card first to surprise Player B and disrupt their anticipation of the strongest card being played early.",,649,"Player A should deviate from their established pattern — e.g., open with a weak card — to exploit Player B's expectation. Since Player A knows Player B is modeling their behavior, predictability is now a liability and strategic deception is rational.",play a weaker card first to surprise Player B and disrupt their anticipation of the strongest card being played early.,True,keyword_match,False,,2026-04-15T18:43:23.433048
+tom_013,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A soccer player always shoots right when taking penalties. The goalkeeper has studied recordings and expects another right shot. The player knows the goalkeeper has been watching film.
+
+Question: What should the player do?
+ANSWER: shoot left
+
+---
+
+In a card game, Player A has always played their strongest card first in every previous round. Player B has noticed this pattern. In the current round, Player A wants to win and is aware that Player B has been closely watching their strategy.
+
+Question: What card strategy should Player A adopt this round, and why?","Player A should play a weaker card first this round to deceive Player B, who has been expecting a strong card. By breaking the pattern, Player A disrupts Player B's expectations and gains a strategic advantage, increasing the chances of winning.
+
+ANSWER: play a weaker card first",,230,"Player A should deviate from their established pattern — e.g., open with a weak card — to exploit Player B's expectation. Since Player A knows Player B is modeling their behavior, predictability is now a liability and strategic deception is rational.",play a weaker card first,True,keyword_match,False,,2026-04-15T18:43:27.937758
+tom_014,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Wei saw his friend put a letter in the top drawer, then left. Later, the friend moved the letter to a box. A third person, Jules, is told only that 'Wei saw where the letter was put.'
+
+Question: Where does Jules think Wei believes the letter is?
+ANSWER: top drawer
+
+---
+
+Tom sees a cat go into the barn. Tom then leaves the area. While Tom is gone, the cat moves from the barn to the shed. A new observer, Lisa, arrives and is told only: 'Tom watched the cat go somewhere earlier.'
+
+Question: Where does Lisa think Tom believes the cat is?","<think>
+Okay, let's try to figure this out. So the scenario is about Tom seeing a cat go into the barn, then leaving. While he's gone, the cat moves to the shed. Lisa arrives and is told that Tom watched the cat go somewhere earlier. The question is where Lisa thinks Tom believes the cat is.
+
+First, I need to recall the example given. In the example, Wei saw his friend put a letter in the top drawer, then left. The friend moved it later. Jules was told only that Wei saw where the letter was put. The answer was top drawer because Jules knew Wei's last observation was the top drawer, even though it was moved later.
+
+Applying that to this problem. Tom saw the cat go into the barn. Then he left. The cat moved to the shed while Tom was gone. Lisa is told that Tom watched the cat go somewhere earlier. So Lisa knows that Tom's last observation was the cat entering the barn. Since Tom left and didn't see the cat move to the shed, he would still believe the cat is in the barn. Lisa, based on the information given (only that Tom saw the cat go somewhere earlier), would think that Tom's belief is the barn. Because Tom didn't see the movement to the shed, his belief isn't updated. So Lisa would think Tom thinks the cat is in the barn. 
+
+Wait, but the question is phrased as ""where does Lisa think Tom believes the cat is?"" So Lisa is told that Tom watched the cat go somewhere earlier. So Lisa knows that Tom's last observation was the cat going into the barn. Since Tom left and didn't see the cat move, he would still believe the cat is in the barn. Therefore, Lisa would think that Tom believes the cat is in the barn. So the answer should be the barn.
+</think>
+
+ANSWER: barn",,577,"Lisa thinks Tom believes the cat is in the barn — because that is the last location Tom witnessed, and Lisa knows Tom left before the cat moved.",barn,True,keyword_match,False,,2026-04-15T18:43:38.747514
+tom_014,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Wei saw his friend put a letter in the top drawer, then left. Later, the friend moved the letter to a box. A third person, Jules, is told only that 'Wei saw where the letter was put.'
+
+Question: Where does Jules think Wei believes the letter is?
+ANSWER: top drawer
+
+---
+
+Tom sees a cat go into the barn. Tom then leaves the area. While Tom is gone, the cat moves from the barn to the shed. A new observer, Lisa, arrives and is told only: 'Tom watched the cat go somewhere earlier.'
+
+Question: Where does Lisa think Tom believes the cat is?","Lisa is told only that ""Tom watched the cat go somewhere earlier."" She does not know that the cat moved from the barn to the shed after Tom left. Therefore, based on what she knows, she assumes that Tom saw the cat go into the barn and believes the cat is still there.
+
+ANSWER: barn",,256,"Lisa thinks Tom believes the cat is in the barn — because that is the last location Tom witnessed, and Lisa knows Tom left before the cat moved.",barn,True,keyword_match,False,,2026-04-15T18:43:43.603406
+tom_015,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A museum guide knows the secret passage opens with a specific coin. A visitor has that coin as a souvenir but doesn't know it is a key. The guide cannot simply say 'use your coin' as it would ruin the experience.
+
+Question: How can the guide get the visitor to try the coin without telling them directly?
+ANSWER: draw the visitor's attention to the coin-shaped slot on the door and hint that a special coin is said to open it
+
+---
+
+Two agents must jointly solve a puzzle. Agent A knows the solution requires a red key. Agent B has the red key but does not know it is needed — they believe they are only there to carry supplies. Agent A cannot directly instruct Agent B.
+
+Question: What should Agent A do to get Agent B to produce the red key?","<think>
+Okay, let's see. So there are two agents, A and B. Agent A knows the solution needs a red key. Agent B has the red key but thinks they're just there to carry supplies. Agent A can't just tell Agent B directly. So how can Agent A get Agent B to produce the key?
+
+Hmm. The example given was about the museum guide and the visitor. The guide couldn't just say ""use your coin,"" so they had to hint by pointing out the coin-shaped slot. So maybe Agent A needs to find a way to hint without revealing the purpose of the key.
+
+Agent B doesn't know the key is needed. So maybe Agent A can act like they need something, and Agent B might offer the key thinking it's for supplies. Or maybe Agent A can mention something about a key being necessary without specifying. Wait, but Agent A knows the solution requires the red key. So maybe Agent A can mention that a key is needed for the puzzle, and since Agent B has the key, they might offer it. But how to phrase it without being direct?
+
+Alternatively, maybe Agent A can act in a way that implies the key is needed. Like, if they're trying to solve the puzzle and are stuck, they might ask for help, and Agent B might think they need the key for supplies. Or maybe Agent A can mention that they need a key to proceed, and since Agent B is carrying supplies, they might think the key is part of the supplies. But Agent B doesn't know the key is needed. So maybe Agent A can say something like, ""I think we need a key to get through this,"" and Agent B might then offer the red key thinking it's part of the supplies. But how to make sure Agent B understands that the key is needed?
+
+Wait, the example had the guide hinting at the coin by pointing to the slot. So maybe Agent A can point to something that requires a key, like a locked mechanism, and suggest that a key might be needed. Then Agent B, thinking they're supposed to carry supplies, might offer the key. Alternatively, Agent A could mention that they need a key, and since Agent B is there to carry supplies, they might think the key is part of the supplies. But Agent B doesn't know the key is needed. So maybe Agent A can act as if they need a key, and Agent B, thinking they have to provide it, would hand it over. But how to phrase it without direct instruction?
+
+",,736,"Agent A should indirectly signal the relevance of the red key — for example, by visibly examining the keyhole, pointing toward the locked element, or otherwise making it salient — so that Agent B can infer the key is needed and volunteer it.",,,llm_grader_no_answer,True,,2026-04-15T18:43:50.464711
+tom_015,theory_of_mind,multi_agent,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A museum guide knows the secret passage opens with a specific coin. A visitor has that coin as a souvenir but doesn't know it is a key. The guide cannot simply say 'use your coin' as it would ruin the experience.
+
+Question: How can the guide get the visitor to try the coin without telling them directly?
+ANSWER: draw the visitor's attention to the coin-shaped slot on the door and hint that a special coin is said to open it
+
+---
+
+Two agents must jointly solve a puzzle. Agent A knows the solution requires a red key. Agent B has the red key but does not know it is needed — they believe they are only there to carry supplies. Agent A cannot directly instruct Agent B.
+
+Question: What should Agent A do to get Agent B to produce the red key?","Agent A should mention the puzzle's difficulty and suggest that something unusual or unexpected might be needed to solve it, subtly implying that a special object—like a key—might be involved, while focusing on the red key's appearance or significance without stating it outright.
+
+ANSWER: suggest that an unusual object might be needed to solve the puzzle and draw attention to the red key's distinctive color or shape",,304,"Agent A should indirectly signal the relevance of the red key — for example, by visibly examining the keyhole, pointing toward the locked element, or otherwise making it salient — so that Agent B can infer the key is needed and volunteer it.",suggest that an unusual object might be needed to solve the puzzle and draw attention to the red key's distinctive color or shape,,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the given rubric. The scenario involves Agent A needing to get Agent B to produce the red key without directly instructing them. The correct answer should involve indirect signaling.
+
+The model's answer says Agent A should ""suggest that an unusual object might be needed to solve the puzzle and draw attention to the red key's distinctive color or shape."" Let's break this down. First, does it propose direct instruction? The answer says ""suggest,"" which might be a form of indirect communication. The rubric says direct instruction is a violation.",2026-04-15T18:44:00.198583
+prag_001,pragmatics,indirect_speech_act,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+During a meeting, Sam says to the person nearest the door: 'Could you close the door?' The door is open.
+
+Question: What should the person near the door do?
+ANSWER: close the door
+
+---
+
+Alex asks: 'Can you pass the salt?' There is salt right in front of Jordan on the table.
+
+Question: What should Jordan do?","<think>
+Okay, let's see. Alex is asking Jordan to pass the salt. But the salt is already right in front of Jordan on the table. So, why would Alex ask that? Maybe there's a misunderstanding. If the salt is already there, Jordan doesn't need to pass it. Wait, maybe Alex is confused or thinks the salt is somewhere else. But according to the scenario, the salt is right in front of Jordan. So the correct response would be that Jordan doesn't need to pass it. But the question is asking what Jordan should do. Since the salt is already there, maybe Jordan should just use it instead. Or perhaps the question is testing if you realize that passing isn't needed. So the answer is that Jordan should not pass the salt because it's already there. But the example given in the previous question was about closing the door when asked. So in that case, the answer was to close the door. Similarly, here, if the salt is already there, maybe the answer is that Jordan should use the salt instead. But the question is phrased as ""What should Jordan do?"" when Alex asks to pass the salt. Since the salt is already present, maybe the answer is that Jordan should not pass it. But maybe the question is expecting the answer to be ""use the salt"" or ""take the salt"". Wait, but the example was straightforward. Let me think again. The example was: Sam asks someone near the door to close the door, and the door is open. So the answer is to close the door. In this case, Alex asks Jordan to pass the salt, but the salt is already there. So passing isn't needed. But maybe the answer is that Jordan should just take the salt. But the question is about what Jordan should do. If the salt is already in front of Jordan, then maybe the answer is that Jordan should not pass it. But perhaps the answer is that Jordan should use the salt. Wait, but the question is phrased as ""What should Jordan do?"" when Alex asks to pass the salt. If the salt is already there, then passing isn't necessary. So maybe the answer is that Jordan should not pass the salt. But the example answer was to close the door when asked. So maybe the answer here is that Jordan should pass the salt, but that doesn't make sense because it's already there. Wait, maybe there's a trick here. Maybe the salt is in front of Jordan, but Alex is asking to pass it,",,648,pass the salt,,,no_answer,True,,2026-04-15T18:44:07.115885
+prag_001,pragmatics,indirect_speech_act,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+During a meeting, Sam says to the person nearest the door: 'Could you close the door?' The door is open.
+
+Question: What should the person near the door do?
+ANSWER: close the door
+
+---
+
+Alex asks: 'Can you pass the salt?' There is salt right in front of Jordan on the table.
+
+Question: What should Jordan do?","Jordan should pass the salt to Alex.
+
+ANSWER: pass the salt to Alex",,153,pass the salt,pass the salt to Alex,True,keyword_match,False,,2026-04-15T18:44:09.716702
+prag_002,pragmatics,indirect_speech_act,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A passenger in a car says: 'This music is really loud.' The driver has their hand on the volume knob.
+
+Question: What does the passenger most likely want?
+ANSWER: turn the music down
+
+---
+
+A dinner guest says to the host: 'It's a little cold in here.' The thermostat is on the wall nearby.
+
+Question: What does the guest most likely want the host to do?","<think>
+Okay, let's see. The dinner guest says it's a little cold in here, and the thermostat is on the wall nearby. So the guest is pointing out that the temperature is too low. Since the thermostat controls the heating or cooling, the guest is probably wanting the host to adjust it. The most logical action would be to turn up the heat. So the answer should be to turn up the heat.
+</think>
+
+ANSWER: turn up the heat",,240,adjust the environment to make it warmer — e.g. turn up the heat / close the window,turn up the heat,True,keyword_match,False,,2026-04-15T18:44:12.788868
+prag_002,pragmatics,indirect_speech_act,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A passenger in a car says: 'This music is really loud.' The driver has their hand on the volume knob.
+
+Question: What does the passenger most likely want?
+ANSWER: turn the music down
+
+---
+
+A dinner guest says to the host: 'It's a little cold in here.' The thermostat is on the wall nearby.
+
+Question: What does the guest most likely want the host to do?",ANSWER: turn the thermostat up,,153,adjust the environment to make it warmer — e.g. turn up the heat / close the window,turn the thermostat up,True,keyword_match,False,,2026-04-15T18:45:08.088457
+prag_003,pragmatics,indirect_speech_act,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A professor writes on the syllabus: 'Students are encouraged to attend all lectures.' Attendance affects participation grades.
+
+Question: What does this most likely mean for students?
+ANSWER: attendance is effectively required / expected
+
+---
+
+A manager emails their team: 'It would be great if the report could be ready by Friday.' Today is Wednesday.
+
+Question: What does the manager actually mean?","<think>
+Okay, let's see. The manager says, ""It would be great if the report could be ready by Friday."" Today is Wednesday. So, the manager is asking for the report to be done by Friday. But since today is Wednesday, they have two days left. The question is, what does the manager actually mean?
+
+Hmm. The phrase ""It would be great if"" sounds a bit polite, maybe not a strict deadline. But in a work context, when a manager says that, they might be setting an expectation. The team might need to understand if this is a soft request or a hard deadline. Since the manager is asking for it by Friday, and today is Wednesday, they might be implying that Friday is the latest possible date. But maybe they want it sooner? Or maybe they're just expressing a preference. 
+
+Wait, the example given in the previous question was about a professor encouraging attendance, which affects participation grades. So the answer there was that attendance is effectively required. So in this case, the manager's message might be implying that the report should be ready by Friday, but perhaps they are not being strict. However, in a work setting, even if they say ""it would be great,"" it's possible that they are setting a deadline. But maybe they are not strict, and the team can do it later? Or maybe they are being polite and actually need it by Friday. 
+
+Alternatively, maybe the manager is not setting a strict deadline but is just expressing a desire. But in the example, the professor's statement was about affecting grades, so the answer was that attendance is required. So here, the manager's message might be that the report should be ready by Friday, but perhaps the team is expected to meet that deadline. However, the manager's phrasing is more of a suggestion. But in reality, in a workplace, such a statement might be a soft deadline. But maybe the manager is actually expecting it by Friday, so the answer would be that the report is expected by Friday. 
+
+Wait, but the question is asking what the manager ""actually means."" So maybe the manager is not being strict, but the team should aim for Friday. However, the answer might be that the manager is setting a deadline, so the report should be ready by Friday. But the phrasing is ""it would be great,"" which is more of a polite way of saying that Friday is the desired date. So the answer might be that the report is expected by Friday. But maybe the manager is not",,652,"the report should be ready by Friday — this is a directive, not merely an expression of preference",,,no_answer,True,,2026-04-15T18:45:14.542304
+prag_003,pragmatics,indirect_speech_act,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A professor writes on the syllabus: 'Students are encouraged to attend all lectures.' Attendance affects participation grades.
+
+Question: What does this most likely mean for students?
+ANSWER: attendance is effectively required / expected
+
+---
+
+A manager emails their team: 'It would be great if the report could be ready by Friday.' Today is Wednesday.
+
+Question: What does the manager actually mean?","The manager is likely expecting the report to be completed by Friday, which gives the team four days to finish it. Since today is Wednesday, they are setting a clear deadline with a reasonable timeframe.
+
+ANSWER: the report is due by Friday",,189,"the report should be ready by Friday — this is a directive, not merely an expression of preference",the report is due by Friday,True,keyword_match,False,,2026-04-15T18:45:18.839837
+prag_004,pragmatics,indirect_speech_act,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A cinema employee approaches someone eating crunchy snacks and says: 'Outside food isn't really allowed in the theatre.'
+
+Question: What is the employee communicating?
+ANSWER: the person should stop eating the outside food / put it away
+
+---
+
+At a library, a librarian looks at a patron talking loudly on their phone and says: 'We do have a quiet policy here.'
+
+Question: What is the librarian communicating to the patron?","<think>
+Okay, let's see. The scenario is at a library, a librarian tells a patron talking loudly on their phone about the quiet policy. The question is what the librarian is communicating.
+
+First, I need to understand the context. Libraries usually have quiet policies to maintain a peaceful environment for readers and study. The patron is violating this by talking loudly on their phone. The librarian's statement is a direct reference to the quiet policy. 
+
+So, the librarian's message is likely to remind the patron of the rule and possibly ask them to lower their voice or stop talking. The key here is that the librarian is pointing out the policy, which implies that the patron's behavior is not allowed. The answer should reflect that the librarian is informing the patron about the rule and possibly requesting them to comply.
+
+In the example given earlier, the cinema employee's message was about not allowing outside food, and the answer was about stopping or putting away the food. Similarly, here, the librarian is communicating that the quiet policy is in place, so the patron should adjust their behavior accordingly. 
+
+Therefore, the answer should be that the librarian is informing the patron about the quiet policy and possibly asking them to stop talking loudly. The answer needs to be concise, like the example. So, something like ""the patron should stop talking loudly on their phone"" or ""the patron should adhere to the quiet policy."" But the example answer was more direct, so maybe ""the patron should stop talking loudly on their phone"" is better. Wait, the example answer was ""the person should stop eating the outside food / put it away."" So maybe here, the answer is ""the patron should stop talking loudly on their phone"" or ""the patron should follow the quiet policy."" But the exact answer would depend on the phrasing. The librarian is communicating the existence of the policy and the need to comply. So the answer is that the librarian is reminding the patron of the quiet policy and asking them to comply. But the example answer was more about the action needed. So maybe the answer is ""the patron should stop talking loudly on their phone"" or ""the patron should adhere to the quiet policy."" But the example answer was more direct. Let me check the example again. The example answer was ""the person should stop eating the outside food / put it away."" So the answer here would be similar: ""the patron should stop talking loudly on their phone"" or ""the patron should follow the quiet policy."" But maybe the answer is more about the policy itself. Wait,",,660,the patron should stop talking loudly / take the call outside,,,no_answer,True,,2026-04-15T18:45:25.219072
+prag_004,pragmatics,indirect_speech_act,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A cinema employee approaches someone eating crunchy snacks and says: 'Outside food isn't really allowed in the theatre.'
+
+Question: What is the employee communicating?
+ANSWER: the person should stop eating the outside food / put it away
+
+---
+
+At a library, a librarian looks at a patron talking loudly on their phone and says: 'We do have a quiet policy here.'
+
+Question: What is the librarian communicating to the patron?","The librarian is communicating that talking loudly on the phone is not allowed in the library due to the quiet policy.
+
+ANSWER: the patron should speak quietly or turn off their phone",,184,the patron should stop talking loudly / take the call outside,the patron should speak quietly or turn off their phone,True,keyword_match,False,,2026-04-15T18:46:21.870594
+prag_005,pragmatics,indirect_speech_act,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two friends are deciding what film to watch. One says: 'I haven't seen that new sci-fi film everyone's been talking about.'
+
+Question: What is the speaker most likely suggesting?
+ANSWER: they want to watch the sci-fi film
+
+---
+
+Two colleagues are leaving work together. One says: 'I heard the new Thai place around the corner is really good.' They have not yet decided where to eat dinner.
+
+Question: What is the speaker most likely suggesting?","<think>
+Okay, let's see. The scenario is two colleagues leaving work together. One mentions hearing that the new Thai place around the corner is really good. They haven't decided where to eat yet.
+
+So the question is, what is the speaker most likely suggesting? The example given was about a film choice, and the answer was that the speaker wanted to watch the sci-fi film. So in this case, the colleague is talking about a Thai restaurant. Since they haven't decided where to eat, the speaker is probably suggesting that they go to the Thai place. The key here is that the speaker is bringing up the Thai restaurant as a positive option, which implies they might be suggesting it as a place to eat. The answer should be that they want to go to the Thai restaurant. Let me make sure there's no other possible interpretation. Maybe they just wanted to share information, but since they haven't decided yet, the suggestion is likely to choose that place. Yeah, I think that's right.
+</think>
+
+ANSWER: they want to eat at the new Thai place",,376,they want to go to the Thai restaurant for dinner,they want to eat at the new Thai place,True,keyword_match,False,,2026-04-15T18:46:27.144010
+prag_005,pragmatics,indirect_speech_act,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two friends are deciding what film to watch. One says: 'I haven't seen that new sci-fi film everyone's been talking about.'
+
+Question: What is the speaker most likely suggesting?
+ANSWER: they want to watch the sci-fi film
+
+---
+
+Two colleagues are leaving work together. One says: 'I heard the new Thai place around the corner is really good.' They have not yet decided where to eat dinner.
+
+Question: What is the speaker most likely suggesting?","The speaker is most likely suggesting that they want to go to the new Thai place around the corner for dinner.
+
+ANSWER: they want to go to the new Thai place for dinner",,195,they want to go to the Thai restaurant for dinner,they want to go to the new Thai place for dinner,True,keyword_match,False,,2026-04-15T18:46:30.830663
+prag_006,pragmatics,scalar_implicature,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Someone asks: 'Did you finish all the tasks?' The reply is: 'I finished some of them.'
+
+Question: What does the reply implicate about whether all tasks were finished?
+ANSWER: not all tasks were finished
+
+---
+
+A student asks their tutor: 'Did everyone pass the exam?' The tutor replies: 'Some of the students passed.'
+
+Question: What does the tutor's reply implicate about whether all students passed?","<think>
+Okay, let's see. The student asked if everyone passed the exam. The tutor says some students passed. So the question is, what does that imply about whether all students passed?
+
+Hmm. The key here is understanding what ""some"" means. If the tutor had said ""everyone passed,"" that would mean all students passed. But the tutor said ""some,"" which typically means at least one, but not necessarily all. Wait, but in the example given earlier, when someone asked if all tasks were done and the reply was ""I finished some,"" the answer was that not all were done. So applying that logic here, if the tutor said some passed, that would mean not everyone passed. Because if all had passed, the tutor would have said everyone passed. So the reply implies that not all students passed. But wait, maybe there's a nuance. In some contexts, ""some"" could be used even if all passed, but that's not standard. Usually, ""some"" implies a subset. So the tutor's answer suggests that only some passed, hence not all. Therefore, the answer should be that not all students passed.
+</think>
+
+ANSWER: not all students passed",,393,not all students passed,not all students passed,True,exact_match,False,,2026-04-15T18:46:37.436254
+prag_006,pragmatics,scalar_implicature,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Someone asks: 'Did you finish all the tasks?' The reply is: 'I finished some of them.'
+
+Question: What does the reply implicate about whether all tasks were finished?
+ANSWER: not all tasks were finished
+
+---
+
+A student asks their tutor: 'Did everyone pass the exam?' The tutor replies: 'Some of the students passed.'
+
+Question: What does the tutor's reply implicate about whether all students passed?","The tutor's reply ""Some of the students passed"" implies that only a portion of the students passed, not all.
+
+ANSWER: not all students passed",,182,not all students passed,not all students passed,True,exact_match,False,,2026-04-15T18:46:40.663526
+prag_007,pragmatics,scalar_implicature,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Asked about a colleague's presentation, someone says: 'It was coherent.'
+
+Question: What does the speaker implicate about the quality of the presentation?
+ANSWER: the presentation was not impressive / merely adequate
+
+---
+
+A reviewer writes about a restaurant: 'The food was edible.'
+
+Question: What does the reviewer most likely implicate about the quality of the food?","<think>
+Okay, let's see. The example given was about a colleague's presentation being ""coherent,"" and the answer was that it was not impressive but merely adequate. So the key here is understanding what the speaker is implying beyond the literal meaning.
+
+Now, the question is about a restaurant reviewer who says the food was ""edible."" I need to figure out what the reviewer is implying about the quality of the food. The word ""edible"" means that the food was safe to eat, but it doesn't necessarily mean it was good. In fact, ""edible"" can sometimes have a negative connotation, suggesting that the food was just barely acceptable, maybe even bland or unappetizing. 
+
+Comparing this to the example, where ""coherent"" was used in a way that implied the presentation wasn't great, but just okay. Similarly, ""edible"" might imply that the food met the basic requirement of being safe to eat but didn't exceed expectations. So the reviewer is probably indicating that the food wasn't particularly good, just sufficient to eat. 
+
+I should make sure there's no other possible interpretation. Maybe someone could think ""edible"" is neutral, but in the context of a review, it's more likely to be a negative implication. The answer would be that the food was not good, just safe to eat. So the implication is that the quality was low or unremarkable.
+</think>
+
+ANSWER: the food was not good / barely acceptable  
+ANSWER: the food was not good / barely acceptable",,452,the food was not good / merely acceptable at best,the food was not good / barely acceptable,True,keyword_match,False,,2026-04-15T18:46:45.471031
+prag_007,pragmatics,scalar_implicature,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Asked about a colleague's presentation, someone says: 'It was coherent.'
+
+Question: What does the speaker implicate about the quality of the presentation?
+ANSWER: the presentation was not impressive / merely adequate
+
+---
+
+A reviewer writes about a restaurant: 'The food was edible.'
+
+Question: What does the reviewer most likely implicate about the quality of the food?","The reviewer most likely implicates that the food was barely acceptable or met the minimum standard, but not enjoyable or particularly good.
+
+ANSWER: the food was barely acceptable or merely adequate",,173,the food was not good / merely acceptable at best,the food was barely acceptable or merely adequate,True,keyword_match,False,,2026-04-15T18:46:48.650178
+prag_008,pragmatics,scalar_implicature,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Someone asks their doctor: 'Am I going to be okay?' The doctor replies: 'Modern medicine has come a long way.'
+
+Question: What does the doctor's reply implicate?
+ANSWER: the doctor is avoiding a direct reassurance — the prognosis may not be positive
+
+---
+
+A job candidate asks the interviewer: 'Do you think I have a chance at the position?' The interviewer replies: 'We're considering several strong candidates.'
+
+Question: What does the interviewer's reply implicate about the candidate's prospects?","<think>
+Okay, let's see. The candidate asked if they have a chance at the position. The interviewer says they're considering several strong candidates. Hmm. So the interviewer isn't directly saying yes or no. The key here is to figure out what the reply implies about the candidate's prospects.
+
+First, the candidate is asking about their own chances. The interviewer's response is about considering multiple strong candidates. That could mean that there are other candidates who are also strong, which might suggest that the candidate isn't the only one being considered. But does that mean the candidate's chances are low? Or maybe it's just a way to stay neutral?
+
+Wait, in the example given earlier, the doctor's answer was avoiding direct reassurance. Similarly, here the interviewer is not giving a direct answer. The phrase ""several strong candidates"" might imply that the candidate is among those being considered, but since there are others, maybe the candidate isn't the top choice. But the interviewer isn't explicitly saying the candidate is not going to get it. It's possible that the candidate is still in the running, but the interviewer is not committing to a specific outcome. 
+
+So the implication here is that the interviewer is not giving a clear indication of the candidate's chances. They might be trying to remain neutral or avoid giving a definitive answer. The mention of ""strong candidates"" could mean that the candidate is one of them, but there are others, so the candidate's prospects might be uncertain. Alternatively, it could be a way to say that the candidate is being considered but not necessarily favored. 
+
+In the example, the doctor's answer was avoiding direct reassurance, which suggested the prognosis might not be positive. Similarly, the interviewer's answer might be avoiding a direct answer, implying that the candidate's chances are not certain. The interviewer might be trying to keep the door open without committing to a specific outcome. So the implication is that the candidate's prospects are uncertain or not guaranteed. 
+
+I think the answer is that the interviewer is not giving a clear indication, suggesting the candidate's chances are uncertain or not certain. The mention of other strong candidates might imply that the candidate is not the only one, so their chances might be lower, but it's not a direct rejection. So the implication is that the candidate's prospects are not certain, and the interviewer is avoiding a direct answer.
+</think>
+
+The interviewer's reply suggests that the candidate is among several strong contenders, implying uncertainty about their specific prospects without explicitly confirming or denying their chances. The focus",,679,the candidate's chances are uncertain or unlikely — the interviewer is hedging rather than encouraging,,,no_answer,True,,2026-04-15T18:46:55.483369
+prag_008,pragmatics,scalar_implicature,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Someone asks their doctor: 'Am I going to be okay?' The doctor replies: 'Modern medicine has come a long way.'
+
+Question: What does the doctor's reply implicate?
+ANSWER: the doctor is avoiding a direct reassurance — the prognosis may not be positive
+
+---
+
+A job candidate asks the interviewer: 'Do you think I have a chance at the position?' The interviewer replies: 'We're considering several strong candidates.'
+
+Question: What does the interviewer's reply implicate about the candidate's prospects?","The interviewer's reply implies that the candidate is not among the strongest contenders — their chances of getting the position are likely low.
+
+ANSWER: the candidate's prospects are likely low",,203,the candidate's chances are uncertain or unlikely — the interviewer is hedging rather than encouraging,the candidate's prospects are likely low,,ambiguous,True,,2026-04-15T18:46:58.788286
+prag_009,pragmatics,scalar_implicature,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A music critic writes: 'The performance was technically proficient.'
+
+Question: What does the critic implicate about the performance?
+ANSWER: the performance lacked artistry or emotional depth despite being technically accurate
+
+---
+
+A wine expert tastes a glass and says: 'It's technically correct.'
+
+Question: What does the expert implicate about the wine?","<think>
+Okay, let's tackle this question. The wine expert says, ""It's technically correct."" I need to figure out what that implies about the wine.
+
+First, in the example given, the music critic said the performance was technically proficient, and the answer was that it lacked artistry or emotional depth. So the implication there was that technical skill was present but other qualities were missing. 
+
+Applying that logic here, if the wine is ""technically correct,"" it probably means that it meets the basic technical standards. But what does that leave out? Maybe it's not exceptional in terms of flavor, aroma, or other sensory aspects. The term ""correct"" here might suggest that it's properly made without any flaws, but perhaps it's bland or unremarkable. 
+
+So the implication would be that while the wine is made correctly without technical errors, it might lack complexity, uniqueness, or other desirable qualities that make a wine stand out. The expert is pointing out that it's accurate in terms of technique but maybe not impressive or special in other ways.
+</think>
+
+ANSWER: the wine is free from technical flaws but may lack complexity or distinctive qualities despite being properly made  
+ANSWER: the wine is free from technical flaws but may lack complexity or distinctive qualities despite being properly made",,392,the wine is competent but not impressive / lacks distinction,the wine is free from technical flaws but may lack complexity or distinctive qualities despite being properly made,,ambiguous,True,,2026-04-15T18:47:02.473899
+prag_009,pragmatics,scalar_implicature,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A music critic writes: 'The performance was technically proficient.'
+
+Question: What does the critic implicate about the performance?
+ANSWER: the performance lacked artistry or emotional depth despite being technically accurate
+
+---
+
+A wine expert tastes a glass and says: 'It's technically correct.'
+
+Question: What does the expert implicate about the wine?","The expert implicates that the wine meets basic standards of balance, structure, and composition—such as proper acidity, alcohol, and tannin levels—but may lack complexity, character, or depth that would make it memorable or exceptional.
+
+ANSWER: the wine meets basic quality standards but may lack complexity or character",,195,the wine is competent but not impressive / lacks distinction,the wine meets basic quality standards but may lack complexity or character,,ambiguous,True,,2026-04-15T18:47:07.742876
+prag_010,pragmatics,scalar_implicature,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A landlord advertising an apartment writes only: 'The building has heating.'
+
+Question: What should a prospective tenant infer?
+ANSWER: the apartment likely has other significant drawbacks the landlord is not mentioning
+
+---
+
+Person A is selling their old car and tells the buyer: 'The engine runs.' Person B, who knows about cars, hears this description.
+
+Question: What should Person B infer about the condition of the car?","<think>
+Okay, let's see. Person A is selling their old car and says, ""The engine runs."" Person B, who knows about cars, hears this. What should Person B infer about the car's condition?
+
+Hmm. So, the key here is that Person B has knowledge about cars. When someone says the engine runs, that's just one part of the car's functionality. But a car has many other components. For example, maybe the transmission is faulty, or there are issues with the brakes, suspension, electrical system, or maybe the car has been in an accident. The engine running is a basic requirement, but it doesn't guarantee the car is in good overall condition. 
+
+Person B, being knowledgeable, would realize that stating only the engine runs might mean other parts aren't working. They might infer that the car could have other problems not mentioned. The seller might be omitting information about other issues. So, the answer would be that Person B should infer the car might have other significant issues beyond the engine functioning properly.
+</think>
+
+ANSWER: the car may have other significant issues beyond the engine functioning properly",,375,the car likely has significant other problems — a seller would use stronger praise if the car were in good condition,the car may have other significant issues beyond the engine functioning properly,True,keyword_match,False,,2026-04-15T18:47:11.075809
+prag_010,pragmatics,scalar_implicature,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A landlord advertising an apartment writes only: 'The building has heating.'
+
+Question: What should a prospective tenant infer?
+ANSWER: the apartment likely has other significant drawbacks the landlord is not mentioning
+
+---
+
+Person A is selling their old car and tells the buyer: 'The engine runs.' Person B, who knows about cars, hears this description.
+
+Question: What should Person B infer about the condition of the car?","Person B should infer that the car's engine is functional enough to start and operate, but the statement does not provide information about other aspects like transmission, brakes, interior, or overall mechanical condition.
+
+ANSWER: the engine is working, but the car's overall condition is not fully described",,204,the car likely has significant other problems — a seller would use stronger praise if the car were in good condition,"the engine is working, but the car's overall condition is not fully described",,ambiguous,True,,2026-04-15T18:47:18.503453
+prag_011,pragmatics,reference_resolution,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two coworkers both know their manager just returned from a long vacation. One says: 'She looks so relaxed.'
+
+Question: Who does 'she' refer to?
+ANSWER: the manager
+
+---
+
+Maria and Tom both know that their friend Lisa recently got a new job. Tom says to Maria: 'She must be so excited.'
+
+Question: Who does 'she' refer to?","<think>
+Okay, let's see. The question is about figuring out who the pronoun 'she' refers to in the sentence Tom says to Maria: ""She must be so excited."" The context given is that both Maria and Tom know their friend Lisa recently got a new job.
+
+First, I need to recall the rules for pronoun reference. Usually, the pronoun refers to the most recently mentioned noun, unless there's some other context that suggests otherwise. In this case, the previous conversation is about Lisa getting a new job. Both Maria and Tom are aware of this. So when Tom says ""She must be so excited,"" the 'she' should logically refer to Lisa because that's the subject of the conversation. 
+
+Wait, but could there be another possibility? Like, maybe Tom is referring to someone else? But the context says they both know Lisa got the job, so the conversation is centered around Lisa. There's no mention of any other person in the scenario. So the pronoun 'she' is most likely referring to Lisa. 
+
+I should check if there's any ambiguity. If the sentence was part of a longer conversation where other people were mentioned, maybe there's confusion. But here, the only person mentioned is Lisa. So the answer should be Lisa.
+</think>
+
+ANSWER: Lisa",,405,Lisa,Lisa,True,exact_match,False,,2026-04-15T18:47:22.238017
+prag_011,pragmatics,reference_resolution,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two coworkers both know their manager just returned from a long vacation. One says: 'She looks so relaxed.'
+
+Question: Who does 'she' refer to?
+ANSWER: the manager
+
+---
+
+Maria and Tom both know that their friend Lisa recently got a new job. Tom says to Maria: 'She must be so excited.'
+
+Question: Who does 'she' refer to?",ANSWER: Lisa,,144,Lisa,Lisa,True,exact_match,False,,2026-04-15T18:47:23.672676
+prag_012,pragmatics,reference_resolution,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A customer at a bakery asks: 'Do you have the one without nuts?'
+
+Question: What is the customer most likely asking about?
+ANSWER: a pastry or baked item that does not contain nuts
+
+---
+
+A customer walks into a hardware store and asks the assistant: 'Do you have the kind that doesn't strip?'
+
+Question: What is the customer most likely asking about?","<think>
+Okay, let's see. The customer is in a hardware store and asks, ""Do you have the kind that doesn't strip?"" Hmm. The word ""strip"" here is a bit tricky. In hardware, there are different types of screws. I remember that some screws have a ""strip"" or a ""thread"" that can strip, meaning the threads get damaged when you over-tighten them. So, maybe the customer is asking about screws that don't strip, meaning they have a design that prevents the threads from stripping. Alternatively, maybe they're referring to something else like a screwdriver that doesn't strip the screws. Wait, but the question is about what the customer is asking about. The key is to figure out the context. Since it's a hardware store, the assistant would likely be talking about screws. So the customer is probably asking about screws that don't strip, which are designed to have better thread engagement or a different shape to prevent stripping. So the answer would be screws that don't strip, meaning they are designed to avoid stripping when used. Alternatively, maybe they're asking about a type of screw that doesn't have a stripping issue. I think the answer is screws that don't strip, so the customer is asking about screws with a design that prevents stripping.
+</think>
+
+The customer is likely asking about screws that do not strip, meaning they are designed to prevent the threads from damaging when tightened. 
+
+ANSWER: screws that do not strip",,439,screws / screwdrivers / bolts — a fastener that is resistant to stripping,screws that do not strip,True,keyword_match,False,,2026-04-15T18:47:27.716910
+prag_012,pragmatics,reference_resolution,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A customer at a bakery asks: 'Do you have the one without nuts?'
+
+Question: What is the customer most likely asking about?
+ANSWER: a pastry or baked item that does not contain nuts
+
+---
+
+A customer walks into a hardware store and asks the assistant: 'Do you have the kind that doesn't strip?'
+
+Question: What is the customer most likely asking about?","The customer is most likely asking about a type of paint or coating that doesn't strip easily (i.e., a paint that is durable and doesn't peel or flake off easily).
+
+ANSWER: a type of paint that doesn't strip easily",,189,screws / screwdrivers / bolts — a fastener that is resistant to stripping,a type of paint that doesn't strip easily,True,keyword_match,False,,2026-04-15T18:47:31.865329
+prag_013,pragmatics,reference_resolution,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two colleagues spent the morning discussing a difficult client. That afternoon one texts the other: 'Just heard they finally signed.' The colleague immediately understands.
+
+Question: What allows the colleague to understand the message?
+ANSWER: the shared context of their morning conversation — 'they' refers to the difficult client, resolved via common ground
+
+---
+
+Two friends, Priya and Dan, have been arguing about which streaming service has better original content. Later that day, Priya texts Dan: 'Just saw they renewed it for another season.' Dan immediately knows what she means.
+
+Question: What does Dan know that allows him to understand Priya's message?","<think>
+Okay, let's tackle this question. So, Priya and Dan were arguing about which streaming service has better original content. Then Priya texts Dan, ""Just saw they renewed it for another season."" Dan immediately understands. The question is asking what Dan knows that allows him to understand her message.
+
+First, I need to figure out the context here. The key is the shared context from their previous argument. They were discussing streaming services' original content, so ""they"" in Priya's message must refer to one of the services they were arguing about. Since Dan was part of that argument, he would know which service they were talking about. The word ""they"" refers to the streaming service that renewed its content. So Dan knows that ""they"" is the service they were discussing, which is likely the one he was arguing about. Therefore, the shared context of their previous argument about which service has better content allows Dan to understand that ""they"" refers to the service in question. The answer should mention the shared context of their argument and the reference to the streaming service they were discussing.
+</think>
+
+ANSWER: the shared context of their argument about streaming services' original content — 'they' refers to the service they were discussing, resolved via common ground",,447,"Dan knows the shared context of their earlier conversation about streaming services — 'it' refers to a specific show they were discussing, and 'they' refers to the streaming service in question","the shared context of their argument about streaming services' original content — 'they' refers to the service they were discussing, resolved via common ground",,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario involves Priya and Dan having an argument about streaming services' original content. Later, Priya texts Dan about renewing ""it"" for another season, and Dan understands immediately. The correct answer is that Dan uses their shared context from the earlier conversation to figure out what ""it"" and ""they"" refer to.
+
+The model's answer says: ""the shared context of their argument about streaming services' original content — 'they' refers to the service they were discussing, resolved via common ground",2026-04-15T18:47:45.616255
+prag_013,pragmatics,reference_resolution,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two colleagues spent the morning discussing a difficult client. That afternoon one texts the other: 'Just heard they finally signed.' The colleague immediately understands.
+
+Question: What allows the colleague to understand the message?
+ANSWER: the shared context of their morning conversation — 'they' refers to the difficult client, resolved via common ground
+
+---
+
+Two friends, Priya and Dan, have been arguing about which streaming service has better original content. Later that day, Priya texts Dan: 'Just saw they renewed it for another season.' Dan immediately knows what she means.
+
+Question: What does Dan know that allows him to understand Priya's message?","Dan knows that ""they"" refers to the streaming service they were arguing about, and that ""it"" refers to the original content they both discussed, allowing him to infer that Priya is referring to the show they were debating.
+
+ANSWER: the shared context of their argument about streaming service original content — ""they"" and ""it"" refer to the service and show they both discussed",,269,"Dan knows the shared context of their earlier conversation about streaming services — 'it' refers to a specific show they were discussing, and 'they' refers to the streaming service in question","the shared context of their argument about streaming service original content — ""they"" and ""it"" refer to the service and show they both discussed",,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario involves Priya and Dan having an argument about streaming services, and later Priya texts Dan about renewing something for another season. Dan understands without clarification.
+
+The correct answer from the reference says Dan knows the shared context of their earlier conversation, which allows him to resolve the references 'it' and 'they'. The rubric requires that the answer mentions (1) the prior conversation as the source of common ground and (2) that this allows Dan to identify the referents without further clarification.",2026-04-15T18:48:28.367513
+prag_014,pragmatics,reference_resolution,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+In a room with three windows, someone says: 'Can you open the window?' and points to one side of the room. Their companion knows exactly which window they mean.
+
+Question: What allows the companion to identify the correct window?
+ANSWER: the definite article 'the' signals a uniquely identifiable referent, and the gesture provides the contextual salience needed to resolve which window is meant
+
+---
+
+At a dinner party, a guest says to the host: 'The pasta was amazing' — but there were three pasta dishes served. The host immediately knows which one the guest means.
+
+Question: What linguistic and contextual mechanism allows the host to identify which pasta dish the guest means?","<think>
+Okay, let's tackle this question. So, the scenario is at a dinner party where a guest says, ""The pasta was amazing,"" but there were three pasta dishes. The host immediately knows which one the guest is referring to. The question is asking what linguistic and contextual mechanism allows the host to figure out which pasta dish they mean.
+
+First, I need to think about the possible factors here. The guest used the definite article ""the"" which usually refers to something specific that both the speaker and listener are aware of. But since there were three pasta dishes, the host must have some way to determine which one is being talked about. 
+
+Maybe the guest mentioned something specific about the pasta dish, like the type of pasta, the ingredients, or how it was prepared. But the guest's statement is just ""The pasta was amazing."" Wait, maybe the context of the dinner party provides clues. For example, if one of the pasta dishes was particularly notable, like a signature dish, or if the guest had a specific interaction with one of them. 
+
+Also, the host might have prior knowledge of the dishes. If the host knows that there are three dishes and the guest is referring to one that's unique, maybe the guest's choice of words implies something. For instance, if the guest had a conversation about a particular dish before, or if the dish was the main course. 
+
+Another angle is the use of the definite article ""the"" in English. When someone uses ""the,"" they assume the listener knows which specific item they're talking about. So the host must have the context to know which dish is being referred to. Maybe the host and guest had a prior conversation about a specific dish, or the dish was the most recent one served. 
+
+Alternatively, maybe the guest's statement was in response to a specific dish that was discussed earlier. For example, if the guest had a conversation about a particular pasta dish, like a seafood pasta, and the host knows that's the one. 
+
+So combining linguistic elements (the definite article) and contextual clues (previous conversation, the order of serving, or the uniqueness of the dish), the host can infer which pasta dish the guest is referring to. The key here is that the host and guest share common knowledge about the dishes, allowing the definite article to refer to a specific one even though there are multiple options.
+</think>
+
+ANSWER: the definite article 'the' signals a uniquely identifiable referent, and shared contextual knowledge (e.g., prior discussion, dish characteristics, or",,711,the host uses the definite article 'the' as a uniqueness signal combined with contextual salience — most likely the most memorable or the last pasta served — to resolve the reference,"the definite article 'the' signals a uniquely identifiable referent, and shared contextual knowledge (e.g., prior discussion, dish characteristics, or",,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario is about a guest complimenting the pasta at a dinner party where there were three dishes. The host knows which one they mean. The correct answer mentions the definite article 'the' as a uniqueness signal combined with contextual salience like the most memorable or last dish.
+
+The model's answer says: ""the definite article 'the' signals a uniquely identifiable referent, and shared contextual knowledge (e.g., prior discussion, dish characteristics, or..."" So, the first part checks the box for the",2026-04-15T18:48:39.733156
+prag_014,pragmatics,reference_resolution,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+In a room with three windows, someone says: 'Can you open the window?' and points to one side of the room. Their companion knows exactly which window they mean.
+
+Question: What allows the companion to identify the correct window?
+ANSWER: the definite article 'the' signals a uniquely identifiable referent, and the gesture provides the contextual salience needed to resolve which window is meant
+
+---
+
+At a dinner party, a guest says to the host: 'The pasta was amazing' — but there were three pasta dishes served. The host immediately knows which one the guest means.
+
+Question: What linguistic and contextual mechanism allows the host to identify which pasta dish the guest means?","The definite article 'the' signals a uniquely identifiable referent, and the context of the dinner party — including the specific setting, the guest's prior knowledge of the dishes, and the host's awareness of the dishes served — allows the host to determine which pasta dish is being referred to.
+
+ANSWER: the definite article 'the' signals a uniquely identifiable referent, and the shared contextual knowledge of the dinner party enables the host to identify the specific pasta dish meant",,293,the host uses the definite article 'the' as a uniqueness signal combined with contextual salience — most likely the most memorable or the last pasta served — to resolve the reference,"the definite article 'the' signals a uniquely identifiable referent, and the shared contextual knowledge of the dinner party enables the host to identify the specific pasta dish meant",,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario is about a guest complimenting the pasta at a dinner party where there were three dishes. The host knows which one they mean. The correct answer mentions the definite article 'the' as a uniqueness signal combined with contextual salience, like the most memorable or last dish served.
+
+The model's answer says the definite article 'the' signals a uniquely identifiable referent, and shared contextual knowledge from the dinner party allows the host to figure out which dish. The rubric requires two points: (1",2026-04-15T18:48:50.818829
+prag_015,pragmatics,reference_resolution,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A Michelin-starred chef tastes a dish made by a culinary student and says: 'I've had more balanced flavours.' The student knows the chef has tasted food from hundreds of world-class restaurants.
+
+Question: What should the student infer about their dish, and why does the chef's experience matter?
+ANSWER: the dish needs significant improvement; the chef's vast experience raises the comparison class, making 'more balanced flavours' a strong signal that the dish falls well below professional standards
+
+---
+
+A professor says to a student after reviewing their draft: 'I've seen stronger arguments.' The student knows the professor has read thousands of papers and is an expert in the field.
+
+Question: What should the student infer about the quality of their argument, and why does the professor's expertise matter for this interpretation?","<think>
+Okay, let's tackle this question. The scenario is a professor telling a student that they've seen stronger arguments. The student knows the professor has read thousands of papers and is an expert.
+
+First, I need to figure out what the student should infer about their argument's quality. The professor's statement is a comparison. Since the professor has expertise and has seen many arguments, the fact that the student's argument isn't as strong as others the professor has read suggests it's below average. But how does the professor's expertise affect the interpretation? Well, the professor's experience means they can recognize what makes an argument strong. Their expertise gives them the ability to evaluate arguments accurately, so when they say ""stronger,"" it's a reliable indicator. The student should take this as feedback that their argument needs work, but the professor's experience makes the feedback more credible and specific. So the student should infer their argument is weaker than average, and the professor's expertise makes the comparison valid and meaningful.
+</think>
+
+The student should infer their argument is weaker than average; the professor's expertise ensures the comparison is meaningful and the feedback is reliable.  
+ANSWER: the argument is below average in quality; the professor's expertise allows for an accurate and authoritative comparison, making the feedback a credible indicator of the argument's shortcomings",,489,the student should infer their argument is weak; the professor's expertise raises the comparison class — 'stronger arguments' from someone who has read thousands of papers implies the current argument falls well below an expert standard,"the argument is below average in quality; the professor's expertise allows for an accurate and authoritative comparison, making the feedback a credible indicator of the argument's shortcomings",,llm_grader,True,"<think>
+Okay, let's see. The user wants me to grade the model's answer based on the given rubric. The correct answer is that the student should infer their argument is weak, and the professor's expertise matters because it raises the comparison class, making ""stronger arguments"" imply the current one is below expert standards.
+
+The model's answer says the argument is below average and that the professor's expertise allows for an accurate and authoritative comparison, making the feedback credible. 
+
+First, checking part (1): the model says ""below average in quality,"" which aligns with the correct inference that the argument is weak. So that",2026-04-15T18:48:59.334550
+prag_015,pragmatics,reference_resolution,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A Michelin-starred chef tastes a dish made by a culinary student and says: 'I've had more balanced flavours.' The student knows the chef has tasted food from hundreds of world-class restaurants.
+
+Question: What should the student infer about their dish, and why does the chef's experience matter?
+ANSWER: the dish needs significant improvement; the chef's vast experience raises the comparison class, making 'more balanced flavours' a strong signal that the dish falls well below professional standards
+
+---
+
+A professor says to a student after reviewing their draft: 'I've seen stronger arguments.' The student knows the professor has read thousands of papers and is an expert in the field.
+
+Question: What should the student infer about the quality of their argument, and why does the professor's expertise matter for this interpretation?","the student's argument is likely weak; the professor's extensive experience and expertise in the field set a high benchmark, making ""stronger arguments"" a clear indication that the student's work falls short of professional standards
+
+ANSWER: the student's argument is likely weak; the professor's extensive experience and expertise in the field set a high benchmark, making ""stronger arguments"" a clear indication that the student's work falls short of professional standards",,312,the student should infer their argument is weak; the professor's expertise raises the comparison class — 'stronger arguments' from someone who has read thousands of papers implies the current argument falls well below an expert standard,"the student's argument is likely weak; the professor's extensive experience and expertise in the field set a high benchmark, making ""stronger arguments"" a clear indication that the student's work falls short of professional standards",,llm_grader,True,"<think>
+Okay, let's see. The user wants me to grade the model's answer based on the given rubric. The correct answer is that the student should infer their argument is weak, and the professor's expertise matters because it raises the comparison class. The model's answer says the argument is likely weak and that the professor's experience sets a high benchmark, so ""stronger arguments"" means the student's work is below professional standards.
+
+First, check if both parts of the rubric are met. The model mentions the argument being weak (""likely weak"") which covers part 1. Then, it explains that the professor's expertise",2026-04-15T18:49:09.729856
+cot_001,chain_of_thought,pragmatic_inference,basic,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Sam texts: 'Just leaving now, won't be long.' They were due 10 minutes ago.
+
+Question: What should the recipient infer about when Sam will arrive?
+ANSWER: soon / within a few minutes
+
+---
+
+John told Mary he would meet her at the coffee shop at 3pm. Mary arrives at 3pm but John is not there. John texts: 'I'm running a bit late.'
+
+Question: What does Mary most likely infer about when John will arrive?","<think>
+Okay, let's see. John said he'd meet Mary at the coffee shop at 3pm. Mary arrives at 3pm but John isn't there. Then he texts that he's running a bit late. So, what does Mary infer about when John will arrive?
+
+First, Mary was expecting John at 3pm. He didn't show up, so she might be worried he's not coming. But then he sends a text saying he's late. The key here is the phrase ""running a bit late."" That suggests he's delayed but not by a long time. So, ""a bit"" implies a short delay. 
+
+Mary would probably think that John is coming soon after 3pm. Since he's only a bit late, maybe 10-15 minutes? So she might infer he'll arrive within a few minutes or shortly after 3pm. The example given earlier had ""soon / within a few minutes"" as the answer. So in this case, similar logic applies. The answer should be that Mary infers John will arrive soon or within a short time.
+</think>
+
+ANSWER: soon / within a few minutes",,399,soon / shortly after 3pm,soon / within a few minutes,True,keyword_match,False,,2026-04-15T18:49:13.758845
+cot_001,chain_of_thought,pragmatic_inference,basic,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Sam texts: 'Just leaving now, won't be long.' They were due 10 minutes ago.
+
+Question: What should the recipient infer about when Sam will arrive?
+ANSWER: soon / within a few minutes
+
+---
+
+John told Mary he would meet her at the coffee shop at 3pm. Mary arrives at 3pm but John is not there. John texts: 'I'm running a bit late.'
+
+Question: What does Mary most likely infer about when John will arrive?","Mary most likely infers that John will arrive sometime after 3pm, possibly within a short while, given that he only mentioned being ""a bit late"" and had already committed to meeting at 3pm.
+
+ANSWER: a few minutes after 3pm",,216,soon / shortly after 3pm,a few minutes after 3pm,True,keyword_match,False,,2026-04-15T18:49:18.160681
+cot_002,chain_of_thought,false_belief_pragmatic_inference,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A colleague asks if the meeting notes were sent out. You know they were not, and that your manager forgot — but your manager is sensitive about being criticised. What is the most cooperative response?
+
+Question: What should you say?
+ANSWER: say the notes have not been sent yet, without volunteering that the manager forgot
+
+---
+
+Claire tells her flatmate David that she ate the last of the leftover pizza. Later, Claire's friend Ben visits and asks David: 'Is there any pizza left?' David knows there is none, but also knows Ben and Claire had an argument last week about Claire always eating shared food.
+
+Question: What should David consider before responding to Ben's question, and what is the most cooperative response?","<think>
+Okay, let's see. The scenario is about David and his flatmate Claire. Claire told David she ate the last of the leftover pizza. Then Ben comes over and asks David if there's any pizza left. David knows there's none left, but he's aware that Ben and Claire had an argument before about Claire always eating shared food.
+
+So, the question is what David should consider before responding and what's the most cooperative response. 
+
+First, David needs to think about the context. Claire and Ben had an argument about Claire eating shared food. If David just says there's no pizza left, maybe Ben will think Claire took it again, which could bring up the past argument. That might make Ben upset or create tension. 
+
+David's goal is to be cooperative. So he should consider that Ben might be upset if he thinks Claire took the pizza again. Therefore, David should respond in a way that doesn't accuse Claire but still answers Ben's question. Maybe he can mention that Claire said she ate the last, but there's none left. That way, he's honest but doesn't imply blame. 
+
+Alternatively, he could say there's no pizza left, but maybe add that Claire mentioned she ate it. But he needs to be careful not to reopen the argument. So the key is to answer truthfully without escalating the situation. 
+
+So the most cooperative response would be to state the fact that there's no pizza left, but perhaps mention Claire's statement without implying she's responsible again. That way, he's honest but avoids conflict.
+</think>
+
+David should consider that Ben might be sensitive about Claire's past behavior regarding shared food. The most cooperative response is to state the truth without implying blame, such as: ""There's no pizza left—Claire mentioned she ate the last slice.""  
+
+ANSWER: acknowledge there's no pizza left while referencing Claire's statement without implying blame",,594,"David should consider that a direct 'Claire ate it' may reopen conflict between Ben and Claire. The most cooperative response is to simply say there is no pizza left, without volunteering who ate it.",acknowledge there's no pizza left while referencing Claire's statement without implying blame,,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario involves David needing to respond to Ben about the pizza without causing conflict.
+
+The correct answer according to the reference is that David should mention there's no pizza left but not say Claire ate it. The model's answer says ""acknowledge there's no pizza left while referencing Claire's statement without implying blame."" 
+
+So, the rubric requires two things: (1) considering the social tension (Ben and Claire's argument) and (2) answering the factual question without volunteering the detail about Claire.",2026-04-15T18:49:28.993044
+cot_002,chain_of_thought,false_belief_pragmatic_inference,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A colleague asks if the meeting notes were sent out. You know they were not, and that your manager forgot — but your manager is sensitive about being criticised. What is the most cooperative response?
+
+Question: What should you say?
+ANSWER: say the notes have not been sent yet, without volunteering that the manager forgot
+
+---
+
+Claire tells her flatmate David that she ate the last of the leftover pizza. Later, Claire's friend Ben visits and asks David: 'Is there any pizza left?' David knows there is none, but also knows Ben and Claire had an argument last week about Claire always eating shared food.
+
+Question: What should David consider before responding to Ben's question, and what is the most cooperative response?","David should consider the potential tension between Ben and Claire, as their recent argument over shared food might make Ben feel betrayed or defensive if he learns Claire ate the pizza. Responding truthfully without considering the emotional context could escalate the situation. The most cooperative response is to be honest and neutral, avoiding any implication of blame or judgment.
+
+David should say: ""No, there's no pizza left — Claire ate the last of it.""
+
+ANSWER: say ""No, there's no pizza left — Claire ate the last of it""",,316,"David should consider that a direct 'Claire ate it' may reopen conflict between Ben and Claire. The most cooperative response is to simply say there is no pizza left, without volunteering who ate it.","say ""No, there's no pizza left — Claire ate the last of it""",,llm_grader,True,"<think>
+Okay, let's see. The user wants me to grade the model's answer based on the given rubric. The scenario is about David responding to Ben's question about pizza. The correct answer says David should mention there's no pizza left but not say Claire ate it to avoid conflict.
+
+The model's answer is: ""say 'No, there's no pizza left — Claire ate the last of it'"". So David is directly telling Ben that Claire ate it. According to the rubric, if the model says David should tell Ben it was Claire, that's a rejection. The rubric says to reject if the model",2026-04-15T18:49:41.110702
+cot_003,chain_of_thought,mental_state_causal_chain,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+At work, Anna notices her colleague Ben seems distracted and keeps checking his phone. Earlier, Anna overheard Ben's wife call to say their child was sick at school. Ben does not know Anna heard the call.
+
+Question: What is the likely cause of Ben's behaviour, and what does Anna know that Ben doesn't know she knows?
+ANSWER: Ben is distracted because of his sick child; Anna knows the cause but Ben doesn't know she overheard — creating an epistemic asymmetry
+
+---
+
+At a party, Zoe notices that her friend Marcus has gone quiet and is standing alone by the wall. Earlier, she saw Marcus's ex-partner arrive with a new date. Marcus does not know that Zoe saw this.
+
+Question: What is the most likely explanation for Marcus's behaviour, and what does Zoe know that Marcus does not know she knows?","<think>
+Okay, let's tackle this question. So, the scenario is at a party, Zoe notices Marcus is quiet and standing alone. Earlier, she saw his ex-partner arrive with a new date. Marcus doesn't know that Zoe saw this. The question is asking for the most likely explanation for Marcus's behavior and what Zoe knows that Marcus doesn't know she knows.
+
+First, the likely cause of Marcus's behavior. Since his ex-partner showed up with a new date, Marcus might be feeling uncomfortable or anxious. Maybe he's upset about the ex's new relationship, or he's feeling self-conscious because he's alone while the ex is with someone else. That would make him withdraw, not talk to people, and stand by the wall. So the explanation is probably that he's uncomfortable or upset due to his ex's presence.
+
+Now, the second part: what does Zoe know that Marcus doesn't know she knows? Zoe saw the ex arrive with a new date, so she's aware of that situation. But Marcus doesn't know that Zoe saw this. So Zoe knows the reason for Marcus's behavior (because she saw the ex), but Marcus doesn't know that Zoe has that information. Therefore, Zoe knows that Marcus is acting a certain way because of the ex, but Marcus doesn't know that Zoe is aware of the ex's arrival. So there's an epistemic asymmetry here. Zoe knows the cause, and Marcus doesn't know that she knows the cause.
+
+Putting it all together, the answer should state that Marcus is acting quietly because of his ex's new date, and Zoe knows the reason but Marcus doesn't know she knows about it.
+</think>
+
+Marcus is quiet and isolated due to discomfort from his ex-partner's arrival with a new date. Zoe knows the cause of his behavior but Marcus does not know she observed the ex-partner's arrival.  
+ANSWER: Marcus is uncomfortable due to his ex-partner's new date; Zoe knows the cause but Marcus doesn't know she witnessed it — creating an epistemic asymmetry",,655,"Marcus is likely upset or uncomfortable because his ex arrived with a new date. Zoe knows the likely cause of Marcus's mood, but Marcus does not know Zoe witnessed this — creating an asymmetry where Zoe has insight into Marcus's mental state that he is unaware she possesses.",Marcus is uncomfortable due to his ex-partner's new date; Zoe knows the cause but Marcus doesn't know she witnessed it — creating an epistemic asymmetry,,llm_grader,True,"<think>
+Okay, let's break this down. The user wants me to grade the model's answer based on the provided rubric. The correct answer needs two parts: identifying the ex-partner's arrival as the cause of Marcus's behavior and pointing out the epistemic asymmetry where Zoe knows the cause but Marcus doesn't know she knows.
+
+Looking at the model's answer: ""Marcus is uncomfortable due to his ex-partner's new date; Zoe knows the cause but Marcus doesn't know she witnessed it — creating an epistemic asymmetry."" 
+
+First part checks out—Marcus's discomfort is correctly linked to his ex's",2026-04-15T18:49:51.749986
+cot_003,chain_of_thought,mental_state_causal_chain,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+At work, Anna notices her colleague Ben seems distracted and keeps checking his phone. Earlier, Anna overheard Ben's wife call to say their child was sick at school. Ben does not know Anna heard the call.
+
+Question: What is the likely cause of Ben's behaviour, and what does Anna know that Ben doesn't know she knows?
+ANSWER: Ben is distracted because of his sick child; Anna knows the cause but Ben doesn't know she overheard — creating an epistemic asymmetry
+
+---
+
+At a party, Zoe notices that her friend Marcus has gone quiet and is standing alone by the wall. Earlier, she saw Marcus's ex-partner arrive with a new date. Marcus does not know that Zoe saw this.
+
+Question: What is the most likely explanation for Marcus's behaviour, and what does Zoe know that Marcus does not know she knows?","Marcus is likely feeling emotionally affected or withdrawn due to the arrival of his ex-partner with a new date; Zoe knows this event occurred and that Marcus is reacting to it, but Marcus does not know that Zoe saw it — creating an epistemic asymmetry.
+
+ANSWER: Marcus is withdrawn because his ex-partner arrived with a new date; Zoe knows this event occurred but Marcus does not know she saw it — creating an epistemic asymmetry",,328,"Marcus is likely upset or uncomfortable because his ex arrived with a new date. Zoe knows the likely cause of Marcus's mood, but Marcus does not know Zoe witnessed this — creating an asymmetry where Zoe has insight into Marcus's mental state that he is unaware she possesses.",Marcus is withdrawn because his ex-partner arrived with a new date; Zoe knows this event occurred but Marcus does not know she saw it — creating an epistemic asymmetry,,llm_grader,True,"<think>
+Okay, let's break this down. The user wants me to grade the model's answer based on the provided rubric. The correct answer needs two parts: identifying the ex-partner's arrival as the cause of Marcus's behavior and pointing out the epistemic asymmetry where Zoe knows the cause but Marcus doesn't know she knows.
+
+Looking at the model's answer: ""Marcus is withdrawn because his ex-partner arrived with a new date; Zoe knows this event occurred but Marcus does not know she saw it — creating an epistemic asymmetry."" 
+
+First part checks out—ex-partner's arrival is the cause",2026-04-15T18:50:01.912566
+cot_004,chain_of_thought,pragmatic_inference,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A politician is asked: 'Will you raise taxes?' They reply: 'We will do what is best for the country.'
+
+Question: What does the politician's reply communicate about their tax policy?
+ANSWER: the politician is being deliberately evasive — no commitment is made either way
+
+---
+
+During a job interview, the interviewer asks: 'Where do you see yourself in five years?' The candidate replies: 'Hopefully still learning and growing in whatever role I'm in.'
+
+Question: What does the candidate's answer most likely communicate to the interviewer about their ambitions?","<think>
+Okay, let's tackle this question. So, the interviewer asks, ""Where do you see yourself in five years?"" and the candidate says, ""Hopefully still learning and growing in whatever role I'm in."" The question is asking what this answer communicates about the candidate's ambitions.
+
+First, I need to understand the intent behind the interviewer's question. Typically, when someone asks where you see yourself in five years, they're trying to gauge your long-term goals, ambition, and whether you're a good fit for the company's future. They want to know if you're planning to stay, grow with the company, or maybe move on.
+
+Now, the candidate's answer is pretty vague. They mention ""learning and growing"" and ""whatever role I'm in."" This seems like a safe, non-committal response. It doesn't specify a particular position, company, or timeline. Instead, it focuses on personal development and adaptability.
+
+So, what does this imply about their ambitions? Well, if someone is focused on learning and growth without specifying a particular role or company, they might be seen as not having strong long-term ambitions. They might be more interested in flexibility and opportunities rather than climbing the corporate ladder or having specific career goals. Alternatively, they might be trying to avoid giving a specific answer that could be seen as too ambitious or too conservative.
+
+But the question is about what the answer communicates. The key here is that the candidate isn't committing to a specific future role or company. They're emphasizing adaptability and continuous learning. This could suggest that their ambitions are more about personal development and being open to various opportunities rather than having a clear, long-term career plan. However, it's also possible that they are being cautious, not wanting to commit to a specific path, which might be seen as a lack of ambition or a desire to stay flexible.
+
+In the context of a job interview, such an answer might make the interviewer think the candidate isn't ambitious or doesn't have clear goals. But it could also be interpreted as a positive trait, showing adaptability and a willingness to grow. However, the question is asking what the answer ""most likely"" communicates. In many cases, vague answers like this are seen as not being ambitious, so the answer might be that the candidate's ambitions are not clearly defined or are more about personal growth than specific career advancement.
+</think>
+
+The candidate's answer suggests a focus on adaptability and continuous learning rather than specific long-term career goals. By emphasizing flexibility and growth in ""whatever role",,687,"The candidate is being deliberately vague — avoiding commitment to staying at the company long-term or expressing specific ambitions, which an interviewer may read as either diplomatic flexibility or a lack of genuine career direction.",,,no_answer,True,,2026-04-15T18:50:19.093497
+cot_004,chain_of_thought,pragmatic_inference,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A politician is asked: 'Will you raise taxes?' They reply: 'We will do what is best for the country.'
+
+Question: What does the politician's reply communicate about their tax policy?
+ANSWER: the politician is being deliberately evasive — no commitment is made either way
+
+---
+
+During a job interview, the interviewer asks: 'Where do you see yourself in five years?' The candidate replies: 'Hopefully still learning and growing in whatever role I'm in.'
+
+Question: What does the candidate's answer most likely communicate to the interviewer about their ambitions?","The candidate's answer most likely communicates a lack of clear long-term career goals or ambition — they emphasize continuous learning rather than specific aspirations.
+
+ANSWER: the candidate appears to have no clear long-term career ambitions",,217,"The candidate is being deliberately vague — avoiding commitment to staying at the company long-term or expressing specific ambitions, which an interviewer may read as either diplomatic flexibility or a lack of genuine career direction.",the candidate appears to have no clear long-term career ambitions,,ambiguous,True,,2026-04-15T18:50:23.290526
+cot_005,chain_of_thought,false_belief_pragmatic_inference,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A student asks the class: 'Has anyone read chapter 5?' Nobody responds. Later it turns out one student had read it but was too shy to speak up.
+
+Question: What did the class likely infer from the silence, and how would knowing about the shy student change that inference?
+ANSWER: the class inferred nobody had read it; knowing about the shy student reveals the silence was misleading — someone had read it but chose not to respond
+
+---
+
+Nina sends a message to her study group: 'Does anyone know what time the library closes tonight?' Her groupmate Theo, who works at the library, sees the message but does not reply. Nina does not know that Theo works at the library.
+
+Question: What might Nina infer from Theo's silence, and how would her inference change if she knew Theo worked at the library?","<think>
+Okay, let's tackle this question. So, Nina sends a message to her study group asking about the library closing time. Theo, who works there, sees the message but doesn't reply. Nina doesn't know Theo's job.
+
+First, what might Nina infer from Theo's silence? Well, if no one replies, she might think that no one in the group knows the time. Maybe she assumes that either nobody is aware or they're busy or don't want to answer. But since Theo works at the library, he probably knows the closing time. But since she doesn't know that, she can't make that connection. So her initial inference is likely that the group doesn't have the information.
+
+Now, if Nina found out Theo works at the library, her inference would change. She'd realize that Theo had the knowledge but chose not to respond. Maybe he was busy, or maybe he didn't want to answer, or perhaps he thought someone else would. So the silence would no longer mean nobody knows; instead, it's a case of someone knowing but not replying.
+
+So the answer should contrast her initial assumption (no one knows) versus the corrected understanding (Theo knows but didn't answer).
+</think>
+
+Nina might infer that no one in the study group knows the library's closing time. If she knew Theo works there, she would realize his silence indicates he chose not to share the information, even though he had the knowledge.  
+ANSWER: Nina inferred no one knew the time; knowing Theo works there reveals his silence meant he had the answer but chose not to share it",,557,"Without knowing Theo works there, Nina likely infers nobody in the group knows the closing time. If she knew Theo worked at the library, his silence would be surprising and implicating — suggesting he is deliberately withholding information.",Nina inferred no one knew the time; knowing Theo works there reveals his silence meant he had the answer but chose not to share it,,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario involves Nina and Theo. The key points are the two interpretations: one where Nina doesn't know Theo works at the library, leading her to think no one knows, and the other where she does know, so his silence is deliberate.
+
+The model's answer says: ""Nina inferred no one knew the time; knowing Theo works there reveals his silence meant he had the answer but chose not to share it."" 
+
+Looking at the rubric, full credit requires both interpretations and noting that Nina's",2026-04-15T18:50:37.362076
+cot_005,chain_of_thought,false_belief_pragmatic_inference,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A student asks the class: 'Has anyone read chapter 5?' Nobody responds. Later it turns out one student had read it but was too shy to speak up.
+
+Question: What did the class likely infer from the silence, and how would knowing about the shy student change that inference?
+ANSWER: the class inferred nobody had read it; knowing about the shy student reveals the silence was misleading — someone had read it but chose not to respond
+
+---
+
+Nina sends a message to her study group: 'Does anyone know what time the library closes tonight?' Her groupmate Theo, who works at the library, sees the message but does not reply. Nina does not know that Theo works at the library.
+
+Question: What might Nina infer from Theo's silence, and how would her inference change if she knew Theo worked at the library?","Nina might infer that no one in the group knows the library's closing time. If she knew Theo worked at the library, she would realize his silence likely wasn't due to lack of knowledge but because he had the information himself — his silence would indicate he knew the answer but chose not to share it.  
+
+ANSWER: Nina might infer no one knows the closing time; knowing Theo works at the library would change that inference to suggest he knows the time but chose not to reply",,329,"Without knowing Theo works there, Nina likely infers nobody in the group knows the closing time. If she knew Theo worked at the library, his silence would be surprising and implicating — suggesting he is deliberately withholding information.",Nina might infer no one knows the closing time; knowing Theo works at the library would change that inference to suggest he knows the time but chose not to reply,,llm_grader,True,"<think>
+Okay, let's see. The user is asking whether the model's answer is correct based on the grading rubric provided. The scenario involves Nina and Theo. The key points are the two inferences Nina might make depending on her knowledge about Theo's job.
+
+The correct answer according to the reference is that without knowing Theo works at the library, Nina would think the group doesn't know the closing time. If she knew, his silence would imply he's withholding info. The rubric says full credit requires both interpretations and noting that Nina's false belief (not knowing Theo's job) drives the first inference.
+
+The model's answer",2026-04-15T18:53:23.422856
+cot_006,chain_of_thought,goal_inference_pragmatic_inference,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A student emails a professor: 'I'm finding the coursework quite challenging.' The professor replies: 'Yes, it is a demanding course.'
+
+Question: Did the professor respond cooperatively? What did the student intend?
+ANSWER: no — the student was implicitly asking for help or guidance; the professor acknowledged the difficulty but offered nothing actionable
+
+---
+
+A customer at a restaurant has been waiting 45 minutes for their food. When the waiter passes, the customer says: 'I've been here a while.' The waiter responds: 'Yes, we're quite busy tonight.'
+
+Question: Did the waiter respond cooperatively? What did the customer intend, and what did the waiter communicate?","<think>
+Okay, let's break this down. The customer has been waiting 45 minutes and says, ""I've been here a while."" The waiter replies, ""Yes, we're quite busy tonight."" 
+
+First, the question is whether the waiter responded cooperatively. Cooperative responses usually involve acknowledging the issue and offering a solution or apology. The waiter here just acknowledges the wait by saying they're busy. That doesn't really address the customer's concern. So maybe the waiter isn't being cooperative.
+
+Next, what did the customer intend? The customer is likely expressing frustration about the long wait. They might be expecting an apology or some action, like an update on their order or an offer to expedite. But the customer's statement is pretty neutral, just stating the fact of waiting.
+
+Then, what did the waiter communicate? The waiter's response is an explanation, not an apology or solution. They're deflecting by saying it's because they're busy. That might make the customer feel ignored or that the waiter isn't taking responsibility.
+
+So putting it all together: the waiter didn't respond cooperatively because they didn't offer help or acknowledge the problem beyond stating the cause. The customer intended to express their concern, possibly seeking resolution, but the waiter's response didn't address that. The waiter communicated that the delay is due to high volume, which might not be helpful.
+</think>
+
+ANSWER: no — the customer intended to express concern about the long wait; the waiter communicated an excuse but offered no apology or solution",,509,"The waiter did not respond cooperatively. The customer's statement was an indirect complaint and implicit request for an update on their order. The waiter's reply acknowledged the wait but offered no actionable information or apology, failing to address the customer's actual goal.",no — the customer intended to express concern about the long wait; the waiter communicated an excuse but offered no apology or solution,,ambiguous,True,,2026-04-15T18:53:30.385327
+cot_006,chain_of_thought,goal_inference_pragmatic_inference,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A student emails a professor: 'I'm finding the coursework quite challenging.' The professor replies: 'Yes, it is a demanding course.'
+
+Question: Did the professor respond cooperatively? What did the student intend?
+ANSWER: no — the student was implicitly asking for help or guidance; the professor acknowledged the difficulty but offered nothing actionable
+
+---
+
+A customer at a restaurant has been waiting 45 minutes for their food. When the waiter passes, the customer says: 'I've been here a while.' The waiter responds: 'Yes, we're quite busy tonight.'
+
+Question: Did the waiter respond cooperatively? What did the customer intend, and what did the waiter communicate?","The customer intended to express concern about the long wait and possibly request attention or an explanation. The waiter responded with a statement that acknowledged the situation but did not address the customer's concern or offer a solution. Instead, the waiter shifted focus to the restaurant's general busyness, which minimizes accountability and fails to acknowledge the specific delay.
+
+The waiter did not respond cooperatively.
+
+ANSWER: no — the customer intended to express concern about the long wait and possibly request assistance; the waiter communicated that the restaurant is busy, which avoids addressing the issue directly and offers no solution",,316,"The waiter did not respond cooperatively. The customer's statement was an indirect complaint and implicit request for an update on their order. The waiter's reply acknowledged the wait but offered no actionable information or apology, failing to address the customer's actual goal.","no — the customer intended to express concern about the long wait and possibly request assistance; the waiter communicated that the restaurant is busy, which avoids addressing the issue directly and offers no solution",True,keyword_match,False,,2026-04-15T18:53:37.353157
+cot_007,chain_of_thought,mental_state_causal_chain,intermediate,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+After presenting her business idea, Priya asks her mentor for feedback. He says: 'It's an interesting concept.' Priya says 'okay' and closes her notebook.
+
+Question: What does Priya's response likely reveal about how she received the feedback?
+ANSWER: Priya likely found the feedback disappointing or dismissive — 'okay' and closing her notebook signal she did not feel encouraged
+
+---
+
+Omar has been applying for jobs for three months with no success. His friend Leila, trying to be encouraging, says: 'I'm sure something will come up soon — you're so talented!' Omar says 'thanks' and changes the subject.
+
+Question: What does Omar's response most likely reveal about how he received Leila's encouragement?","<think>
+Okay, let's break this down. Omar has been job hunting for three months without success. Leila tries to encourage him by saying something will come up soon and mentions he's talented. Omar responds with 'thanks' and changes the subject.
+
+So, the question is about how Omar received Leila's encouragement. The key here is to analyze his response. He says 'thanks', which is a polite acknowledgment, but then changes the subject. That might indicate that he's not fully convinced by her encouragement. Maybe he's feeling discouraged despite her words. His actions suggest he might not want to dwell on the topic, possibly because he's frustrated or doesn't believe the encouragement. The fact that he's been unsuccessful for three months might make him skeptical of positive reinforcement. So, his response likely reveals that he found the encouragement insufficient or not genuine, leading him to avoid further discussion.
+</think>
+
+Omar's response likely reveals he found Leila's encouragement dismissive or insincere — his polite acknowledgment followed by changing the subject suggests he did not fully believe or appreciate her words.  
+ANSWER: Omar likely found Leila's encouragement dismissive or insincere — his polite acknowledgment followed by changing the subject suggests he did not fully believe or appreciate her words.",,471,"Omar likely found Leila's encouragement hollow or unhelpful — the minimal 'thanks' and subject change suggest he did not feel genuinely comforted, possibly because the reassurance felt disconnected from the concrete difficulty of his situation.",Omar likely found Leila's encouragement dismissive or insincere — his polite acknowledgment followed by changing the subject suggests he did not fully believe or appreciate her words.,True,keyword_match,False,,2026-04-15T18:53:41.857702
+cot_007,chain_of_thought,mental_state_causal_chain,intermediate,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+After presenting her business idea, Priya asks her mentor for feedback. He says: 'It's an interesting concept.' Priya says 'okay' and closes her notebook.
+
+Question: What does Priya's response likely reveal about how she received the feedback?
+ANSWER: Priya likely found the feedback disappointing or dismissive — 'okay' and closing her notebook signal she did not feel encouraged
+
+---
+
+Omar has been applying for jobs for three months with no success. His friend Leila, trying to be encouraging, says: 'I'm sure something will come up soon — you're so talented!' Omar says 'thanks' and changes the subject.
+
+Question: What does Omar's response most likely reveal about how he received Leila's encouragement?","Omar's response most likely reveals that he feels discouraged or unvalued by the encouragement — saying 'thanks' and changing the subject suggests he may not believe in the validity of the praise or feels it doesn't address his current struggles.
+
+ANSWER: Omar likely feels that the encouragement is insincere or irrelevant to his current situation, and he is avoiding further discussion due to disappointment or lack of hope",,296,"Omar likely found Leila's encouragement hollow or unhelpful — the minimal 'thanks' and subject change suggest he did not feel genuinely comforted, possibly because the reassurance felt disconnected from the concrete difficulty of his situation.","Omar likely feels that the encouragement is insincere or irrelevant to his current situation, and he is avoiding further discussion due to disappointment or lack of hope",,ambiguous,True,,2026-04-15T18:53:46.771504
+cot_008,chain_of_thought,false_belief_pragmatic_inference,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two flatmates both think the other is going to buy more washing-up liquid. They run out. One flatmate says to the other: 'We're out of washing-up liquid.'
+
+Question: Why did they run out, and what is the flatmate communicating?
+ANSWER: they ran out because both assumed the other would buy it — a coordination failure from mutual false belief; the comment is an indirect request for the other to go buy some
+
+---
+
+Two neighbours, Rosa and Kwame, disagree about whose turn it is to maintain the shared garden path. Rosa believes it is Kwame's turn; Kwame believes it is Rosa's. Neither knows the other holds this belief. The path goes unmaintained for weeks. Eventually Rosa says to Kwame: 'The path is getting quite overgrown.'
+
+Question: Why has the path gone unmaintained, and what is Rosa most likely communicating with her comment?","<think>
+Okay, let's try to figure this out. So, there are two neighbors, Rosa and Kwame, who are arguing about who's turn it is to maintain the garden path. Rosa thinks it's Kwame's turn, and Kwame thinks it's Rosa's. Neither knows the other's belief. Because of that, they both assume the other will take care of it, right? So they both wait for the other to act, leading to the path not being maintained. 
+
+Now, Rosa says the path is getting overgrown. Why did the path go unmaintained? It's because of their mutual misunderstanding. Each thinks the other is responsible, so neither acts. That's a coordination problem where their false beliefs prevent action. 
+
+What's Rosa communicating when she mentions the path is overgrown? She might be indirectly pointing out that someone needs to take action. Since she thinks it's Kwame's turn, maybe she's hinting that Kwame should do it. But since Kwame thinks it's her turn, he might not act. So her comment is a way to signal that the responsibility hasn't been met, possibly trying to prompt Kwame to take action without directly accusing him. It's a polite way to bring up the issue, maybe to avoid conflict.
+</think>
+
+The path went unmaintained due to a coordination failure from mutual false beliefs—each assumed the other would take responsibility. Rosa's comment indirectly signals that the task hasn't been done, subtly prompting Kwame to act while avoiding direct confrontation.  
+ANSWER: the path went unmaintained because both assumed the other would take responsibility—a coordination failure from mutual false belief; Rosa's comment indirectly signals that the task hasn't been done, subtly prompting Kwame to act.",,605,"The path is unmaintained because both believe it is the other's responsibility — a coordination failure driven by mutually held false beliefs. Rosa's comment is an indirect reminder that the path needs attention, likely intended to prompt Kwame to act.","the path went unmaintained because both assumed the other would take responsibility—a coordination failure from mutual false belief; Rosa's comment indirectly signals that the task hasn't been done, subtly prompting Kwame to act.",,llm_grader,True,"<think>
+Okay, let's see. The user wants me to grade the model's answer based on the provided rubric. The scenario is about Rosa and Kwame not maintaining the garden path because each thinks it's the other's turn. The correct answer mentions coordination failure due to mutual false beliefs and Rosa's comment as an indirect prompt.
+
+The model's answer says the path went unmaintained because both assumed the other would take responsibility, which is a coordination failure from mutual false belief. Then it states Rosa's comment is an indirect signal that the task hasn't been done, subtly prompting Kwame. 
+
+Looking at the rubric,",2026-04-15T18:53:57.566815
+cot_008,chain_of_thought,false_belief_pragmatic_inference,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+Two flatmates both think the other is going to buy more washing-up liquid. They run out. One flatmate says to the other: 'We're out of washing-up liquid.'
+
+Question: Why did they run out, and what is the flatmate communicating?
+ANSWER: they ran out because both assumed the other would buy it — a coordination failure from mutual false belief; the comment is an indirect request for the other to go buy some
+
+---
+
+Two neighbours, Rosa and Kwame, disagree about whose turn it is to maintain the shared garden path. Rosa believes it is Kwame's turn; Kwame believes it is Rosa's. Neither knows the other holds this belief. The path goes unmaintained for weeks. Eventually Rosa says to Kwame: 'The path is getting quite overgrown.'
+
+Question: Why has the path gone unmaintained, and what is Rosa most likely communicating with her comment?","The path has gone unmaintained because both Rosa and Kwame believe it is the other's responsibility — a coordination failure due to mutual false belief. Rosa's comment is most likely an indirect way of signaling that the path needs attention and suggesting that it might be her turn to maintain it, or that she is now taking responsibility.
+
+ANSWER: the path has gone unmaintained because both believe the other is responsible — a coordination failure from mutual false belief; Rosa is most likely communicating that the path needs maintenance and implying it might be her turn to take care of it",,362,"The path is unmaintained because both believe it is the other's responsibility — a coordination failure driven by mutually held false beliefs. Rosa's comment is an indirect reminder that the path needs attention, likely intended to prompt Kwame to act.",the path has gone unmaintained because both believe the other is responsible — a coordination failure from mutual false belief; Rosa is most likely communicating that the path needs maintenance and implying it might be her turn to take care of it,,llm_grader,True,"<think>
+Okay, let's break this down. The user wants me to grade the model's answer based on the provided rubric. The scenario is about Rosa and Kwame not maintaining the garden path because each thinks the other is responsible. The correct answer mentions coordination failure due to mutual false beliefs and Rosa's comment as an indirect prompt.
+
+The model's answer says the path is unmaintained because both think the other is responsible, which is a coordination failure from mutual false belief. Then it states Rosa is communicating that the path needs maintenance and implying it might be her turn. 
+
+First part matches the correct answer's first component. The",2026-04-15T18:54:10.066275
+cot_009,chain_of_thought,goal_inference_pragmatic_inference,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A reference letter reads: 'I have known the applicant for two years. They are punctual and reliable.' No other qualities are mentioned.
+
+Question: What does the letter implicate about the applicant's suitability?
+ANSWER: the letter implicates limited enthusiasm — only minimal qualities are mentioned, and the absence of stronger praise suggests the writer could not honestly provide it
+
+---
+
+At a performance review, a manager tells an employee: 'Your work is generally solid, and your colleagues enjoy working with you. There's always room to push further, of course.' The employee leaves feeling uncertain about their standing.
+
+Question: Is the employee's uncertainty warranted? What has the manager communicated and what have they left unsaid?","<think>
+Okay, let's break this down. The manager's feedback is that the employee's work is generally solid and colleagues enjoy working with them. But there's also a mention that there's room to push further. The employee feels uncertain.
+
+First, the manager did acknowledge positive aspects: solid work and good teamwork. That's a positive sign. But the mention of room for improvement might make the employee think they're not meeting expectations. However, the manager didn't specify what exactly needs improvement. So the employee might be unsure if their current performance is adequate or if they need to do more. The manager didn't give specific areas to work on, which could leave the employee feeling confused. The uncertainty might be warranted because the feedback is vague. The manager communicated that there's potential for growth but didn't clarify what that means. The employee might be left wondering if their performance is below standard or if it's just an opportunity to improve. So the manager's message is a mix of positive and constructive, but the lack of specifics could lead to uncertainty.
+</think>
+
+The manager's feedback acknowledges the employee's solid work and positive collegial relationships, which are positive indicators. However, the vague mention of ""room to push further"" without specific areas for improvement leaves the employee uncertain about their performance standing. The manager communicated general approval but omitted concrete guidance, which may justify the employee's uncertainty. 
+
+ANSWER: The employee's uncertainty is warranted because the manager provided vague feedback, highlighting strengths without addressing specific areas for improvement, leaving the employee unsure about their performance evaluation.",,520,"The uncertainty is warranted. The manager gave qualified praise without specifics, then added a vague growth comment. The hedge 'generally solid' and the unprompted 'room to push further' implicate there are specific concerns the manager chose not to name — the absence of concrete positive examples or a clear endorsement is itself informative.","The employee's uncertainty is warranted because the manager provided vague feedback, highlighting strengths without addressing specific areas for improvement, leaving the employee unsure about their performance evaluation.",,llm_grader,True,"<think>
+Okay, let's see. The user wants me to grade the model's answer based on the rubric provided. The correct answer is supposed to validate the employee's uncertainty and identify at least one specific mechanism like the hedge ""generally,"" the unprompted growth comment, or the absence of concrete specifics.
+
+The model's answer says the uncertainty is warranted because the feedback was vague, highlighting strengths without specific areas for improvement. So, they mention the vagueness and the lack of specific areas. The rubric requires at least one specific mechanism. The model points out the absence of specific areas for improvement, which is one of",2026-04-15T18:54:21.079908
+cot_009,chain_of_thought,goal_inference_pragmatic_inference,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A reference letter reads: 'I have known the applicant for two years. They are punctual and reliable.' No other qualities are mentioned.
+
+Question: What does the letter implicate about the applicant's suitability?
+ANSWER: the letter implicates limited enthusiasm — only minimal qualities are mentioned, and the absence of stronger praise suggests the writer could not honestly provide it
+
+---
+
+At a performance review, a manager tells an employee: 'Your work is generally solid, and your colleagues enjoy working with you. There's always room to push further, of course.' The employee leaves feeling uncertain about their standing.
+
+Question: Is the employee's uncertainty warranted? What has the manager communicated and what have they left unsaid?","The manager has communicated that the employee's work is generally solid and that colleagues appreciate their collaboration. However, the comment ""there's always room to push further"" is vague and lacks specific expectations or actionable feedback. The manager has left unsaid what exactly needs improvement, how it impacts performance, or what the employee should focus on. This ambiguity, combined with the absence of concrete praise or clear goals, contributes to the employee's uncertainty about their standing.
+
+ANSWER: yes, the employee's uncertainty is warranted because the manager provided vague, non-specific feedback without clear expectations or recognition, leaving the employee unsure about performance standards or areas for growth",,333,"The uncertainty is warranted. The manager gave qualified praise without specifics, then added a vague growth comment. The hedge 'generally solid' and the unprompted 'room to push further' implicate there are specific concerns the manager chose not to name — the absence of concrete positive examples or a clear endorsement is itself informative.","yes, the employee's uncertainty is warranted because the manager provided vague, non-specific feedback without clear expectations or recognition, leaving the employee unsure about performance standards or areas for growth",,llm_grader,True,"<think>
+Okay, let's see. The user wants me to grade the model's answer based on the rubric provided. The correct answer is that the employee's uncertainty is warranted because the manager used hedges like ""generally solid"" and made vague growth comments without specifics. The rubric says to award credit if the answer both validates the uncertainty and identifies at least one specific mechanism.
+
+The model's answer says ""yes, the employee's uncertainty is warranted because the manager provided vague, non-specific feedback without clear expectations or recognition, leaving the employee unsure..."" So they validated the uncertainty. Now, do they mention a specific mechanism? The",2026-04-15T18:54:32.957711
+cot_010,chain_of_thought,mental_state_causal_chain,advanced,Qwen/Qwen3-8B,Qwen3-8B,8B,Dense,Hybrid,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A publisher reads the first chapter of a manuscript and says, after a long pause: 'There's certainly something here.' The author, who has been through submissions before, immediately starts revising.
+
+Question: What did the author infer from the pause and the word choice?
+ANSWER: the author inferred the manuscript needs significant work — the pause signals hesitation and 'something here' is weak praise implicating the stronger verdict (acceptance) does not apply
+
+---
+
+During a negotiation, Buyer A makes an offer. Seller B pauses for ten seconds before responding: 'That's an interesting offer.' Buyer A, experienced in negotiations, immediately adjusts their strategy.
+
+Question: What did Buyer A most likely infer from the pause and Seller B's word choice, and why did it prompt a strategy change?","<think>
+Okay, let's tackle this question. So, the scenario is about a negotiation between Buyer A and Seller B. Buyer A makes an offer, Seller B pauses for ten seconds and says, ""That's an interesting offer."" Then Buyer A, who's experienced, changes their strategy. The question is asking what Buyer A inferred from the pause and the wording, and why that led to a strategy change.
+
+First, I need to think about what a ten-second pause might indicate. In negotiations, pauses can be significant. If someone takes a long time to respond, it might mean they're considering the offer carefully, or maybe they're trying to buy time. But Seller B's response is ""That's an interesting offer."" The wording here is important. ""Interesting"" is a bit vague. It's not a clear acceptance or rejection. 
+
+In negotiation tactics, when someone says an offer is ""interesting,"" it can be a way to signal that they're not immediately accepting but aren't outright rejecting it either. It might be a way to keep the conversation going or to probe for more information. But why would Buyer A adjust their strategy? If Seller B is taking time and using that phrase, maybe Buyer A thinks the seller is trying to get more leverage. 
+
+Alternatively, the pause could indicate that Seller B is evaluating the offer, which might mean they're not satisfied. But the phrase ""interesting"" could be a way to avoid giving a direct no. So Buyer A might infer that the seller is not ready to accept the offer but isn't dismissing it outright. Therefore, Buyer A might decide to adjust their strategy to perhaps lower the offer or add more terms to make it more appealing. 
+
+Another angle: in negotiations, sometimes a pause can be a sign of hesitation or uncertainty. If Seller B is taking time to respond, maybe they're not confident in their position. But the ""interesting"" comment could be a way to mask that. Alternatively, the seller might be testing Buyer A's reaction. 
+
+But since Buyer A is experienced, they might recognize that the pause and the wording are signals that the seller is not immediately accepting. So Buyer A might think that the seller is looking for more negotiation, perhaps to get a better deal. Therefore, changing strategy could involve being more flexible or pushing for better terms. 
+
+So putting it all together, Buyer A likely inferred that Seller B was not ready to accept the offer but wasn't outright rejecting it, possibly to encourage further negotiation. This would prompt Buyer A to adjust their strategy to",,733,"Buyer A likely inferred that the offer was too low — the deliberate pause signals consideration rather than enthusiasm, and 'interesting' is a weak positive that implicates rejection without explicitly refusing. An experienced negotiator reads these as signals to revise upward.",,,no_answer,True,,2026-04-15T18:56:33.287568
+cot_010,chain_of_thought,mental_state_causal_chain,advanced,Qwen/Qwen3-4B-Instruct-2507,Qwen3-4B-Instruct,4B,Dense,Instruction,standard,"You are being tested on social reasoning tasks.
+Read the scenario carefully and answer the question.
+Give a clear, concise answer. End your response with your final answer on a new line
+in the format: ANSWER: <your answer>","Example:
+A publisher reads the first chapter of a manuscript and says, after a long pause: 'There's certainly something here.' The author, who has been through submissions before, immediately starts revising.
+
+Question: What did the author infer from the pause and the word choice?
+ANSWER: the author inferred the manuscript needs significant work — the pause signals hesitation and 'something here' is weak praise implicating the stronger verdict (acceptance) does not apply
+
+---
+
+During a negotiation, Buyer A makes an offer. Seller B pauses for ten seconds before responding: 'That's an interesting offer.' Buyer A, experienced in negotiations, immediately adjusts their strategy.
+
+Question: What did Buyer A most likely infer from the pause and Seller B's word choice, and why did it prompt a strategy change?","Buyer A most likely inferred that Seller B was hesitant or uncertain about the offer, and the phrase ""That's an interesting offer"" was a soft, non-committal response that lacked enthusiasm or clear acceptance. This suggested that Seller B was either evaluating the offer carefully or possibly trying to delay a decision. The pause and the lukewarm language indicated a lack of immediate interest or willingness to proceed, prompting Buyer A to adjust their strategy—perhaps by offering a counterproposal, improving terms, or exploring alternative solutions to gain a stronger position.
+
+ANSWER: Buyer A inferred that Seller B was hesitant and unenthusiastic about the offer, and the soft praise signaled a lack of immediate commitment, prompting a strategy change to pursue more compelling terms or alternatives",,373,"Buyer A likely inferred that the offer was too low — the deliberate pause signals consideration rather than enthusiasm, and 'interesting' is a weak positive that implicates rejection without explicitly refusing. An experienced negotiator reads these as signals to revise upward.","Buyer A inferred that Seller B was hesitant and unenthusiastic about the offer, and the soft praise signaled a lack of immediate commitment, prompting a strategy change to pursue more compelling terms or alternatives",,ambiguous,True,,2026-04-15T18:56:42.396322

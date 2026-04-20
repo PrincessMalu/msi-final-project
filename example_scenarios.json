@@ -1,0 +1,96 @@
+[
+  {
+    "id": "tom_008",
+    "type": "theory_of_mind",
+    "subtype": "goal_inference",
+    "scenario_text": "A ball is rolling toward a hole in the ground. Agent A rushes over and places a block to stop the ball from falling in. Agent B rushes over and kicks the block away so the ball falls into the hole.",
+    "question": "Which agent is trying to help the ball reach safety, and which is hindering it?",
+    "correct_answer": "Agent A is the helper (preventing the ball from falling); Agent B is the hinderer (causing it to fall).",
+    "keywords": [
+      "A",
+      "helper",
+      "B",
+      "hinderer"
+    ],
+    "reasoning_type": "helper_hinderer_distinction",
+    "difficulty": "intermediate",
+    "inspired_by": "Baby Intuitions Benchmark (BIB) — Social evaluation",
+    "evaluation_criteria": "Model must correctly assign helper/hinderer roles by inferring goal-directed vs. goal-obstructing actions. Failure modes: role reversal, or failing to distinguish intent from outcome.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A kitten is trying to climb onto a couch. Person X picks up the kitten and places it on the couch. Person Y pushes the kitten down each time it tries to climb.",
+          "question": "Who is helping the kitten and who is hindering it?",
+          "answer": "ANSWER: Person X helps; Person Y hinders"
+        }
+      ]
+    },
+    "answer_scope": "answer_tag_only"
+  },
+  {
+    "id": "prag_004",
+    "type": "pragmatics",
+    "subtype": "indirect_speech_act",
+    "scenario_text": "At a library, a librarian looks at a patron talking loudly on their phone and says: 'We do have a quiet policy here.'",
+    "question": "What is the librarian communicating to the patron?",
+    "correct_answer": "the patron should stop talking loudly / take the call outside",
+    "keywords": [
+      "quiet",
+      "stop",
+      "phone",
+      "outside",
+      "lower",
+      "silence"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "keyword",
+    "reasoning_type": "indirect_speech_act_policy_as_directive",
+    "difficulty": "basic",
+    "inspired_by": "RSA / Gricean Relevance maxim",
+    "evaluation_criteria": "Model must infer that stating the policy to someone violating it is a face-saving indirect request to stop. Failure mode: model treats the utterance as purely informational.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A cinema employee approaches someone eating crunchy snacks and says: 'Outside food isn't really allowed in the theatre.'",
+          "question": "What is the employee communicating?",
+          "answer": "ANSWER: the person should stop eating the outside food / put it away"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cot_009",
+    "type": "chain_of_thought",
+    "subtype": "goal_inference_pragmatic_inference",
+    "scenario_text": "At a performance review, a manager tells an employee: 'Your work is generally solid, and your colleagues enjoy working with you. There's always room to push further, of course.' The employee leaves feeling uncertain about their standing.",
+    "question": "Is the employee's uncertainty warranted? What has the manager communicated and what have they left unsaid?",
+    "correct_answer": "The uncertainty is warranted. The manager gave qualified praise without specifics, then added a vague growth comment. The hedge 'generally solid' and the unprompted 'room to push further' implicate there are specific concerns the manager chose not to name — the absence of concrete positive examples or a clear endorsement is itself informative.",
+    "keywords": [
+      "warranted",
+      "qualified",
+      "vague",
+      "left unsaid",
+      "implicate",
+      "hedge",
+      "concerns",
+      "not specific",
+      "absence"
+    ],
+    "answer_scope": "answer_tag_only",
+    "scoring_method": "llm_grader",
+    "grading_rubric": "Award credit if answer: (1) validates the employee's uncertainty as reasonable, AND (2) identifies at least one specific mechanism — the hedge 'generally', the unprompted growth comment, or the absence of concrete positive specifics — as the source of the negative implicature. Reject if model says the review was straightforwardly positive.",
+    "reasoning_type": "cot_scalar_implicature_omission_in_evaluative_register",
+    "difficulty": "advanced",
+    "inspired_by": "RSA omission implicature / Gricean Quantity — what is left unsaid is informative",
+    "evaluation_criteria": "Model must reason about what was NOT said as much as what was said. In an evaluative register, a strong endorsement would include concrete examples and a clear positive verdict — their absence is itself a scalar implicature of insufficiency. CoT helps make the omission reasoning explicit. Failure mode: model reads the review as positive because no explicit criticism was made.",
+    "few_shot_examples": {
+      "standard": [
+        {
+          "scenario": "A reference letter reads: 'I have known the applicant for two years. They are punctual and reliable.' No other qualities are mentioned.",
+          "question": "What does the letter implicate about the applicant's suitability?",
+          "answer": "ANSWER: the letter implicates limited enthusiasm — only minimal qualities are mentioned, and the absence of stronger praise suggests the writer could not honestly provide it"
+        }
+      ]
+    }
+  }
+]
